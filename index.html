@@ -1,0 +1,3735 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Studio CV &amp; Cover Letter Profesional</title>
+
+  <!-- Google Fonts: Inter untuk antarmuka modern & Merriweather untuk gaya klasik formal -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Merriweather:wght@400;700&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'system-ui', '-apple-system', 'Segoe UI', 'sans-serif'],
+            serif: ['Merriweather', 'Georgia', 'serif']
+          }
+        }
+      }
+    };
+  </script>
+
+  <style>
+    /* Tema dasar cerah & sejuk (Biru Es Lembut) */
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      background: linear-gradient(135deg, #f2f7fb 0%, #e8f1f8 55%, #dfeef7 100%);
+      color: #0f2942;
+      overflow-x: hidden;
+    }
+
+    /* Scrollbar halus bernuansa biru-abu */
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #edf4fa;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #bfd3e6;
+      border-radius: 9999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #96b5d1;
+    }
+
+    /* Lembaran Kertas Standar A4 (210mm x 297mm = 794px x 1123px pada 96 DPI) */
+    .a4-sheet {
+      width: 794px;
+      min-height: 1123px;
+      background: #ffffff;
+      box-shadow: 0 18px 42px -14px rgba(15, 41, 66, 0.16), 0 4px 14px -4px rgba(15, 41, 66, 0.06);
+      box-sizing: border-box;
+      position: relative;
+      border-radius: 2px;
+    }
+
+    #preview-scale-wrapper {
+      transform-origin: top center;
+      transition: transform 0.16s ease;
+    }
+
+    /* Aturan Cetak / Simpan PDF (@media print) khusus Kertas A4 */
+    @media print {
+      @page {
+        size: A4 portrait;
+        margin: 0;
+      }
+      html, body {
+        background: #ffffff !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        width: 210mm !important;
+        height: auto !important;
+        overflow: visible !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+      }
+      .no-print {
+        display: none !important;
+      }
+      #workspace-main,
+      #preview-pane,
+      #preview-scroll-container,
+      #preview-scale-wrapper,
+      #a4-sheets-stack {
+        display: block !important;
+        position: static !important;
+        width: 100% !important;
+        height: auto !important;
+        max-height: none !important;
+        overflow: visible !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        background: #ffffff !important;
+        transform: none !important;
+      }
+      .a4-sheet {
+        width: 210mm !important;
+        min-height: 297mm !important;
+        box-shadow: none !important;
+        margin: 0 !important;
+        border-radius: 0 !important;
+        page-break-after: always;
+        break-after: page;
+      }
+      .a4-sheet:last-child {
+        page-break-after: auto;
+        break-after: auto;
+      }
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col relative selection:bg-sky-100 selection:text-sky-900">
+
+  <!-- ===================================================================== -->
+  <!-- LATAR BELAKANG ILUSTRASI HALUS BERTEMA PEKERJAAN FORMAL PROFESIONAL    -->
+  <!-- ===================================================================== -->
+  <div class="no-print fixed inset-0 pointer-events-none z-0 overflow-hidden" aria-hidden="true">
+    <svg class="w-full h-full opacity-[0.055]" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <!-- Pola kisi arsitektural halus -->
+        <pattern id="prof-grid" width="64" height="64" patternUnits="userSpaceOnUse">
+          <path d="M 64 0 L 0 0 0 64" stroke="#1d5b8c" stroke-width="0.7" />
+          <circle cx="0" cy="0" r="1.4" fill="#1d5b8c" />
+        </pattern>
+      </defs>
+
+      <!-- Kisi latar lembut -->
+      <rect width="1440" height="900" fill="url(#prof-grid)" />
+
+      <!-- Lingkaran geometris halus di sudut kanan atas -->
+      <circle cx="1310" cy="110" r="240" stroke="#1d5b8c" stroke-width="1.5" />
+      <circle cx="1310" cy="110" r="185" stroke="#0284c7" stroke-width="1" stroke-dasharray="6 6" />
+
+      <!-- Siluet gedung perkantoran modern minimalis (Kiri Bawah) -->
+      <g stroke="#1d5b8c" stroke-width="1.6" stroke-linejoin="round">
+        <rect x="36" y="640" width="68" height="260" />
+        <line x1="52" y1="665" x2="88" y2="665" />
+        <line x1="52" y1="690" x2="88" y2="690" />
+        <line x1="52" y1="715" x2="88" y2="715" />
+        <line x1="52" y1="740" x2="88" y2="740" />
+        <line x1="52" y1="765" x2="88" y2="765" />
+
+        <path d="M104 580 L184 550 L184 900 L104 900 Z" />
+        <line x1="124" y1="595" x2="124" y2="880" />
+        <line x1="144" y1="585" x2="144" y2="880" />
+        <line x1="164" y1="575" x2="164" y2="880" />
+
+        <rect x="184" y="685" width="58" height="215" />
+        <line x1="198" y1="710" x2="228" y2="710" />
+        <line x1="198" y1="735" x2="228" y2="735" />
+        <line x1="198" y1="760" x2="228" y2="760" />
+      </g>
+
+      <!-- Siluet gedung perkantoran modern minimalis (Kanan Bawah) -->
+      <g stroke="#1d5b8c" stroke-width="1.6" stroke-linejoin="round">
+        <rect x="1210" y="660" width="62" height="240" />
+        <line x1="1225" y1="685" x2="1257" y2="685" />
+        <line x1="1225" y1="710" x2="1257" y2="710" />
+        <line x1="1225" y1="735" x2="1257" y2="735" />
+
+        <path d="M1272 560 L1358 590 L1358 900 L1272 900 Z" />
+        <line x1="1294" y1="595" x2="1294" y2="880" />
+        <line x1="1315" y1="605" x2="1315" y2="880" />
+        <line x1="1336" y1="615" x2="1336" y2="880" />
+
+        <rect x="1358" y="635" width="56" height="265" />
+      </g>
+
+      <!-- Ikon dokumen & pena tinta profesional tipis (Kiri Atas) -->
+      <g transform="translate(80, 95)" stroke="#1d5b8c" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" transform="scale(3.2)" />
+        <polyline points="14 2 14 8 20 8" transform="scale(3.2)" />
+        <line x1="26" y1="42" x2="48" y2="42" />
+        <line x1="26" y1="52" x2="48" y2="52" />
+        <line x1="26" y1="62" x2="38" y2="62" />
+      </g>
+
+      <!-- Ikon tas kerja eksekutif tipis (Kanan Tengah) -->
+      <g transform="translate(1315, 360) scale(2.8)" stroke="#1d5b8c" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="2" y="7" width="20" height="14" rx="2" ry="2" />
+        <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" />
+      </g>
+    </svg>
+  </div>
+
+  <!-- ===================================================================== -->
+  <!-- 1. HEADER APLIKASI RINGKAS & BERSIH                                   -->
+  <!-- ===================================================================== -->
+  <header class="no-print relative z-40 bg-white/90 backdrop-blur-md border-b border-[#d6e4f0] sticky top-0 shadow-xs">
+    <div class="max-w-[1640px] mx-auto px-3 sm:px-6 py-2.5 flex flex-wrap items-center justify-between gap-2.5">
+
+      <!-- Identitas Aplikasi -->
+      <div class="flex items-center gap-3 min-w-0">
+        <div id="brand-icon-box" class="w-9 h-9 rounded-xl bg-[#1d5b8c] flex items-center justify-center shrink-0 shadow-sm transition-colors">
+          <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" stroke-width="2.1" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+          </svg>
+        </div>
+        <div class="min-w-0">
+          <div class="flex items-center gap-2">
+            <h1 class="font-bold text-sm sm:text-base tracking-tight text-[#0f2942] truncate">Studio CV &amp; Cover Letter Profesional</h1>
+            <span class="hidden md:inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-semibold bg-[#e8f1f8] text-[#1d5b8c] border border-[#c5dbed] shrink-0">
+              Standar Internasional
+            </span>
+          </div>
+          <p class="text-[11px] text-slate-500 hidden sm:block truncate">Pembuat CV &amp; Surat Lamaran Kerja Bahasa Indonesia • Ekspor Word (.docx) &amp; PDF</p>
+        </div>
+      </div>
+
+      <!-- Tombol Ganti Tampilan Pratinjau (CV / Cover Letter / Paket Lengkap) -->
+      <div class="inline-flex items-center bg-[#eef5fb] p-1 rounded-xl border border-[#d6e4f0] order-3 lg:order-2 w-full lg:w-auto justify-center" role="group" aria-label="Pilihan Tampilan Pratinjau">
+        <button type="button" data-preview-doc="cv" onclick="setPreviewDocMode('cv')" class="preview-doc-btn flex-1 lg:flex-initial px-3 py-1.5 rounded-lg text-xs font-semibold transition cursor-pointer">
+          📄 Lihat CV
+        </button>
+        <button type="button" data-preview-doc="cover-letter" onclick="setPreviewDocMode('cover-letter')" class="preview-doc-btn flex-1 lg:flex-initial px-3 py-1.5 rounded-lg text-xs font-semibold transition cursor-pointer">
+          ✉️ Lihat Cover Letter
+        </button>
+        <button type="button" data-preview-doc="bundle" onclick="setPreviewDocMode('bundle')" class="preview-doc-btn flex-1 lg:flex-initial px-3 py-1.5 rounded-lg text-xs font-semibold transition cursor-pointer">
+          📑 Paket Lengkap
+        </button>
+      </div>
+
+      <!-- Tombol Aksi Kanan: Reset, Cetak PDF, Unduh Word (.docx) -->
+      <div class="flex items-center gap-1.5 sm:gap-2 order-2 lg:order-3 shrink-0">
+        <button
+          type="button"
+          onclick="openResetModal()"
+          title="Kembalikan data ke pengaturan awal"
+          class="inline-flex items-center gap-1 px-2.5 py-2 rounded-xl text-xs font-medium bg-white hover:bg-slate-50 text-slate-600 border border-[#d6e4f0] transition cursor-pointer"
+        >
+          <svg class="w-3.5 h-3.5 text-slate-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+          </svg>
+          <span class="hidden sm:inline">Reset</span>
+        </button>
+
+        <button
+          type="button"
+          onclick="window.print()"
+          title="Cetak atau simpan sebagai file PDF ukuran A4"
+          class="inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-2 rounded-xl text-xs font-semibold bg-[#eef5fb] hover:bg-[#e0edf8] text-[#1d5b8c] border border-[#c5dbed] transition cursor-pointer"
+        >
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" />
+          </svg>
+          <span>Cetak / PDF</span>
+        </button>
+
+        <!-- Dropdown Unduh Microsoft Word (.docx) -->
+        <div class="relative" id="word-dropdown-wrapper">
+          <button
+            type="button"
+            id="btn-word-dropdown"
+            onclick="toggleWordDropdown(event)"
+            class="inline-flex items-center gap-1.5 px-3 sm:px-3.5 py-2 rounded-xl text-xs font-bold bg-[#1d5b8c] hover:bg-[#16476e] active:scale-[0.99] text-white shadow-sm transition cursor-pointer"
+          >
+            <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+            </svg>
+            <span>Download Word (.docx)</span>
+            <svg class="w-3.5 h-3.5 opacity-90" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+
+          <div
+            id="word-dropdown-menu"
+            class="hidden absolute right-0 mt-2 w-72 rounded-2xl bg-white text-[#0f2942] shadow-xl border border-[#d6e4f0] py-1.5 z-50"
+          >
+            <div class="px-3.5 py-1.5 border-b border-slate-100">
+              <p class="text-[10px] font-bold uppercase tracking-wider text-slate-400">Pilih Dokumen Word (.docx)</p>
+            </div>
+            <button
+              type="button"
+              onclick="exportDocx('cv')"
+              class="w-full text-left px-3.5 py-2.5 hover:bg-[#f2f7fb] flex items-start gap-2.5 transition cursor-pointer"
+            >
+              <span class="text-base leading-none mt-0.5">📄</span>
+              <div>
+                <div class="text-xs font-bold text-[#0f2942]">Download CV (.docx)</div>
+                <div class="text-[11px] text-slate-500">Daftar riwayat hidup sesuai template pilihan</div>
+              </div>
+            </button>
+            <button
+              type="button"
+              onclick="exportDocx('cover-letter')"
+              class="w-full text-left px-3.5 py-2.5 hover:bg-[#f2f7fb] flex items-start gap-2.5 transition cursor-pointer"
+            >
+              <span class="text-base leading-none mt-0.5">✉️</span>
+              <div>
+                <div class="text-xs font-bold text-[#0f2942]">Download Cover Letter (.docx)</div>
+                <div class="text-[11px] text-slate-500">Surat lamaran kerja dengan kop surat serasi</div>
+              </div>
+            </button>
+            <div class="border-t border-slate-100 my-1"></div>
+            <button
+              type="button"
+              onclick="exportDocx('bundle')"
+              class="w-full text-left px-3.5 py-2.5 hover:bg-[#eef5fb] flex items-start gap-2.5 transition cursor-pointer"
+            >
+              <span class="text-base leading-none mt-0.5">📑</span>
+              <div>
+                <div class="text-xs font-bold text-[#1d5b8c]">Download Paket Lengkap (.docx)</div>
+                <div class="text-[11px] text-slate-500">Cover Letter + CV dalam 1 file Word terpisah halaman</div>
+              </div>
+            </button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- ===================================================================== -->
+  <!-- NAVIGASI MOBILE (< lg)                                                -->
+  <!-- ===================================================================== -->
+  <div class="no-print lg:hidden relative z-30 bg-white/95 backdrop-blur border-b border-[#d6e4f0] px-3 py-2 sticky top-[102px] sm:top-[96px]">
+    <div class="grid grid-cols-2 w-full bg-[#eef5fb] p-1 rounded-xl border border-[#d6e4f0]">
+      <button
+        type="button"
+        id="mobile-tab-editor"
+        onclick="switchMobileView('editor')"
+        class="py-2 px-3 rounded-lg text-xs font-semibold transition flex items-center justify-center gap-1.5 bg-white text-[#1d5b8c] shadow-xs"
+      >
+        <span>✏️ Editor Formulir</span>
+      </button>
+      <button
+        type="button"
+        id="mobile-tab-preview"
+        onclick="switchMobileView('preview')"
+        class="py-2 px-3 rounded-lg text-xs font-semibold transition flex items-center justify-center gap-1.5 text-slate-600 hover:text-[#0f2942]"
+      >
+        <span>👁️ Pratinjau Kertas A4</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- ===================================================================== -->
+  <!-- 2. WORKSPACE UTAMA (EDITOR KIRI + PRATINJAU KERTAS A4 KANAN)          -->
+  <!-- ===================================================================== -->
+  <main id="workspace-main" class="relative z-10 flex-1 max-w-[1640px] w-full mx-auto flex flex-col lg:flex-row">
+
+    <!-- =================================================================== -->
+    <!-- PANEL KIRI: EDITOR 3 TAB (100% BAHASA INDONESIA)                    -->
+    <!-- =================================================================== -->
+    <section
+      id="editor-pane"
+      class="no-print w-full lg:w-[46%] xl:w-[44%] bg-white/95 backdrop-blur-xs border-r border-[#d6e4f0] flex flex-col lg:h-[calc(100vh-3.75rem)] lg:sticky lg:top-[3.75rem]"
+    >
+      <!-- Navigasi 3 Tab Utama -->
+      <nav class="bg-[#f4f8fc] border-b border-[#d6e4f0] px-3 pt-2.5 flex items-center justify-between gap-2 shrink-0">
+        <div class="flex gap-1.5 overflow-x-auto" role="tablist">
+          <button
+            type="button"
+            data-editor-tab="1"
+            onclick="switchEditorTab(1)"
+            class="editor-tab-btn px-3.5 py-2.5 rounded-t-xl text-xs font-bold border-t border-x transition cursor-pointer whitespace-nowrap"
+          >
+            1. Template &amp; Profil
+          </button>
+          <button
+            type="button"
+            data-editor-tab="2"
+            onclick="switchEditorTab(2)"
+            class="editor-tab-btn px-3.5 py-2.5 rounded-t-xl text-xs font-bold border-t border-x transition cursor-pointer whitespace-nowrap"
+          >
+            2. Isi CV
+          </button>
+          <button
+            type="button"
+            data-editor-tab="3"
+            onclick="switchEditorTab(3)"
+            class="editor-tab-btn px-3.5 py-2.5 rounded-t-xl text-xs font-bold border-t border-x transition cursor-pointer whitespace-nowrap"
+          >
+            3. Cover Letter
+          </button>
+        </div>
+
+        <span id="autosave-status" class="hidden sm:inline-flex items-center gap-1 text-[11px] font-medium text-teal-700 pb-2 shrink-0">
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+          </svg>
+          Tersimpan
+        </span>
+      </nav>
+
+      <!-- Area Scrollable Konten Tab -->
+      <div class="flex-1 overflow-y-auto p-4 sm:p-6 space-y-6">
+
+        <!-- =============================================================== -->
+        <!-- TAB 1: TEMPLATE, WARNA AKSEN, FOTO PROFIL & DATA DIRI           -->
+        <!-- =============================================================== -->
+        <div id="editor-panel-1" class="editor-panel space-y-5">
+
+          <!-- Pilihan 4 Template Standar Internasional -->
+          <div class="bg-[#f6fafe] border border-[#d6e4f0] rounded-2xl p-4 space-y-3.5">
+            <div>
+              <h2 class="text-sm font-bold text-[#0f2942]">Pilih Template CV &amp; Cover Letter</h2>
+              <p class="text-xs text-slate-500">4 desain standar internasional yang menyelaraskan tampilan CV dan surat lamaran</p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+              <!-- Template 1: Eksekutif Modern -->
+              <button
+                type="button"
+                data-template-card="executive"
+                onclick="setDocumentTemplate('executive')"
+                class="tpl-card-btn text-left p-3 rounded-xl border bg-white transition cursor-pointer flex items-start gap-3"
+              >
+                <div class="w-10 h-12 rounded border border-slate-200 bg-slate-50 p-1 shrink-0 flex flex-col gap-1">
+                  <div class="h-1.5 w-full rounded-xs bg-[#1d5b8c]"></div>
+                  <div class="flex justify-between items-center">
+                    <div class="h-1.5 w-5 bg-slate-400 rounded-xs"></div>
+                    <div class="w-2.5 h-2.5 rounded-full bg-slate-300"></div>
+                  </div>
+                  <div class="grid grid-cols-3 gap-1 flex-1 pt-0.5">
+                    <div class="col-span-2 bg-slate-200/80 rounded-xs"></div>
+                    <div class="col-span-1 bg-slate-200/60 rounded-xs"></div>
+                  </div>
+                </div>
+                <div class="min-w-0">
+                  <div class="text-xs font-bold text-[#0f2942]">1. Eksekutif Modern</div>
+                  <p class="text-[11px] text-slate-500 leading-snug mt-0.5">Header tegas, foto kanan atas, tata letak 2 kolom proporsional.</p>
+                </div>
+              </button>
+
+              <!-- Template 2: Minimalis Swiss -->
+              <button
+                type="button"
+                data-template-card="swiss"
+                onclick="setDocumentTemplate('swiss')"
+                class="tpl-card-btn text-left p-3 rounded-xl border bg-white transition cursor-pointer flex items-start gap-3"
+              >
+                <div class="w-10 h-12 rounded border border-slate-200 bg-slate-50 p-1 shrink-0 flex flex-col gap-1">
+                  <div class="h-2 w-6 bg-slate-600 rounded-xs"></div>
+                  <div class="h-[1px] w-full bg-slate-300"></div>
+                  <div class="grid grid-cols-3 gap-1 flex-1">
+                    <div class="col-span-1 border-r border-slate-200 pr-0.5 space-y-1">
+                      <div class="h-1 w-full bg-[#1d5b8c]"></div>
+                      <div class="h-1 w-full bg-slate-300"></div>
+                    </div>
+                    <div class="col-span-2 space-y-1">
+                      <div class="h-1.5 w-full bg-slate-300 rounded-xs"></div>
+                      <div class="h-1.5 w-4/5 bg-slate-200 rounded-xs"></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="min-w-0">
+                  <div class="text-xs font-bold text-[#0f2942]">2. Minimalis Swiss</div>
+                  <p class="text-[11px] text-slate-500 leading-snug mt-0.5">Tipografi Eropa bersih, kolom periode di kiri &amp; detail di kanan.</p>
+                </div>
+              </button>
+
+              <!-- Template 3: Sidebar Korporat -->
+              <button
+                type="button"
+                data-template-card="sidebar"
+                onclick="setDocumentTemplate('sidebar')"
+                class="tpl-card-btn text-left p-3 rounded-xl border bg-white transition cursor-pointer flex items-start gap-3"
+              >
+                <div class="w-10 h-12 rounded border border-slate-200 bg-slate-50 overflow-hidden shrink-0 flex">
+                  <div class="w-3.5 h-full bg-[#dceaf6] p-0.5 flex flex-col items-center gap-1 border-r border-[#bfd6ea]">
+                    <div class="w-2 h-2 rounded-full bg-[#1d5b8c] mt-0.5"></div>
+                    <div class="h-1 w-2 bg-slate-400 rounded-xs"></div>
+                  </div>
+                  <div class="flex-1 p-1 space-y-1">
+                    <div class="h-1.5 w-4 bg-slate-600 rounded-xs"></div>
+                    <div class="h-1 w-full bg-slate-300 rounded-xs"></div>
+                    <div class="h-1 w-full bg-slate-200 rounded-xs"></div>
+                  </div>
+                </div>
+                <div class="min-w-0">
+                  <div class="text-xs font-bold text-[#0f2942]">3. Sidebar Korporat</div>
+                  <p class="text-[11px] text-slate-500 leading-snug mt-0.5">Sidebar kiri warna sejuk untuk foto, kontak &amp; keahlian.</p>
+                </div>
+              </button>
+
+              <!-- Template 4: Klasik Harvard (ATS) -->
+              <button
+                type="button"
+                data-template-card="harvard"
+                onclick="setDocumentTemplate('harvard')"
+                class="tpl-card-btn text-left p-3 rounded-xl border bg-white transition cursor-pointer flex items-start gap-3"
+              >
+                <div class="w-10 h-12 rounded border border-slate-200 bg-slate-50 p-1 shrink-0 flex flex-col gap-1">
+                  <div class="h-1.5 w-7 mx-auto bg-slate-700 rounded-xs"></div>
+                  <div class="h-[1px] w-full bg-slate-500"></div>
+                  <div class="h-1 w-full bg-slate-300 rounded-xs"></div>
+                  <div class="h-[1px] w-full bg-slate-400"></div>
+                  <div class="h-1 w-full bg-slate-300 rounded-xs"></div>
+                </div>
+                <div class="min-w-0">
+                  <div class="text-xs font-bold text-[#0f2942]">4. Klasik Harvard (ATS)</div>
+                  <p class="text-[11px] text-slate-500 leading-snug mt-0.5">Standar klasik internasional formal, hierarki garis tegas &amp; ramah ATS.</p>
+                </div>
+              </button>
+            </div>
+
+            <!-- Pilihan 4 Palet Warna Aksen Sejuk & Profesional -->
+            <div class="pt-3 border-t border-[#d6e4f0]">
+              <label class="block text-xs font-bold text-[#0f2942] mb-2">Warna Aksen Dokumen</label>
+              <div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
+                <button type="button" data-accent="ocean" onclick="setAccentColor('ocean')" class="accent-choice-btn flex items-center justify-center gap-1.5 py-2 px-2.5 rounded-xl border text-xs font-semibold transition cursor-pointer">
+                  <span class="w-3.5 h-3.5 rounded-full bg-[#1e5683] shrink-0"></span>
+                  <span>Biru Samudra</span>
+                </button>
+                <button type="button" data-accent="sage" onclick="setAccentColor('sage')" class="accent-choice-btn flex items-center justify-center gap-1.5 py-2 px-2.5 rounded-xl border text-xs font-semibold transition cursor-pointer">
+                  <span class="w-3.5 h-3.5 rounded-full bg-[#2c6e63] shrink-0"></span>
+                  <span>Hijau Sage</span>
+                </button>
+                <button type="button" data-accent="slate" onclick="setAccentColor('slate')" class="accent-choice-btn flex items-center justify-center gap-1.5 py-2 px-2.5 rounded-xl border text-xs font-semibold transition cursor-pointer">
+                  <span class="w-3.5 h-3.5 rounded-full bg-[#334e68] shrink-0"></span>
+                  <span>Biru Slate</span>
+                </button>
+                <button type="button" data-accent="graphite" onclick="setAccentColor('graphite')" class="accent-choice-btn flex items-center justify-center gap-1.5 py-2 px-2.5 rounded-xl border text-xs font-semibold transition cursor-pointer">
+                  <span class="w-3.5 h-3.5 rounded-full bg-[#2d3748] shrink-0"></span>
+                  <span>Abu Grafit</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Ruang Upload & Pengaturan Foto Profil (HTML5 Canvas 300x300) -->
+          <div class="bg-[#f6fafe] border border-[#d6e4f0] rounded-2xl p-4 space-y-4">
+            <div class="flex items-center justify-between">
+              <div>
+                <h2 class="text-sm font-bold text-[#0f2942]">Foto Profil Profesional (300×300 px)</h2>
+                <p class="text-xs text-slate-500">Unggah pas foto JPG, PNG, atau WEBP untuk ditampilkan pada CV</p>
+              </div>
+              <button
+                type="button"
+                id="btn-remove-photo"
+                onclick="removePhoto()"
+                class="hidden text-xs font-semibold text-rose-600 hover:bg-rose-50 px-2.5 py-1.5 rounded-lg transition cursor-pointer"
+              >
+                Hapus Foto
+              </button>
+            </div>
+
+            <div class="flex flex-col sm:flex-row items-center gap-4">
+              <div class="shrink-0">
+                <div
+                  id="thumb-photo-frame"
+                  class="w-24 h-24 rounded-full bg-slate-200 border-2 border-white shadow-md overflow-hidden flex items-center justify-center text-slate-400"
+                >
+                  <svg id="thumb-photo-icon" class="w-10 h-10" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                  </svg>
+                  <img id="thumb-photo-img" src="" alt="Foto Profil" class="hidden w-full h-full object-cover" />
+                </div>
+              </div>
+
+              <div class="flex-1 w-full">
+                <label
+                  id="photo-dropzone"
+                  for="photo-input"
+                  class="flex flex-col items-center justify-center w-full py-4 px-4 border-2 border-dashed border-[#bfd3e6] hover:border-[#1d5b8c] rounded-xl bg-white hover:bg-[#eef5fb]/60 transition cursor-pointer text-center"
+                >
+                  <svg class="w-6 h-6 text-[#1d5b8c] mb-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                  </svg>
+                  <span class="text-xs font-semibold text-[#0f2942]">Klik pilih foto atau seret (drag &amp; drop) ke sini</span>
+                  <span class="text-[11px] text-slate-400 mt-0.5">JPG, PNG, WEBP • Otomatis dipotong persegi tajam</span>
+                  <input id="photo-input" type="file" accept="image/jpeg,image/png,image/webp" onchange="handlePhotoUpload(event)" class="hidden" />
+                </label>
+              </div>
+            </div>
+
+            <!-- Slider Zoom & Posisi Horizontal/Vertikal -->
+            <div id="photo-sliders-box" class="hidden pt-3 border-t border-[#d6e4f0] space-y-2.5">
+              <div class="flex items-center justify-between">
+                <span class="text-xs font-semibold text-[#0f2942]">Atur Zoom &amp; Posisi Foto</span>
+                <button type="button" onclick="resetPhotoSliders()" class="text-[11px] font-semibold text-[#1d5b8c] hover:underline cursor-pointer">
+                  Reset Posisi
+                </button>
+              </div>
+              <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                <div>
+                  <label class="flex justify-between text-[11px] text-slate-600 mb-1">
+                    <span>Zoom</span>
+                    <span id="lbl-photo-zoom" class="font-bold text-[#0f2942]">1.0x</span>
+                  </label>
+                  <input type="range" id="rng-photo-zoom" min="1" max="2.2" step="0.05" value="1" oninput="updatePhotoAdjust('zoom', parseFloat(this.value))" class="w-full accent-[#1d5b8c] cursor-pointer" />
+                </div>
+                <div>
+                  <label class="flex justify-between text-[11px] text-slate-600 mb-1">
+                    <span>Posisi X</span>
+                    <span id="lbl-photo-x" class="font-bold text-[#0f2942]">0%</span>
+                  </label>
+                  <input type="range" id="rng-photo-x" min="-50" max="50" step="2" value="0" oninput="updatePhotoAdjust('offsetX', parseInt(this.value, 10))" class="w-full accent-[#1d5b8c] cursor-pointer" />
+                </div>
+                <div>
+                  <label class="flex justify-between text-[11px] text-slate-600 mb-1">
+                    <span>Posisi Y</span>
+                    <span id="lbl-photo-y" class="font-bold text-[#0f2942]">0%</span>
+                  </label>
+                  <input type="range" id="rng-photo-y" min="-50" max="50" step="2" value="0" oninput="updatePhotoAdjust('offsetY', parseInt(this.value, 10))" class="w-full accent-[#1d5b8c] cursor-pointer" />
+                </div>
+              </div>
+            </div>
+
+            <!-- Bentuk Bingkai Foto -->
+            <div class="pt-3 border-t border-[#d6e4f0]">
+              <label class="block text-xs font-semibold text-[#0f2942] mb-2">Bentuk Bingkai Foto</label>
+              <div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
+                <button type="button" data-photo-shape="circle" onclick="setPhotoShape('circle')" class="photo-shape-btn py-1.5 px-2.5 rounded-xl border text-xs font-medium transition cursor-pointer">
+                  Lingkaran
+                </button>
+                <button type="button" data-photo-shape="rounded" onclick="setPhotoShape('rounded')" class="photo-shape-btn py-1.5 px-2.5 rounded-xl border text-xs font-medium transition cursor-pointer">
+                  Sudut Melengkung
+                </button>
+                <button type="button" data-photo-shape="square" onclick="setPhotoShape('square')" class="photo-shape-btn py-1.5 px-2.5 rounded-xl border text-xs font-medium transition cursor-pointer">
+                  Kotak Formal
+                </button>
+                <button type="button" data-photo-shape="hidden" onclick="setPhotoShape('hidden')" class="photo-shape-btn py-1.5 px-2.5 rounded-xl border text-xs font-medium transition cursor-pointer">
+                  Mode ATS (Tanpa Foto)
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Formulir Identitas & Kontak Utama -->
+          <div class="space-y-3.5">
+            <h3 class="text-sm font-bold text-[#0f2942] border-b border-[#d6e4f0] pb-2">Identitas &amp; Kontak Utama</h3>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div>
+                <label class="block text-xs font-semibold text-slate-700 mb-1">Nama Lengkap &amp; Gelar</label>
+                <input type="text" id="inp-fullName" oninput="updateField('profile', 'fullName', this.value)" placeholder="Contoh: Hendra Wijaya, S.E., M.M." class="w-full rounded-xl border border-[#d6e4f0] px-3.5 py-2.5 text-sm text-[#0f2942] focus:outline-none focus:border-[#1d5b8c]" />
+              </div>
+              <div>
+                <label class="block text-xs font-semibold text-slate-700 mb-1">Posisi / Jabatan Target</label>
+                <input type="text" id="inp-role" oninput="updateField('profile', 'role', this.value)" placeholder="Contoh: Manajer Operasional & Layanan" class="w-full rounded-xl border border-[#d6e4f0] px-3.5 py-2.5 text-sm text-[#0f2942] focus:outline-none focus:border-[#1d5b8c]" />
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div>
+                <label class="block text-xs font-semibold text-slate-700 mb-1">Alamat Email</label>
+                <input type="email" id="inp-email" oninput="updateField('profile', 'email', this.value)" placeholder="nama@email.com" class="w-full rounded-xl border border-[#d6e4f0] px-3.5 py-2.5 text-sm text-[#0f2942] focus:outline-none focus:border-[#1d5b8c]" />
+              </div>
+              <div>
+                <label class="block text-xs font-semibold text-slate-700 mb-1">Nomor Telepon / WhatsApp</label>
+                <input type="text" id="inp-phone" oninput="updateField('profile', 'phone', this.value)" placeholder="+62 812-3456-7890" class="w-full rounded-xl border border-[#d6e4f0] px-3.5 py-2.5 text-sm text-[#0f2942] focus:outline-none focus:border-[#1d5b8c]" />
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div>
+                <label class="block text-xs font-semibold text-slate-700 mb-1">Kota / Domisili</label>
+                <input type="text" id="inp-address" oninput="updateField('profile', 'address', this.value)" placeholder="Tangerang, Banten" class="w-full rounded-xl border border-[#d6e4f0] px-3.5 py-2.5 text-sm text-[#0f2942] focus:outline-none focus:border-[#1d5b8c]" />
+              </div>
+              <div>
+                <label class="block text-xs font-semibold text-slate-700 mb-1">LinkedIn / Portofolio</label>
+                <input type="text" id="inp-linkedin" oninput="updateField('profile', 'linkedin', this.value)" placeholder="linkedin.com/in/hendrawijaya-mm" class="w-full rounded-xl border border-[#d6e4f0] px-3.5 py-2.5 text-sm text-[#0f2942] focus:outline-none focus:border-[#1d5b8c]" />
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div>
+                <label class="block text-xs font-semibold text-slate-700 mb-1">Instagram</label>
+                <input type="text" id="inp-instagram" oninput="updateField('profile', 'instagram', this.value)" placeholder="@hendrawijaya.id" class="w-full rounded-xl border border-[#d6e4f0] px-3.5 py-2.5 text-sm text-[#0f2942] focus:outline-none focus:border-[#1d5b8c]" />
+              </div>
+              <div>
+                <label class="block text-xs font-semibold text-slate-700 mb-1">Media Sosial Lainnya (X / TikTok / GitHub / Behance)</label>
+                <input type="text" id="inp-otherSocial" oninput="updateField('profile', 'otherSocial', this.value)" placeholder="x.com/hendrawijaya" class="w-full rounded-xl border border-[#d6e4f0] px-3.5 py-2.5 text-sm text-[#0f2942] focus:outline-none focus:border-[#1d5b8c]" />
+              </div>
+            </div>
+
+            <!-- Kontrol Tampilan & Akun Media Sosial Tambahan -->
+            <div class="bg-[#f6fafe] border border-[#d6e4f0] rounded-2xl p-3.5 space-y-3">
+              <div class="flex flex-wrap items-center justify-between gap-2">
+                <label class="inline-flex items-center gap-2 text-xs font-semibold text-[#0f2942] cursor-pointer select-none">
+                  <input
+                    type="checkbox"
+                    id="chk-showSocial"
+                    onchange="updateField('profile', 'showSocial', this.checked)"
+                    class="w-4 h-4 rounded border-[#bfd3e6] accent-[#1d5b8c] cursor-pointer"
+                  />
+                  <span>Tampilkan media sosial pada CV &amp; Cover Letter</span>
+                </label>
+
+                <button
+                  type="button"
+                  onclick="addExtraSocial()"
+                  class="inline-flex items-center gap-1 px-3 py-1.5 rounded-xl bg-white hover:bg-[#eef5fb] text-[#1d5b8c] border border-[#c5dbed] text-xs font-bold transition cursor-pointer"
+                >
+                  <span>+ Tambah Akun Media Sosial Lain</span>
+                </button>
+              </div>
+
+              <div id="extra-social-list" class="space-y-2 empty:hidden"></div>
+            </div>
+          </div>
+
+          <div class="flex justify-end pt-1">
+            <button type="button" onclick="switchEditorTab(2)" class="px-4 py-2.5 rounded-xl bg-[#1d5b8c] hover:bg-[#16476e] text-white text-xs font-semibold transition cursor-pointer">
+              Lanjut ke Tab 2: Isi CV &rarr;
+            </button>
+          </div>
+        </div>
+
+        <!-- =============================================================== -->
+        <!-- TAB 2: ISI CV + ISI CONTOH OTOMATIS                             -->
+        <!-- =============================================================== -->
+        <div id="editor-panel-2" class="editor-panel hidden space-y-6">
+
+          <!-- Kotak Isi Contoh Otomatis (5 Bidang Profesi Formal) -->
+          <div class="bg-gradient-to-r from-[#1d5b8c] to-[#0284c7] text-white rounded-2xl p-4 space-y-2.5 shadow-sm">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-bold uppercase tracking-wider text-sky-100">⚡ Isi Contoh Otomatis (1-Klik)</span>
+              <span class="text-[11px] text-sky-100/90">Mengisi CV &amp; Cover Letter</span>
+            </div>
+            <div class="flex flex-col sm:flex-row gap-2">
+              <select
+                id="sel-profession-preset"
+                class="flex-1 rounded-xl bg-white/15 border border-white/30 px-3 py-2 text-xs font-semibold text-white focus:outline-none focus:bg-[#16476e]"
+              >
+                <option value="management" class="text-slate-900">Manajemen &amp; Operasional</option>
+                <option value="finance" class="text-slate-900">Keuangan &amp; Akuntansi</option>
+                <option value="it" class="text-slate-900">IT &amp; Pengembangan Sistem</option>
+                <option value="marketing" class="text-slate-900">Pemasaran &amp; Hubungan Klien</option>
+                <option value="freshgrad" class="text-slate-900">Fresh Graduate</option>
+              </select>
+              <button
+                type="button"
+                onclick="applyProfessionPreset()"
+                class="px-4 py-2 rounded-xl bg-white hover:bg-sky-50 text-[#1d5b8c] text-xs font-bold transition cursor-pointer shrink-0 shadow-xs"
+              >
+                Terapkan Contoh
+              </button>
+            </div>
+          </div>
+
+          <!-- Ringkasan Profesional + Auto-Susun Ringkasan -->
+          <div class="bg-[#f6fafe] border border-[#d6e4f0] rounded-2xl p-4 space-y-3">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+              <div>
+                <h2 class="text-sm font-bold text-[#0f2942]">Ringkasan Profesional</h2>
+                <p class="text-[11px] text-slate-500">Gambaran singkat profil karier, pengalaman, dan nilai jual utama Anda</p>
+              </div>
+              <button
+                type="button"
+                onclick="autoGenerateSummary()"
+                class="inline-flex items-center justify-center gap-1.5 px-3 py-2 rounded-xl bg-[#1d5b8c] hover:bg-[#16476e] text-white text-xs font-bold transition cursor-pointer shrink-0"
+              >
+                <span>⚡ Auto-Susun Ringkasan</span>
+              </button>
+            </div>
+
+            <textarea
+              id="inp-summary"
+              rows="4"
+              oninput="updateField('profile', 'summary', this.value)"
+              placeholder="Tuliskan ringkasan profesional Anda dalam 3–4 kalimat padat dan berorientasi hasil..."
+              class="w-full rounded-xl border border-[#d6e4f0] bg-white p-3 text-xs sm:text-sm text-[#0f2942] leading-relaxed focus:outline-none focus:border-[#1d5b8c]"
+            ></textarea>
+          </div>
+
+          <!-- Pengalaman Kerja -->
+          <div class="space-y-3">
+            <div class="flex items-center justify-between">
+              <div>
+                <h3 class="text-sm font-bold text-[#0f2942]">Pengalaman Kerja</h3>
+                <p class="text-xs text-slate-500">Riwayat posisi, perusahaan, periode, dan pencapaian terukur</p>
+              </div>
+              <button type="button" onclick="addExperience()" class="px-3 py-1.5 rounded-xl bg-[#1d5b8c] hover:bg-[#16476e] text-white text-xs font-bold transition cursor-pointer">
+                + Tambah Pengalaman
+              </button>
+            </div>
+            <div id="experience-editor-list" class="space-y-3.5"></div>
+          </div>
+
+          <!-- Pendidikan -->
+          <div class="space-y-3">
+            <div class="flex items-center justify-between">
+              <div>
+                <h3 class="text-sm font-bold text-[#0f2942]">Pendidikan</h3>
+                <p class="text-xs text-slate-500">Gelar akademik, program studi, perguruan tinggi, dan tahun lulus</p>
+              </div>
+              <button type="button" onclick="addEducation()" class="px-3 py-1.5 rounded-xl bg-[#0f2942] hover:bg-slate-800 text-white text-xs font-bold transition cursor-pointer">
+                + Tambah Pendidikan
+              </button>
+            </div>
+            <div id="education-editor-list" class="space-y-3"></div>
+          </div>
+
+          <!-- Keahlian & Sertifikasi -->
+          <div class="bg-[#f6fafe] border border-[#d6e4f0] rounded-2xl p-4 space-y-3.5">
+            <h3 class="text-sm font-bold text-[#0f2942]">Keahlian Utama, Sertifikasi &amp; Bahasa</h3>
+
+            <div>
+              <label class="block text-xs font-semibold text-slate-700 mb-1">Keahlian Utama <span class="text-slate-400 font-normal">(pisahkan dengan tanda koma)</span></label>
+              <input type="text" id="inp-skills" oninput="updateField('profile', 'skills', this.value)" placeholder="Manajemen Operasional, Analisis Anggaran, Kepemimpinan Tim, Negosiasi Bisnis" class="w-full rounded-xl border border-[#d6e4f0] bg-white px-3.5 py-2.5 text-xs sm:text-sm text-[#0f2942] focus:outline-none focus:border-[#1d5b8c]" />
+            </div>
+
+            <div>
+              <label class="block text-xs font-semibold text-slate-700 mb-1">Sertifikasi &amp; Kemampuan Bahasa</label>
+              <input type="text" id="inp-certLang" oninput="updateField('profile', 'certLang', this.value)" placeholder="Sertifikasi Manajemen Proyek (PMP), Bahasa Indonesia (Aktif), Bahasa Inggris (Profesional)" class="w-full rounded-xl border border-[#d6e4f0] bg-white px-3.5 py-2.5 text-xs sm:text-sm text-[#0f2942] focus:outline-none focus:border-[#1d5b8c]" />
+            </div>
+          </div>
+
+          <div class="flex items-center justify-between pt-1">
+            <button type="button" onclick="switchEditorTab(1)" class="px-3.5 py-2 rounded-xl border border-[#d6e4f0] hover:bg-slate-50 text-xs font-semibold text-slate-700 cursor-pointer">
+              &larr; Template &amp; Profil
+            </button>
+            <button type="button" onclick="switchEditorTab(3)" class="px-4 py-2.5 rounded-xl bg-[#1d5b8c] hover:bg-[#16476e] text-white text-xs font-semibold transition cursor-pointer">
+              Lanjut ke Tab 3: Cover Letter &rarr;
+            </button>
+          </div>
+        </div>
+
+        <!-- =============================================================== -->
+        <!-- TAB 3: COVER LETTER (SURAT LAMARAN KERJA)                       -->
+        <!-- =============================================================== -->
+        <div id="editor-panel-3" class="editor-panel hidden space-y-5">
+
+          <!-- Input Data Tujuan Lamaran -->
+          <div class="bg-[#f6fafe] border border-[#d6e4f0] rounded-2xl p-4 space-y-3.5">
+            <h2 class="text-sm font-bold text-[#0f2942]">Data Tujuan Lamaran</h2>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div>
+                <label class="block text-xs font-semibold text-slate-700 mb-1">Tanggal Surat</label>
+                <input type="text" id="inp-cl-date" oninput="updateField('coverLetter', 'date', this.value)" placeholder="Tangerang, 25 November 2026" class="w-full rounded-xl border border-[#d6e4f0] bg-white px-3 py-2 text-xs sm:text-sm text-[#0f2942] focus:outline-none focus:border-[#1d5b8c]" />
+              </div>
+              <div>
+                <label class="block text-xs font-semibold text-slate-700 mb-1">Posisi yang Dilamar</label>
+                <input type="text" id="inp-cl-position" oninput="updateField('coverLetter', 'position', this.value)" placeholder="Manajer Operasional & Layanan" class="w-full rounded-xl border border-[#d6e4f0] bg-white px-3 py-2 text-xs sm:text-sm text-[#0f2942] focus:outline-none focus:border-[#1d5b8c]" />
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div>
+                <label class="block text-xs font-semibold text-slate-700 mb-1">Nama HRD / Penerima</label>
+                <input type="text" id="inp-cl-recipientName" oninput="updateField('coverLetter', 'recipientName', this.value)" placeholder="Ibu Ratna Kusuma, S.Psi." class="w-full rounded-xl border border-[#d6e4f0] bg-white px-3 py-2 text-xs sm:text-sm text-[#0f2942] focus:outline-none focus:border-[#1d5b8c]" />
+              </div>
+              <div>
+                <label class="block text-xs font-semibold text-slate-700 mb-1">Jabatan Penerima</label>
+                <input type="text" id="inp-cl-recipientTitle" oninput="updateField('coverLetter', 'recipientTitle', this.value)" placeholder="Manajer Sumber Daya Manusia (HRD)" class="w-full rounded-xl border border-[#d6e4f0] bg-white px-3 py-2 text-xs sm:text-sm text-[#0f2942] focus:outline-none focus:border-[#1d5b8c]" />
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div>
+                <label class="block text-xs font-semibold text-slate-700 mb-1">Nama Perusahaan</label>
+                <input type="text" id="inp-cl-companyName" oninput="updateField('coverLetter', 'companyName', this.value)" placeholder="PT Nusantara Global Mandiri" class="w-full rounded-xl border border-[#d6e4f0] bg-white px-3 py-2 text-xs sm:text-sm text-[#0f2942] focus:outline-none focus:border-[#1d5b8c]" />
+              </div>
+              <div>
+                <label class="block text-xs font-semibold text-slate-700 mb-1">Alamat Perusahaan</label>
+                <input type="text" id="inp-cl-companyAddress" oninput="updateField('coverLetter', 'companyAddress', this.value)" placeholder="Menara Sudirman Lt. 18, Jakarta Selatan" class="w-full rounded-xl border border-[#d6e4f0] bg-white px-3 py-2 text-xs sm:text-sm text-[#0f2942] focus:outline-none focus:border-[#1d5b8c]" />
+              </div>
+            </div>
+
+            <div>
+              <label for="sel-cl-tone" class="block text-xs font-semibold text-slate-700 mb-1">Gaya Bahasa Surat</label>
+              <select
+                id="sel-cl-tone"
+                onchange="updateField('coverLetter', 'tone', this.value)"
+                class="w-full rounded-xl border border-[#d6e4f0] bg-white px-3 py-2.5 text-xs font-semibold text-[#0f2942] focus:outline-none focus:border-[#1d5b8c]"
+              >
+                <option value="formal">Formal Korporat (Sopan, Terstruktur &amp; Baku)</option>
+                <option value="modern">Modern Profesional (Lugas, Antusias &amp; Dinamis)</option>
+                <option value="executive">Eksekutif Berpengalaman (Strategis &amp; Berwibawa)</option>
+              </select>
+            </div>
+
+            <!-- Tombol Auto-Generate Cover Letter dari Data CV -->
+            <div class="pt-1">
+              <button
+                type="button"
+                onclick="autoGenerateCoverLetter()"
+                class="w-full py-3 px-4 rounded-xl bg-[#1d5b8c] hover:bg-[#16476e] active:scale-[0.99] text-white text-xs sm:text-sm font-bold shadow-sm flex items-center justify-center gap-2 transition cursor-pointer"
+              >
+                <span>⚡ Auto-Generate Cover Letter dari Data CV</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Editor Teks Paragraf Surat Lamaran -->
+          <div class="bg-white border border-[#d6e4f0] rounded-2xl p-4 space-y-3.5">
+            <h3 class="text-sm font-bold text-[#0f2942] border-b border-slate-100 pb-2">Isi Surat Lamaran Kerja (Dapat Diedit Manual)</h3>
+
+            <div>
+              <label class="block text-xs font-semibold text-slate-700 mb-1">Salam Pembuka</label>
+              <input type="text" id="inp-cl-salutation" oninput="updateField('coverLetter', 'salutation', this.value)" class="w-full rounded-xl border border-[#d6e4f0] px-3 py-2 text-xs sm:text-sm text-[#0f2942] focus:outline-none focus:border-[#1d5b8c]" />
+            </div>
+
+            <div>
+              <label class="block text-xs font-semibold text-slate-700 mb-1">Paragraf Pembuka (Tujuan Melamar &amp; Latar Belakang)</label>
+              <textarea id="inp-cl-opening" rows="3" oninput="updateField('coverLetter', 'opening', this.value)" class="w-full rounded-xl border border-[#d6e4f0] p-2.5 text-xs sm:text-sm text-[#0f2942] leading-relaxed focus:outline-none focus:border-[#1d5b8c]"></textarea>
+            </div>
+
+            <div>
+              <label class="block text-xs font-semibold text-slate-700 mb-1">Paragraf Isi / Kualifikasi &amp; Pencapaian Utama</label>
+              <textarea id="inp-cl-body" rows="4" oninput="updateField('coverLetter', 'body', this.value)" class="w-full rounded-xl border border-[#d6e4f0] p-2.5 text-xs sm:text-sm text-[#0f2942] leading-relaxed focus:outline-none focus:border-[#1d5b8c]"></textarea>
+            </div>
+
+            <div>
+              <label class="block text-xs font-semibold text-slate-700 mb-1">Paragraf Nilai Tambah &amp; Kompetensi</label>
+              <textarea id="inp-cl-value" rows="3" oninput="updateField('coverLetter', 'value', this.value)" class="w-full rounded-xl border border-[#d6e4f0] p-2.5 text-xs sm:text-sm text-[#0f2942] leading-relaxed focus:outline-none focus:border-[#1d5b8c]"></textarea>
+            </div>
+
+            <div>
+              <label class="block text-xs font-semibold text-slate-700 mb-1">Paragraf Penutup &amp; Salam Hormat</label>
+              <textarea id="inp-cl-closing" rows="3" oninput="updateField('coverLetter', 'closing', this.value)" class="w-full rounded-xl border border-[#d6e4f0] p-2.5 text-xs sm:text-sm text-[#0f2942] leading-relaxed focus:outline-none focus:border-[#1d5b8c]"></textarea>
+            </div>
+          </div>
+
+          <div class="flex items-center justify-between pt-1">
+            <button type="button" onclick="switchEditorTab(2)" class="px-3.5 py-2 rounded-xl border border-[#d6e4f0] hover:bg-slate-50 text-xs font-semibold text-slate-700 cursor-pointer">
+              &larr; Isi CV
+            </button>
+            <button type="button" onclick="exportDocx('bundle')" class="px-4 py-2.5 rounded-xl bg-[#1d5b8c] hover:bg-[#16476e] text-white text-xs font-bold transition cursor-pointer">
+              📑 Download Paket Lengkap (.docx)
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- =================================================================== -->
+    <!-- PANEL KANAN: PRATINJAU KERTAS A4 REAL-TIME                          -->
+    <!-- =================================================================== -->
+    <section
+      id="preview-pane"
+      class="hidden lg:flex flex-1 flex-col lg:h-[calc(100vh-3.75rem)] overflow-hidden"
+    >
+      <!-- Toolbar Pratinjau A4 -->
+      <div class="no-print bg-white/85 backdrop-blur border-b border-[#d6e4f0] px-4 py-2 flex flex-wrap items-center justify-between gap-2 shrink-0">
+        <div class="flex items-center gap-2 text-xs">
+          <span class="font-bold text-[#0f2942]">Pratinjau Kertas A4 (210×297 mm)</span>
+          <span id="preview-status-pill" class="px-2.5 py-0.5 rounded-full bg-[#e8f1f8] text-[#1d5b8c] text-[11px] font-semibold">
+            📄 CV • Eksekutif Modern
+          </span>
+        </div>
+
+        <div class="flex items-center gap-1.5">
+          <button type="button" onclick="adjustPreviewZoom(-0.1)" title="Perkecil Tampilan" class="p-1.5 rounded-lg border border-[#d6e4f0] bg-white hover:bg-[#f2f7fb] text-slate-700 cursor-pointer">
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M20 12H4" />
+            </svg>
+          </button>
+          <button type="button" id="lbl-preview-zoom" onclick="resetPreviewZoom()" title="Sesuaikan Otomatis" class="px-2.5 py-1 rounded-lg border border-[#d6e4f0] bg-white hover:bg-[#f2f7fb] text-[#0f2942] text-[11px] font-semibold cursor-pointer min-w-[52px] text-center">
+            Auto
+          </button>
+          <button type="button" onclick="adjustPreviewZoom(0.1)" title="Perbesar Tampilan" class="p-1.5 rounded-lg border border-[#d6e4f0] bg-white hover:bg-[#f2f7fb] text-slate-700 cursor-pointer">
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" />
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Area Scrollable Lembaran A4 -->
+      <div id="preview-scroll-container" class="flex-1 overflow-y-auto overflow-x-hidden p-4 sm:p-6 lg:p-8 flex justify-center items-start">
+        <div id="preview-scale-wrapper">
+          <div id="a4-sheets-stack" class="flex flex-col gap-8 items-center"></div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===================================================================== -->
+  <!-- MODAL KONFIRMASI RESET DATA                                           -->
+  <!-- ===================================================================== -->
+  <div id="reset-modal" class="no-print fixed inset-0 z-50 hidden items-center justify-center bg-slate-900/50 backdrop-blur-xs p-4">
+    <div class="bg-white rounded-2xl max-w-md w-full p-6 shadow-2xl border border-[#d6e4f0] space-y-4">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-full bg-sky-100 text-[#1d5b8c] flex items-center justify-center shrink-0">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+          </svg>
+        </div>
+        <div>
+          <h3 class="text-base font-bold text-[#0f2942]">Reset Data ke Pengaturan Awal?</h3>
+          <p class="text-xs text-slate-500">Pilih untuk mengembalikan contoh data awal atau mengosongkan seluruh formulir.</p>
+        </div>
+      </div>
+      <div class="flex flex-wrap justify-end gap-2 pt-2">
+        <button type="button" onclick="closeResetModal()" class="px-3.5 py-2 rounded-xl border border-[#d6e4f0] hover:bg-slate-50 text-xs font-semibold text-slate-700 cursor-pointer">
+          Batal
+        </button>
+        <button type="button" onclick="confirmResetEmpty()" class="px-3.5 py-2 rounded-xl border border-rose-200 bg-rose-50 hover:bg-rose-100 text-xs font-semibold text-rose-700 cursor-pointer">
+          Kosongkan Formulir
+        </button>
+        <button type="button" onclick="confirmResetDefault()" class="px-4 py-2 rounded-xl bg-[#1d5b8c] hover:bg-[#16476e] text-xs font-semibold text-white cursor-pointer">
+          Kembalikan Contoh Awal
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div id="toast-container" class="no-print fixed bottom-5 right-5 z-50 flex flex-col gap-2 max-w-sm w-full pointer-events-none px-4 sm:px-0"></div>
+
+  <!-- Offscreen HTML5 Canvas 300x300 px untuk Pengolahan Foto -->
+  <canvas id="canvas-photo-cropper" width="300" height="300" class="hidden"></canvas>
+
+  <!-- ===================================================================== -->
+  <!-- 3. LOGIKA JAVASCRIPT APLIKASI & MESIN EKSPOR WORD (.DOCX) MURNI        -->
+  <!-- ===================================================================== -->
+  <script>
+    const STORAGE_KEY = 'studio_cv_cover_letter_id_v1';
+
+    /* 4 Palet Warna Aksen Sejuk & Profesional */
+    const ACCENTS = {
+      ocean: {
+        name: 'Biru Samudra',
+        primary: '#1e5683',
+        tint: '#f0f6fb',
+        border: '#c5dbed',
+        hexPrimary: '1E5683',
+        hexTint: 'F0F6FB',
+        hexBorder: 'C5DBED'
+      },
+      sage: {
+        name: 'Hijau Sage',
+        primary: '#2c6e63',
+        tint: '#eff7f5',
+        border: '#c2dfd9',
+        hexPrimary: '2C6E63',
+        hexTint: 'EFF7F5',
+        hexBorder: 'C2DFD9'
+      },
+      slate: {
+        name: 'Biru Slate',
+        primary: '#334e68',
+        tint: '#f1f5f9',
+        border: '#cbd5e1',
+        hexPrimary: '334E68',
+        hexTint: 'F1F5F9',
+        hexBorder: 'CBD5E1'
+      },
+      graphite: {
+        name: 'Abu Grafit',
+        primary: '#2d3748',
+        tint: '#f4f6f8',
+        border: '#d2d8e0',
+        hexPrimary: '2D3748',
+        hexTint: 'F4F6F8',
+        hexBorder: 'D2D8E0'
+      }
+    };
+
+    const TEMPLATE_NAMES = {
+      executive: 'Eksekutif Modern',
+      swiss: 'Minimalis Swiss',
+      sidebar: 'Sidebar Korporat',
+      harvard: 'Klasik Harvard (ATS)'
+    };
+
+    function uid() {
+      return 'id_' + Math.random().toString(36).substring(2, 10);
+    }
+
+    /* Membuat Avatar Profesional Contoh via HTML5 Canvas */
+    function generateDefaultAvatarDataUrl() {
+      const canvas = document.createElement('canvas');
+      canvas.width = 300;
+      canvas.height = 300;
+      const ctx = canvas.getContext('2d');
+
+      const bg = ctx.createLinearGradient(0, 0, 300, 300);
+      bg.addColorStop(0, '#dbeaf6');
+      bg.addColorStop(1, '#b8d3ea');
+      ctx.fillStyle = bg;
+      ctx.fillRect(0, 0, 300, 300);
+
+      // Jas formal biru tua
+      ctx.fillStyle = '#1e3a5f';
+      ctx.beginPath();
+      ctx.ellipse(150, 295, 110, 88, 0, Math.PI, Math.PI * 2);
+      ctx.fill();
+
+      // Kemeja putih
+      ctx.fillStyle = '#ffffff';
+      ctx.beginPath();
+      ctx.moveTo(122, 208);
+      ctx.lineTo(150, 258);
+      ctx.lineTo(178, 208);
+      ctx.closePath();
+      ctx.fill();
+
+      // Dasi biru samudra
+      ctx.fillStyle = '#1e5683';
+      ctx.beginPath();
+      ctx.moveTo(145, 215);
+      ctx.lineTo(155, 215);
+      ctx.lineTo(158, 252);
+      ctx.lineTo(150, 262);
+      ctx.lineTo(142, 252);
+      ctx.closePath();
+      ctx.fill();
+
+      // Leher & wajah
+      ctx.fillStyle = '#dfa382';
+      ctx.fillRect(132, 174, 36, 42);
+      ctx.fillStyle = '#efb898';
+      ctx.beginPath();
+      ctx.ellipse(150, 130, 44, 54, 0, 0, Math.PI * 2);
+      ctx.fill();
+
+      // Rambut rapi
+      ctx.fillStyle = '#1e293b';
+      ctx.beginPath();
+      ctx.arc(150, 116, 46, Math.PI * 0.94, Math.PI * 2.06);
+      ctx.quadraticCurveTo(194, 88, 150, 70);
+      ctx.quadraticCurveTo(106, 88, 104, 122);
+      ctx.fill();
+
+      return canvas.toDataURL('image/png');
+    }
+
+    /* 5 Contoh Profesi Formal Lengkap (Bahasa Indonesia Baku & Profesional) */
+    const PROFESSION_PRESETS = {
+      management: {
+        profile: {
+          fullName: 'Hendra Wijaya, S.E., M.M.',
+          role: 'Manajer Operasional & Layanan Korporat',
+          email: 'hendra.wijaya@profesional.id',
+          phone: '+62 812-8490-3321',
+          address: 'Tangerang, Banten',
+          linkedin: 'linkedin.com/in/hendrawijaya-mm',
+          instagram: '@hendrawijaya.id',
+          otherSocial: 'x.com/hendrawijaya',
+          showSocial: true,
+          extraSocials: [],
+          summary: 'Profesional manajemen operasional berpengalaman lebih dari 6 tahun dalam mengoptimalkan alur kerja bisnis, memimpin tim lintas fungsi beranggotakan 35 orang, serta meningkatkan efisiensi biaya operasional hingga 22%. Memiliki rekam jejak teruji dalam menjaga standar mutu layanan (SLA) di atas 98% dan memperluas kemitraan strategis perusahaan.',
+          skills: 'Manajemen Operasional, Perencanaan Strategis, Pengendalian Anggaran, Kepemimpinan Tim, Penyusunan SOP, Manajemen Risiko, Analisis Kinerja (KPI)',
+          certLang: 'Certified Operations Manager (COM), Lean Six Sigma Green Belt, Bahasa Indonesia (Aktif), Bahasa Inggris (Profesional)'
+        },
+        experiences: [
+          {
+            id: uid(),
+            role: 'Manajer Operasional Regional',
+            company: 'PT Nusantara Logistik & Distribusi Tbk',
+            location: 'Jakarta & Tangerang',
+            period: 'Jan 2023 – Sekarang',
+            desc: 'Memimpin operasional harian 4 cabang distribusi dengan total 35 staf serta memastikan pemenuhan SLA pengiriman mencapai 98,4%.\nMerancang ulang alur kerja logistik dan pengadaan vendor sehingga berhasil menekan biaya operasional tahunan sebesar 22%.\nMenyusun sistem evaluasi KPI bulanan yang meningkatkan produktivitas tim sebesar 19%.'
+          },
+          {
+            id: uid(),
+            role: 'Supervisor Operasional & Layanan Klien',
+            company: 'PT Prima Korpora Indonesia',
+            location: 'Jakarta Selatan',
+            period: 'Mar 2020 – Des 2022',
+            desc: 'Mengelola kontrak layanan 85 klien korporat dan mengoordinasikan penyelesaian kendala operasional di bawah 24 jam.\nMenyusun buku pedoman standar operasional (SOP) perusahaan untuk mempercepat masa orientasi karyawan baru.'
+          }
+        ],
+        educations: [
+          {
+            id: uid(),
+            degree: 'Magister Manajemen (M.M.) — Manajemen Strategis',
+            institution: 'Universitas Indonesia (UI)',
+            year: '2020 – 2022 • IPK 3.85 / 4.00'
+          },
+          {
+            id: uid(),
+            degree: 'Sarjana Ekonomi (S.E.) — Manajemen Bisnis',
+            institution: 'Universitas Padjadjaran (UNPAD)',
+            year: '2015 – 2019 • IPK 3.72 / 4.00'
+          }
+        ],
+        coverLetter: {
+          date: 'Tangerang, 25 November 2026',
+          recipientName: 'Ibu Ratna Kusuma, S.Psi.',
+          recipientTitle: 'Manajer Sumber Daya Manusia (HRD)',
+          companyName: 'PT Sentosa Mitra Corpora',
+          companyAddress: 'Menara Sudirman Lt. 18, Jakarta Selatan',
+          position: 'Kepala Divisi Operasional',
+          tone: 'formal',
+          salutation: 'Kepada Yth. Ibu Ratna Kusuma, S.Psi.,',
+          opening: 'Dengan hormat, sehubungan dengan informasi lowongan karier pada PT Sentosa Mitra Corpora, melalui surat lamaran ini saya mengajukan diri untuk mengisi posisi Kepala Divisi Operasional. Dengan latar belakang pendidikan Magister Manajemen dari Universitas Indonesia serta pengalaman lebih dari 6 tahun di bidang tata kelola operasional, saya berkomitmen untuk mendukung pertumbuhan dan efisiensi perusahaan Anda.',
+          body: 'Pada posisi saya saat ini sebagai Manajer Operasional Regional di PT Nusantara Logistik & Distribusi Tbk, saya bertanggung jawab memimpin 35 anggota tim di 4 cabang dengan tingkat pencapaian SLA sebesar 98,4%. Selain itu, inisiatif restrukturisasi proses pengadaan dan alur distribusi yang saya terapkan berhasil menghemat biaya operasional tahunan hingga 22% sekaligus meningkatkan produktivitas tim.',
+          value: 'Saya memiliki kompetensi mendalam dalam perencanaan strategis, pengendalian anggaran, penyusunan standar operasional prosedur (SOP), serta sertifikasi Lean Six Sigma Green Belt. Perpaduan antara ketajaman analisis bisnis dan kepemimpinan yang kolaboratif akan membantu tim PT Sentosa Mitra Corpora mencapai target operasional secara berkelanjutan.',
+          closing: 'Besar harapan saya untuk dapat diberikan kesempatan mengikuti tahap wawancara guna menjelaskan kualifikasi serta rencana kontribusi saya secara lebih rinci. Atas perhatian dan pertimbangan Ibu, saya ucapkan terima kasih.\n\nHormat saya,'
+        }
+      },
+
+      finance: {
+        profile: {
+          fullName: 'Budi Santoso, S.Ak., CPA',
+          role: 'Manajer Akuntansi, Keuangan & Perpajakan',
+          email: 'budi.santoso@akuntan.id',
+          phone: '+62 811-5509-7731',
+          address: 'Jakarta Pusat, DKI Jakarta',
+          linkedin: 'linkedin.com/in/budisantoso-ak',
+          instagram: '@budisantoso.cpa',
+          otherSocial: 'x.com/budisantoso_fin',
+          showSocial: true,
+          extraSocials: [],
+          summary: 'Spesialis Akuntansi, Keuangan & Perpajakan bersertifikat dengan pengalaman lebih dari 6 tahun dalam penyusunan laporan keuangan berbasis PSAK/IFRS, audit internal, kepatuhan pajak korporasi, serta perencanaan arus kas. Terbukti mempercepat siklus tutup buku bulanan hingga 35% dengan tingkat akurasi rekonsiliasi 100%.',
+          skills: 'Laporan Keuangan (PSAK/IFRS), Perpajakan Korporasi, Audit Internal & Kepatuhan, Analisis Arus Kas, SAP & Accurate ERP, Pemodelan Keuangan Excel',
+          certLang: 'Certified Public Accountant (CPA), Brevet Pajak A & B Terpadu (IAI), Bahasa Indonesia (Aktif), Bahasa Inggris (Bisnis)'
+        },
+        experiences: [
+          {
+            id: uid(),
+            role: 'Senior Finance & Accounting Lead',
+            company: 'PT Graha Manufaktur Nusantara',
+            location: 'Jakarta Pusat',
+            period: 'Apr 2022 – Sekarang',
+            desc: 'Menyusun laporan laba rugi, neraca, dan arus kas konsolidasi bulanan serta mengelola kepatuhan pajak PPh dan PPN perusahaan.\nMemangkas waktu tutup buku bulanan dari 10 hari kerja menjadi 6 hari kerja melalui otomatisasi rekonsiliasi bank pada sistem ERP.'
+          },
+          {
+            id: uid(),
+            role: 'Auditor Eksternal (Senior Associate)',
+            company: 'KAP Rekanan Internasional Jakarta',
+            location: 'Jakarta Selatan',
+            period: 'Jul 2019 – Mar 2022',
+            desc: 'Melaksanakan audit laporan keuangan untuk lebih dari 20 perusahaan sektor manufaktur, perbankan, dan jasa sesuai standar audit profesional.'
+          }
+        ],
+        educations: [
+          {
+            id: uid(),
+            degree: 'Sarjana Akuntansi (S.Ak.)',
+            institution: 'Universitas Airlangga (UNAIR)',
+            year: '2015 – 2019 • IPK 3.84 / 4.00'
+          }
+        ],
+        coverLetter: {
+          date: 'Jakarta, 25 November 2026',
+          recipientName: 'Bapak Arif Budiman, S.E.',
+          recipientTitle: 'Direktur Keuangan & SDM',
+          companyName: 'PT Mandiri Investama Sejahtera',
+          companyAddress: 'Gedung Bursa Efek Tower II, Jakarta Selatan',
+          position: 'Manajer Keuangan & Akuntansi',
+          tone: 'formal',
+          salutation: 'Kepada Yth. Bapak Arif Budiman, S.E.,',
+          opening: 'Dengan hormat, melalui surat lamaran ini saya bermaksud mengajukan diri untuk mengisi posisi Manajer Keuangan & Akuntansi di PT Mandiri Investama Sejahtera. Sebagai lulusan Sarjana Akuntansi Universitas Airlangga pemegang sertifikasi CPA dan Brevet Pajak A & B dengan pengalaman lebih dari 6 tahun, saya siap menjaga tata kelola finansial perusahaan Anda secara transparan dan akurat.',
+          body: 'Dalam peran saya saat ini sebagai Senior Finance & Accounting Lead di PT Graha Manufaktur Nusantara, saya memimpin penyusunan laporan keuangan konsolidasi berbasis PSAK serta pengawasan kepatuhan pajak korporasi. Melalui optimalisasi sistem ERP dan rekonsiliasi terstruktur, saya berhasil mempercepat proses tutup buku bulanan hingga 35% tanpa temuan audit.',
+          value: 'Keahlian saya dalam analisis laporan keuangan, manajemen arus kas, pengendalian internal, serta penguasaan SAP dan pemodelan keuangan tingkat lanjut akan memberikan dukungan strategis bagi pengambilan keputusan manajemen PT Mandiri Investama Sejahtera.',
+          closing: 'Saya sangat berharap dapat diberikan kesempatan mengikuti sesi wawancara untuk memaparkan pengalaman saya lebih lanjut. Atas perhatian dan kesempatan yang Bapak berikan, saya ucapkan terima kasih.\n\nHormat saya,'
+        }
+      },
+
+      it: {
+        profile: {
+          fullName: 'Raka Pratama, S.Kom., M.T.I.',
+          role: 'Arsitek Perangkat Lunak & Pengembang Sistem Senior',
+          email: 'raka.pratama@teknologi.id',
+          phone: '+62 812-8890-4421',
+          address: 'Jakarta Selatan, DKI Jakarta',
+          linkedin: 'linkedin.com/in/rakapratama-tech',
+          instagram: '@rakapratama.dev',
+          otherSocial: 'github.com/rakapratama-dev',
+          showSocial: true,
+          extraSocials: [],
+          summary: 'Pengembang Sistem & Arsitek Perangkat Lunak Senior berpengalaman lebih dari 5 tahun dalam merancang, membangun, dan memelihara aplikasi perusahaan berskala besar yang aman dan berkinerja tinggi. Berhasil meningkatkan kecepatan respons sistem hingga 48% serta mendukung lebih dari 1,2 juta pengguna aktif bulanan.',
+          skills: 'Arsitektur Sistem Web, TypeScript & React, Node.js & Go, PostgreSQL & Redis, Integrasi API, Keamanan Aplikasi, Docker & Cloud Infrastructure',
+          certLang: 'AWS Certified Solutions Architect, Sertifikasi Manajemen Proyek Agile/Scrum, Bahasa Indonesia (Aktif), Bahasa Inggris (Fasih)'
+        },
+        experiences: [
+          {
+            id: uid(),
+            role: 'Lead Fullstack Software Engineer',
+            company: 'PT Solusi Finansial Digital Indonesia',
+            location: 'Jakarta Selatan',
+            period: 'Jan 2023 – Sekarang',
+            desc: 'Memimpin tim beranggotakan 7 pengembang dalam membangun platform layanan transaksi korporat yang memproses 1,2 juta transaksi per bulan.\nMenerapkan arsitektur modular dan pengujian otomatis yang mempercepat siklus rilis fitur hingga 40%.'
+          },
+          {
+            id: uid(),
+            role: 'Software Developer',
+            company: 'PT Inovasi Sistem Nusantara',
+            location: 'Bandung, Jawa Barat',
+            period: 'Agu 2020 – Des 2022',
+            desc: 'Mengembangkan portal analitik data waktu nyata bagi 250+ klien institusi serta mengoptimalkan kueri database sehingga latensi berkurang 52%.'
+          }
+        ],
+        educations: [
+          {
+            id: uid(),
+            degree: 'Magister Teknologi Informasi (M.T.I.)',
+            institution: 'Universitas Indonesia (UI)',
+            year: '2021 – 2023 • IPK 3.88 / 4.00'
+          },
+          {
+            id: uid(),
+            degree: 'Sarjana Teknik Informatika (S.Kom.)',
+            institution: 'Institut Teknologi Bandung (ITB)',
+            year: '2016 – 2020 • IPK 3.80 / 4.00'
+          }
+        ],
+        coverLetter: {
+          date: 'Jakarta, 25 November 2026',
+          recipientName: 'Ibu Nadia Permata',
+          recipientTitle: 'Head of People & Talent Acquisition',
+          companyName: 'PT Bank Digital Nusantara Tbk',
+          companyAddress: 'Kawasan SCBD Lot 12, Jakarta Selatan',
+          position: 'Senior Software Architect / Lead Developer',
+          tone: 'modern',
+          salutation: 'Kepada Yth. Ibu Nadia Permata,',
+          opening: 'Dengan hormat, saya menyampaikan ketertarikan besar untuk bergabung sebagai Senior Software Architect / Lead Developer di PT Bank Digital Nusantara Tbk. Sebagai lulusan Teknik Informatika ITB dan Magister Teknologi Informasi UI dengan pengalaman lebih dari 5 tahun membangun sistem digital berskala besar, saya mengagumi standar keandalan layanan digital perusahaan Anda.',
+          body: 'Saat ini saya menjabat sebagai Lead Fullstack Software Engineer di PT Solusi Finansial Digital Indonesia, di mana saya memimpin 7 insinyur perangkat lunak dalam mengelola platform transaksi dengan 1,2 juta transaksi bulanan. Melalui penerapan standar kode bersih dan otomatisasi pengujian, tim kami mampu mempercepat perilisan fitur hingga 40% dengan tingkat ketersediaan sistem 99,98%.',
+          value: 'Penguasaan mendalam saya pada arsitektur layanan mikro, TypeScript, React, Node.js, PostgreSQL, serta praktik keamanan aplikasi cloud akan membantu PT Bank Digital Nusantara Tbk menghadirkan solusi teknologi yang tangguh dan ramah pengguna.',
+          closing: 'Terima kasih atas waktu dan pertimbangan Ibu. Saya sangat menantikan kesempatan berdiskusi dalam sesi wawancara mengenai kontribusi teknis yang dapat saya berikan bagi tim Anda.\n\nHormat saya,'
+        }
+      },
+
+      marketing: {
+        profile: {
+          fullName: 'Nadia Putri Maharani, S.I.Kom.',
+          role: 'Manajer Komunikasi Pemasaran & Hubungan Klien',
+          email: 'nadia.maharani@komunikasi.id',
+          phone: '+62 813-7721-9012',
+          address: 'Jakarta Pusat, DKI Jakarta',
+          linkedin: 'linkedin.com/in/nadiamaharani-pr',
+          instagram: '@nadiamaharani.pr',
+          otherSocial: 'behance.net/nadiamaharani',
+          showSocial: true,
+          extraSocials: [],
+          summary: 'Profesional Komunikasi Pemasaran & Hubungan Klien berpengalaman lebih dari 5 tahun dalam merancang strategi pengembangan merek, kampanye pemasaran terpadu, serta pengelolaan hubungan klien korporat. Terbukti meningkatkan retensi klien hingga 95% dan pertumbuhan prospek bisnis sebesar 130%.',
+          skills: 'Strategi Komunikasi Merek, Manajemen Hubungan Klien (CRM), Pemasaran Digital & Konten, Hubungan Media (PR), Negosiasi Kemitraan, Analisis Kampanye',
+          certLang: 'Certified Brand & Marketing Strategist, Bahasa Indonesia (Aktif), Bahasa Inggris (Fasih - IELTS 7.5)'
+        },
+        experiences: [
+          {
+            id: uid(),
+            role: 'Corporate Marketing & Client Relation Manager',
+            company: 'PT Citra Media & Konsultan Bisnis',
+            location: 'Jakarta Pusat',
+            period: 'Feb 2022 – Sekarang',
+            desc: 'Mengelola hubungan strategis dengan 90+ klien korporat dan mempertahankan tingkat retensi kontrak tahunan sebesar 95%.\nMerancang kampanye komunikasi terpadu yang meningkatkan perolehan prospek berkualitas (B2B leads) sebesar 130%.'
+          },
+          {
+            id: uid(),
+            role: 'Public Relations & Brand Executive',
+            company: 'PT Gaya Hidup Harmoni',
+            location: 'Jakarta Selatan',
+            period: 'Jun 2019 – Jan 2022',
+            desc: 'Menyusun siaran pers, mengelola acara peluncuran produk nasional, serta membangun kemitraan dengan 40+ media massa terkemuka.'
+          }
+        ],
+        educations: [
+          {
+            id: uid(),
+            degree: 'Sarjana Ilmu Komunikasi (S.I.Kom.) — Hubungan Masyarakat',
+            institution: 'Universitas Gadjah Mada (UGM)',
+            year: '2015 – 2019 • IPK 3.79 / 4.00'
+          }
+        ],
+        coverLetter: {
+          date: 'Jakarta, 25 November 2026',
+          recipientName: 'Bapak Dimas Prakoso',
+          recipientTitle: 'Manajer HRD & Pengembangan Organisasi',
+          companyName: 'PT Samudra Hospitality Indonesia',
+          companyAddress: 'Jl. M.H. Thamrin No. 45, Jakarta Pusat',
+          position: 'Manajer Komunikasi Pemasaran & Hubungan Klien',
+          tone: 'modern',
+          salutation: 'Kepada Yth. Bapak Dimas Prakoso,',
+          opening: 'Dengan hormat, melalui surat ini saya mengajukan lamaran untuk posisi Manajer Komunikasi Pemasaran & Hubungan Klien di PT Samudra Hospitality Indonesia. Berbekal gelar Sarjana Ilmu Komunikasi Universitas Gadjah Mada dan pengalaman lebih dari 5 tahun di bidang pengembangan merek serta pelayanan klien korporat, saya siap memperkuat citra positif dan loyalitas pelanggan perusahaan Anda.',
+          body: 'Sebagai Corporate Marketing & Client Relation Manager di PT Citra Media & Konsultan Bisnis, saya dipercaya mengelola portofolio 90+ klien korporat dengan tingkat retensi tahunan mencapai 95%, serta memimpin kampanye pemasaran B2B yang menumbuhkan perolehan prospek baru sebesar 130%.',
+          value: 'Keahlian saya dalam komunikasi persuasif, manajemen hubungan pelanggan (CRM), hubungan media, serta kemampuan berbahasa Indonesia dan Inggris secara fasih akan menjadi nilai tambah nyata bagi ekspansi bisnis PT Samudra Hospitality Indonesia.',
+          closing: 'Besar harapan saya untuk dapat mengikuti tahap wawancara guna memaparkan portofolio dan gagasan saya secara langsung. Atas perhatian Bapak, saya ucapkan terima kasih.\n\nHormat saya,'
+        }
+      },
+
+      freshgrad: {
+        profile: {
+          fullName: 'Alya Rahmadani, S.M.',
+          role: 'Management Trainee & Analis Bisnis (Fresh Graduate)',
+          email: 'alya.rahmadani@alumni.ac.id',
+          phone: '+62 821-9034-1128',
+          address: 'Yogyakarta & Tangerang',
+          linkedin: 'linkedin.com/in/alyarahmadani',
+          instagram: '@alyarahmadani.id',
+          otherSocial: 'tiktok.com/@alyakarier',
+          showSocial: true,
+          extraSocials: [],
+          summary: 'Lulusan baru Sarjana Manajemen dengan predikat Cum Laude (IPK 3.86/4.00) yang memiliki pengalaman magang di bidang analisis operasional bisnis serta rekam jejak kepemimpinan organisasi mahasiswa. Terampil mengolah data menggunakan Microsoft Excel dan SQL untuk mendukung pengambilan keputusan bisnis yang akurat.',
+          skills: 'Analisis Operasional Bisnis, Microsoft Excel (Pivot & Macro), Pengolahan Data SQL, Visualisasi Data (Power BI), Manajemen Proyek, Komunikasi & Presentasi',
+          certLang: 'Sertifikasi Google Data Analytics, Bahasa Indonesia (Aktif), Bahasa Inggris (Fasih - TOEFL ITP 595)'
+        },
+        experiences: [
+          {
+            id: uid(),
+            role: 'Magang Analis Operasional Bisnis (Business Operations Intern)',
+            company: 'PT Rantai Pasok Nasional Indonesia',
+            location: 'Jakarta Selatan',
+            period: 'Jul 2025 – Des 2025',
+            desc: 'Menganalisis laporan kinerja operasional mingguan dan mengidentifikasi peluang efisiensi proses yang menghemat biaya distribusi sebesar 12%.\nMenyusun dasbor pelaporan otomatis di Microsoft Excel untuk mempermudah evaluasi rutin tim manajemen.'
+          },
+          {
+            id: uid(),
+            role: 'Ketua Divisi Kemitraan & Pengembangan Karier',
+            company: 'Badan Eksekutif Mahasiswa Fakultas Ekonomika dan Bisnis',
+            location: 'Yogyakarta',
+            period: 'Jan 2024 – Des 2024',
+            desc: 'Memimpin 25 anggota tim dalam menyelenggarakan seminar karier nasional yang dihadiri 800+ mahasiswa dan 18 perusahaan mitra.'
+          }
+        ],
+        educations: [
+          {
+            id: uid(),
+            degree: 'Sarjana Manajemen (S.M.)',
+            institution: 'Universitas Gadjah Mada (UGM)',
+            year: '2021 – 2025 • IPK 3.86 / 4.00 (Cum Laude)'
+          }
+        ],
+        coverLetter: {
+          date: 'Tangerang, 25 November 2026',
+          recipientName: 'Bapak/Ibu Tim Rekrutmen HRD',
+          recipientTitle: 'Divisi Sumber Daya Manusia',
+          companyName: 'PT Graha Nusantara Sejahtera Tbk',
+          companyAddress: 'Jl. Jenderal Gatot Subroto Kav. 22, Jakarta Selatan',
+          position: 'Management Trainee / Analis Bisnis Junior',
+          tone: 'modern',
+          salutation: 'Kepada Yth. Bapak/Ibu Tim Rekrutmen HRD,',
+          opening: 'Dengan hormat, melalui surat lamaran ini saya mengajukan diri untuk bergabung dalam program Management Trainee / Analis Bisnis Junior di PT Graha Nusantara Sejahtera Tbk. Sebagai lulusan baru Sarjana Manajemen Universitas Gadjah Mada dengan predikat Cum Laude (IPK 3.86/4.00), saya memiliki semangat belajar tinggi dan ketajaman analisis untuk berkembang bersama perusahaan Anda.',
+          body: 'Selama masa studi, saya menjalani program magang sebagai Analis Operasional Bisnis di PT Rantai Pasok Nasional Indonesia, di mana kajian alur kerja yang saya susun berhasil memberikan efisiensi biaya sebesar 12%. Selain itu, pengalaman memimpin 25 anggota organisasi kemahasiswaan mengasah kemampuan komunikasi dan kerja sama tim saya.',
+          value: 'Berbekal penguasaan Microsoft Excel tingkat lanjut, SQL, Power BI, serta kemampuan komunikasi yang baik dalam Bahasa Indonesia dan Bahasa Inggris, saya siap beradaptasi dengan cepat dan memberikan kontribusi nyata bagi proyek-proyek strategis perusahaan.',
+          closing: 'Besar harapan saya untuk diberikan kesempatan mengikuti tahapan seleksi dan wawancara. Atas perhatian dan kesempatan yang Bapak/Ibu berikan, saya ucapkan terima kasih.\n\nHormat saya,'
+        }
+      }
+    };
+
+    /* State Utama Aplikasi */
+    let appState = null;
+    let activeEditorTab = 1;
+    let customPreviewZoom = null;
+
+    function buildInitialStateFromPreset(presetKey = 'management') {
+      const preset = PROFESSION_PRESETS[presetKey] || PROFESSION_PRESETS.management;
+      const samplePhoto = generateDefaultAvatarDataUrl();
+      return {
+        config: {
+          template: 'executive',     // 'executive' | 'swiss' | 'sidebar' | 'harvard'
+          previewDoc: 'cv',          // 'cv' | 'cover-letter' | 'bundle'
+          accent: 'ocean',           // 'ocean' | 'sage' | 'slate' | 'graphite'
+          photoShape: 'circle'       // 'circle' | 'rounded' | 'square' | 'hidden'
+        },
+        photo: {
+          rawDataUrl: samplePhoto,
+          dataUrl: samplePhoto,
+          zoom: 1,
+          offsetX: 0,
+          offsetY: 0
+        },
+        profile: JSON.parse(JSON.stringify(preset.profile)),
+        experiences: JSON.parse(JSON.stringify(preset.experiences)),
+        educations: JSON.parse(JSON.stringify(preset.educations)),
+        coverLetter: JSON.parse(JSON.stringify(preset.coverLetter))
+      };
+    }
+
+    function createBlankState() {
+      return {
+        config: {
+          template: 'executive',
+          previewDoc: 'cv',
+          accent: 'ocean',
+          photoShape: 'circle'
+        },
+        photo: {
+          rawDataUrl: '',
+          dataUrl: '',
+          zoom: 1,
+          offsetX: 0,
+          offsetY: 0
+        },
+        profile: {
+          fullName: '',
+          role: '',
+          email: '',
+          phone: '',
+          address: '',
+          linkedin: '',
+          instagram: '',
+          otherSocial: '',
+          showSocial: true,
+          extraSocials: [],
+          summary: '',
+          skills: '',
+          certLang: ''
+        },
+        experiences: [
+          { id: uid(), role: '', company: '', location: '', period: '', desc: '' }
+        ],
+        educations: [
+          { id: uid(), degree: '', institution: '', year: '' }
+        ],
+        coverLetter: {
+          date: 'Tangerang, 25 November 2026',
+          recipientName: '',
+          recipientTitle: 'Manajer Sumber Daya Manusia (HRD)',
+          companyName: '',
+          companyAddress: '',
+          position: '',
+          tone: 'formal',
+          salutation: 'Kepada Yth. Bapak/Ibu HRD,',
+          opening: '',
+          body: '',
+          value: '',
+          closing: 'Besar harapan saya untuk dapat diberikan kesempatan mengikuti tahap wawancara. Atas perhatian Bapak/Ibu, saya ucapkan terima kasih.\n\nHormat saya,'
+        }
+      };
+    }
+
+    /* -----------------------------------------------------------------------
+     * 4. PENYIMPANAN OTOMATIS (LOCALSTORAGE) & KONTROL STATE
+     * --------------------------------------------------------------------- */
+    let saveTimer = null;
+    function persistState() {
+      const badge = document.getElementById('autosave-status');
+      if (badge) badge.textContent = 'Menyimpan...';
+      clearTimeout(saveTimer);
+      saveTimer = setTimeout(() => {
+        try {
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(appState));
+          if (badge) {
+            badge.innerHTML = `
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+              </svg>
+              Tersimpan
+            `;
+          }
+        } catch (err) {
+          console.warn('Gagal menyimpan ke localStorage:', err);
+        }
+      }, 220);
+    }
+
+    function loadInitialState() {
+      try {
+        const saved = localStorage.getItem(STORAGE_KEY);
+        if (saved) {
+          const parsed = JSON.parse(saved);
+          const base = buildInitialStateFromPreset('management');
+          const mergedProfile = { ...base.profile, ...(parsed.profile || {}) };
+          if (typeof mergedProfile.showSocial !== 'boolean') mergedProfile.showSocial = true;
+          if (!Array.isArray(mergedProfile.extraSocials)) mergedProfile.extraSocials = [];
+
+          appState = {
+            config: { ...base.config, ...(parsed.config || {}) },
+            photo: { ...base.photo, ...(parsed.photo || {}) },
+            profile: mergedProfile,
+            experiences: Array.isArray(parsed.experiences) ? parsed.experiences : base.experiences,
+            educations: Array.isArray(parsed.educations) ? parsed.educations : base.educations,
+            coverLetter: { ...base.coverLetter, ...(parsed.coverLetter || {}) }
+          };
+          return;
+        }
+      } catch (e) {
+        console.warn('Gagal membaca state tersimpan:', e);
+      }
+      appState = buildInitialStateFromPreset('management');
+    }
+
+    const SOCIAL_PLATFORMS = [
+      'Instagram',
+      'X (Twitter)',
+      'TikTok',
+      'GitHub',
+      'Behance',
+      'Dribbble',
+      'YouTube',
+      'Facebook',
+      'Website'
+    ];
+
+    /* Mengambil daftar akun media sosial aktif yang telah diformat rapi */
+    function getSocialItems() {
+      const p = appState.profile || {};
+      if (p.showSocial === false) return [];
+
+      const items = [];
+      const ig = (p.instagram || '').trim();
+      if (ig) {
+        items.push(/^ig\s*:/i.test(ig) ? ig : `IG: ${ig}`);
+      }
+
+      const other = (p.otherSocial || '').trim();
+      if (other) {
+        items.push(other);
+      }
+
+      if (Array.isArray(p.extraSocials)) {
+        p.extraSocials.forEach(item => {
+          const handle = (item && item.handle ? item.handle : '').trim();
+          const platform = (item && item.platform ? item.platform : '').trim();
+          if (handle) {
+            items.push(platform ? `${platform}: ${handle}` : handle);
+          }
+        });
+      }
+      return items;
+    }
+
+    /* Menggabungkan kontak utama dan media sosial untuk header & kop surat */
+    function getAllContactItems() {
+      const p = appState.profile || {};
+      const primary = [
+        (p.email || '').trim(),
+        (p.phone || '').trim(),
+        (p.address || '').trim(),
+        (p.linkedin || '').trim()
+      ].filter(Boolean);
+      return [...primary, ...getSocialItems()];
+    }
+
+    function updateField(section, key, value) {
+      appState[section][key] = value;
+      persistState();
+      renderA4Preview();
+    }
+
+    function setPreviewDocMode(docMode) {
+      appState.config.previewDoc = docMode;
+      syncHeaderControls();
+      persistState();
+      renderA4Preview();
+    }
+
+    function setDocumentTemplate(tpl) {
+      appState.config.template = tpl;
+      syncAllInputs();
+      persistState();
+      renderA4Preview();
+    }
+
+    function setAccentColor(accentKey) {
+      appState.config.accent = accentKey;
+      syncAllInputs();
+      persistState();
+      renderA4Preview();
+    }
+
+    function setPhotoShape(shape) {
+      appState.config.photoShape = shape;
+      syncAllInputs();
+      persistState();
+      renderA4Preview();
+    }
+
+    /* -----------------------------------------------------------------------
+     * 5. FITUR OTOMATIS: CONTOH PROFESI, RINGKASAN & COVER LETTER
+     * --------------------------------------------------------------------- */
+    function applyProfessionPreset() {
+      const key = document.getElementById('sel-profession-preset').value;
+      const preset = PROFESSION_PRESETS[key] || PROFESSION_PRESETS.management;
+
+      if (!appState.photo.rawDataUrl) {
+        const avatar = generateDefaultAvatarDataUrl();
+        appState.photo.rawDataUrl = avatar;
+        appState.photo.dataUrl = avatar;
+      }
+
+      appState.profile = JSON.parse(JSON.stringify(preset.profile));
+      appState.experiences = JSON.parse(JSON.stringify(preset.experiences));
+      appState.educations = JSON.parse(JSON.stringify(preset.educations));
+      appState.coverLetter = JSON.parse(JSON.stringify(preset.coverLetter));
+
+      syncAllInputs();
+      persistState();
+      renderA4Preview();
+      showToast(`Contoh CV & Cover Letter "${preset.profile.role}" diterapkan!`, 'success');
+    }
+
+    function autoGenerateSummary() {
+      const p = appState.profile;
+      const role = p.role.trim() || 'Profesional';
+      const firstExp = appState.experiences.find(e => e.company || e.role);
+      const companyClause = firstExp && firstExp.company ? ` dengan rekam jejak kerja di ${firstExp.company}` : '';
+      const skills = p.skills.split(',').map(s => s.trim()).filter(Boolean).slice(0, 4);
+      const skillSentence = skills.length
+        ? ` Menguasai kompetensi di bidang ${skills.join(', ')},`
+        : ' Terampil dalam pengelolaan tugas strategis dan kolaborasi lintas tim,';
+
+      p.summary = `${role} yang berorientasi pada hasil dan ketelitian kerja${companyClause}.${skillSentence} serta berkomitmen menghadirkan solusi efektif untuk mendukung pertumbuhan dan kinerja optimal perusahaan.`;
+
+      document.getElementById('inp-summary').value = p.summary;
+      persistState();
+      renderA4Preview();
+      showToast('Ringkasan Profesional berhasil disusun otomatis!', 'success');
+    }
+
+    function autoGenerateCoverLetter() {
+      const p = appState.profile;
+      const cl = appState.coverLetter;
+
+      const company = cl.companyName.trim() || 'Perusahaan Tujuan';
+      const position = cl.position.trim() || p.role.trim() || 'Posisi yang Dilamar';
+      const recipient = cl.recipientName.trim() || 'Bapak/Ibu Pimpinan HRD';
+
+      const latestExp = appState.experiences.find(e => e.role || e.company);
+      const latestEdu = appState.educations.find(e => e.degree || e.institution);
+
+      const eduClause = latestEdu && (latestEdu.degree || latestEdu.institution)
+        ? `dengan latar belakang pendidikan ${[latestEdu.degree, latestEdu.institution ? 'dari ' + latestEdu.institution : ''].filter(Boolean).join(' ')}`
+        : 'dengan latar belakang profesional yang relevan';
+
+      const expRole = latestExp ? (latestExp.role || p.role || 'Profesional') : (p.role || 'Profesional');
+      const expComp = latestExp && latestExp.company ? ` di ${latestExp.company}` : '';
+      const bullets = latestExp ? parseBullets(latestExp.desc) : [];
+      const achievementClause = bullets.length
+        ? bullets.slice(0, 2).map(b => b.replace(/\.$/, '').charAt(0).toLowerCase() + b.replace(/\.$/, '').slice(1)).join(', serta ')
+        : 'mengelola tanggung jawab operasional secara konsisten dan menjaga kualitas layanan tertinggi';
+
+      const skillsList = p.skills.split(',').map(s => s.trim()).filter(Boolean).slice(0, 5);
+      const skillsClause = skillsList.length
+        ? skillsList.join(', ')
+        : 'komunikasi profesional, pemecahan masalah, dan kerja sama tim';
+
+      const tone = cl.tone || 'formal';
+
+      cl.salutation = `Kepada Yth. ${recipient},`;
+
+      if (tone === 'modern') {
+        cl.opening = `Dengan hormat, saya menyampaikan ketertarikan besar untuk bergabung dan berkontribusi pada posisi ${position} di ${company}. Sebagai seorang profesional ${eduClause}, saya mengagumi reputasi serta inovasi yang terus dikembangkan oleh ${company} di industri ini.`;
+        cl.body = `Dalam pengalaman saya sebagai ${expRole}${expComp}, saya terbiasa ${achievementClause}. Pengalaman tersebut membentuk ketangguhan kerja, ketelitian, serta kemampuan saya dalam mencapai target secara terukur.`;
+        cl.value = `Berbekal keahlian utama di bidang ${skillsClause}, saya yakin dapat beradaptasi dengan cepat dan memberikan nilai tambah nyata bagi pencapaian tim ${company}.`;
+        cl.closing = `Terima kasih atas waktu dan kesempatan yang Bapak/Ibu berikan. Saya sangat menantikan kesempatan berdiskusi lebih lanjut dalam sesi wawancara.\n\nHormat saya,`;
+      } else if (tone === 'executive') {
+        cl.opening = `Dengan hormat, melalui surat ini saya menyampaikan minat strategis untuk berkontribusi sebagai ${position} di ${company}. Berbekal rekam jejak kepemimpinan dan tata kelola profesional ${eduClause}, saya siap mendorong pencapaian target bisnis perusahaan Anda.`;
+        cl.body = `Sepanjang perjalanan karier saya, termasuk peran sebagai ${expRole}${expComp}, saya berhasil ${achievementClause}. Pendekatan kerja saya memadukan ketajaman analisis strategis, pengawasan mutu yang disiplin, serta pengembangan tim yang solid.`;
+        cl.value = `Kompetensi mendalam pada ${skillsClause} memungkinkan saya menyelaraskan strategi operasional dengan visi jangka panjang ${company}.`;
+        cl.closing = `Saya menyambut baik kesempatan untuk berdiskusi secara langsung mengenai bagaimana pengalaman saya dapat mendukung pertumbuhan ${company}. Atas perhatian Bapak/Ibu, saya ucapkan terima kasih.\n\nHormat saya,`;
+      } else {
+        // Formal Korporat
+        cl.opening = `Dengan hormat, sehubungan dengan kebutuhan tenaga profesional pada ${company}, melalui surat lamaran ini saya mengajukan diri untuk mengisi posisi ${position}. Saya merupakan profesional ${eduClause} yang memiliki integritas, dedikasi tinggi, dan komitmen untuk mendukung kemajuan perusahaan Anda.`;
+        cl.body = `Pada pengalaman kerja saya sebagai ${expRole}${expComp}, saya bertanggung jawab dan berhasil ${achievementClause}. Pengalaman tersebut membekali saya dengan standar kerja yang profesional, akurat, dan berorientasi pada solusi.`;
+        cl.value = `Selain itu, saya menguasai berbagai keahlian relevan meliputi ${skillsClause} yang siap saya terapkan untuk mendukung kinerja tim di ${company}.`;
+        cl.closing = `Besar harapan saya untuk dapat diberikan kesempatan mengikuti tahap wawancara guna menjelaskan kualifikasi saya secara lebih mendalam. Atas perhatian dan pertimbangan Bapak/Ibu, saya ucapkan terima kasih.\n\nHormat saya,`;
+      }
+
+      syncAllInputs();
+      persistState();
+      renderA4Preview();
+      showToast('Cover Letter berhasil dibuat otomatis dari data CV Anda!', 'success');
+    }
+
+    /* -----------------------------------------------------------------------
+     * 6. UPLOAD & PENGATURAN FOTO PROFIL (HTML5 CANVAS 300x300 PX)
+     * --------------------------------------------------------------------- */
+    function setupPhotoDragDrop() {
+      const zone = document.getElementById('photo-dropzone');
+      if (!zone) return;
+
+      ['dragenter', 'dragover'].forEach(evt => {
+        zone.addEventListener(evt, e => {
+          e.preventDefault();
+          e.stopPropagation();
+          zone.classList.add('border-[#1d5b8c]', 'bg-[#eef5fb]');
+        });
+      });
+
+      ['dragleave', 'drop'].forEach(evt => {
+        zone.addEventListener(evt, e => {
+          e.preventDefault();
+          e.stopPropagation();
+          zone.classList.remove('border-[#1d5b8c]', 'bg-[#eef5fb]');
+        });
+      });
+
+      zone.addEventListener('drop', e => {
+        const file = e.dataTransfer && e.dataTransfer.files && e.dataTransfer.files[0];
+        if (file) processUploadedImageFile(file);
+      });
+    }
+
+    function handlePhotoUpload(event) {
+      const file = event.target.files && event.target.files[0];
+      if (!file) return;
+      processUploadedImageFile(file);
+      event.target.value = '';
+    }
+
+    function processUploadedImageFile(file) {
+      const allowed = ['image/jpeg', 'image/png', 'image/webp'];
+      if (!allowed.includes(file.type)) {
+        showToast('Format gambar tidak didukung. Gunakan JPG, PNG, atau WEBP.', 'error');
+        return;
+      }
+
+      const reader = new FileReader();
+      reader.onload = function (e) {
+        appState.photo.rawDataUrl = e.target.result;
+        appState.photo.zoom = 1;
+        appState.photo.offsetX = 0;
+        appState.photo.offsetY = 0;
+        if (appState.config.photoShape === 'hidden') {
+          appState.config.photoShape = 'circle';
+        }
+        renderCroppedPhotoCanvas(() => {
+          syncAllInputs();
+          persistState();
+          renderA4Preview();
+          showToast('Foto profil berhasil diunggah dan diproses (300×300 px)!', 'success');
+        });
+      };
+      reader.readAsDataURL(file);
+    }
+
+    function updatePhotoAdjust(prop, val) {
+      appState.photo[prop] = val;
+      if (prop === 'zoom') document.getElementById('lbl-photo-zoom').textContent = val.toFixed(1) + 'x';
+      if (prop === 'offsetX') document.getElementById('lbl-photo-x').textContent = val + '%';
+      if (prop === 'offsetY') document.getElementById('lbl-photo-y').textContent = val + '%';
+
+      renderCroppedPhotoCanvas(() => {
+        updatePhotoThumbnailUI();
+        persistState();
+        renderA4Preview();
+      });
+    }
+
+    function resetPhotoSliders() {
+      appState.photo.zoom = 1;
+      appState.photo.offsetX = 0;
+      appState.photo.offsetY = 0;
+      renderCroppedPhotoCanvas(() => {
+        updatePhotoThumbnailUI();
+        persistState();
+        renderA4Preview();
+      });
+    }
+
+    function renderCroppedPhotoCanvas(callback) {
+      const src = appState.photo.rawDataUrl || appState.photo.dataUrl;
+      if (!src) {
+        appState.photo.dataUrl = '';
+        if (callback) callback();
+        return;
+      }
+
+      const img = new Image();
+      img.onload = function () {
+        const size = 300;
+        const canvas = document.getElementById('canvas-photo-cropper');
+        canvas.width = size;
+        canvas.height = size;
+        const ctx = canvas.getContext('2d');
+
+        const zoom = appState.photo.zoom || 1;
+        const offsetX = appState.photo.offsetX || 0;
+        const offsetY = appState.photo.offsetY || 0;
+
+        const baseSide = Math.min(img.width, img.height);
+        const cropSide = baseSide / zoom;
+
+        const maxPanX = (img.width - cropSide) / 2;
+        const maxPanY = (img.height - cropSide) / 2;
+
+        const sx = Math.max(0, Math.min(img.width - cropSide, (img.width - cropSide) / 2 - (offsetX / 50) * maxPanX));
+        const sy = Math.max(0, Math.min(img.height - cropSide, (img.height - cropSide) / 2 - (offsetY / 50) * maxPanY));
+
+        ctx.clearRect(0, 0, size, size);
+        ctx.imageSmoothingEnabled = true;
+        ctx.imageSmoothingQuality = 'high';
+        ctx.drawImage(img, sx, sy, cropSide, cropSide, 0, 0, size, size);
+
+        appState.photo.dataUrl = canvas.toDataURL('image/png');
+        if (callback) callback();
+      };
+      img.src = src;
+    }
+
+    function removePhoto() {
+      appState.photo = { rawDataUrl: '', dataUrl: '', zoom: 1, offsetX: 0, offsetY: 0 };
+      updatePhotoThumbnailUI();
+      persistState();
+      renderA4Preview();
+      showToast('Foto profil dihapus.', 'info');
+    }
+
+    function updatePhotoThumbnailUI() {
+      const imgEl = document.getElementById('thumb-photo-img');
+      const iconEl = document.getElementById('thumb-photo-icon');
+      const btnRemove = document.getElementById('btn-remove-photo');
+      const slidersBox = document.getElementById('photo-sliders-box');
+      const frame = document.getElementById('thumb-photo-frame');
+
+      frame.classList.remove('rounded-full', 'rounded-2xl', 'rounded-none', 'opacity-40');
+      if (appState.config.photoShape === 'circle') frame.classList.add('rounded-full');
+      else if (appState.config.photoShape === 'rounded') frame.classList.add('rounded-2xl');
+      else if (appState.config.photoShape === 'square') frame.classList.add('rounded-none');
+      else frame.classList.add('rounded-full', 'opacity-40');
+
+      if (appState.photo.dataUrl) {
+        imgEl.src = appState.photo.dataUrl;
+        imgEl.classList.remove('hidden');
+        iconEl.classList.add('hidden');
+        btnRemove.classList.remove('hidden');
+        slidersBox.classList.remove('hidden');
+
+        document.getElementById('rng-photo-zoom').value = appState.photo.zoom || 1;
+        document.getElementById('rng-photo-x').value = appState.photo.offsetX || 0;
+        document.getElementById('rng-photo-y').value = appState.photo.offsetY || 0;
+        document.getElementById('lbl-photo-zoom').textContent = (appState.photo.zoom || 1).toFixed(1) + 'x';
+        document.getElementById('lbl-photo-x').textContent = (appState.photo.offsetX || 0) + '%';
+        document.getElementById('lbl-photo-y').textContent = (appState.photo.offsetY || 0) + '%';
+      } else {
+        imgEl.src = '';
+        imgEl.classList.add('hidden');
+        iconEl.classList.remove('hidden');
+        btnRemove.classList.add('hidden');
+        slidersBox.classList.add('hidden');
+      }
+    }
+
+    /* Mengonversi foto terpotong menjadi PNG sesuai bingkai untuk disisipkan ke Word (.docx) */
+    function buildShapedPhotoPngBytes(shape) {
+      return new Promise((resolve) => {
+        if (!appState.photo.dataUrl || shape === 'hidden') {
+          resolve(null);
+          return;
+        }
+        const img = new Image();
+        img.onload = function () {
+          const size = 300;
+          const canvas = document.createElement('canvas');
+          canvas.width = size;
+          canvas.height = size;
+          const ctx = canvas.getContext('2d');
+          ctx.clearRect(0, 0, size, size);
+
+          ctx.save();
+          ctx.beginPath();
+          if (shape === 'circle') {
+            ctx.arc(size / 2, size / 2, size / 2, 0, Math.PI * 2);
+          } else if (shape === 'rounded') {
+            const r = 42;
+            ctx.moveTo(r, 0);
+            ctx.lineTo(size - r, 0);
+            ctx.quadraticCurveTo(size, 0, size, r);
+            ctx.lineTo(size, size - r);
+            ctx.quadraticCurveTo(size, size, size - r, size);
+            ctx.lineTo(r, size);
+            ctx.quadraticCurveTo(0, size, 0, size - r);
+            ctx.lineTo(0, r);
+            ctx.quadraticCurveTo(0, 0, r, 0);
+          } else {
+            ctx.rect(0, 0, size, size);
+          }
+          ctx.closePath();
+          ctx.clip();
+          ctx.drawImage(img, 0, 0, size, size);
+          ctx.restore();
+
+          const dataUrl = canvas.toDataURL('image/png');
+          const b64 = dataUrl.split(',')[1];
+          const raw = atob(b64);
+          const bytes = new Uint8Array(raw.length);
+          for (let i = 0; i < raw.length; i++) {
+            bytes[i] = raw.charCodeAt(i);
+          }
+          resolve(bytes);
+        };
+        img.onerror = () => resolve(null);
+        img.src = appState.photo.dataUrl;
+      });
+    }
+
+    /* -----------------------------------------------------------------------
+     * 7. SINKRONISASI UI FORMULIR & DAFTAR DINAMIS
+     * --------------------------------------------------------------------- */
+    function syncHeaderControls() {
+      const palette = ACCENTS[appState.config.accent] || ACCENTS.ocean;
+
+      const brandBox = document.getElementById('brand-icon-box');
+      if (brandBox) brandBox.style.backgroundColor = palette.primary;
+
+      const wordBtn = document.getElementById('btn-word-dropdown');
+      if (wordBtn) wordBtn.style.backgroundColor = palette.primary;
+
+      document.querySelectorAll('.preview-doc-btn').forEach(btn => {
+        const active = btn.dataset.previewDoc === appState.config.previewDoc;
+        btn.className = active
+          ? 'preview-doc-btn flex-1 lg:flex-initial px-3 py-1.5 rounded-lg text-xs font-bold text-white shadow-xs transition cursor-pointer'
+          : 'preview-doc-btn flex-1 lg:flex-initial px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-600 hover:text-[#0f2942] transition cursor-pointer';
+        btn.style.backgroundColor = active ? palette.primary : 'transparent';
+      });
+    }
+
+    function syncAllInputs() {
+      syncHeaderControls();
+
+      // Kartu pilihan 4 template
+      document.querySelectorAll('.tpl-card-btn').forEach(btn => {
+        const active = btn.dataset.templateCard === appState.config.template;
+        btn.className = active
+          ? 'tpl-card-btn text-left p-3 rounded-xl border-2 border-[#1d5b8c] bg-[#eef5fb]/80 shadow-xs transition cursor-pointer flex items-start gap-3'
+          : 'tpl-card-btn text-left p-3 rounded-xl border border-[#d6e4f0] bg-white hover:bg-[#f6fafe] transition cursor-pointer flex items-start gap-3';
+      });
+
+      // Tombol 4 warna aksen
+      document.querySelectorAll('.accent-choice-btn').forEach(btn => {
+        const active = btn.dataset.accent === appState.config.accent;
+        btn.className = active
+          ? 'accent-choice-btn flex items-center justify-center gap-1.5 py-2 px-2.5 rounded-xl border-2 border-[#1d5b8c] bg-[#eef5fb] text-[#0f2942] text-xs font-bold transition cursor-pointer'
+          : 'accent-choice-btn flex items-center justify-center gap-1.5 py-2 px-2.5 rounded-xl border border-[#d6e4f0] bg-white hover:bg-[#f6fafe] text-slate-600 text-xs font-medium transition cursor-pointer';
+      });
+
+      // Tombol gaya bingkai foto
+      document.querySelectorAll('.photo-shape-btn').forEach(btn => {
+        const active = btn.dataset.photoShape === appState.config.photoShape;
+        btn.className = active
+          ? 'photo-shape-btn py-1.5 px-2.5 rounded-xl border-2 border-[#1d5b8c] bg-[#eef5fb] text-[#0f2942] text-xs font-bold transition cursor-pointer'
+          : 'photo-shape-btn py-1.5 px-2.5 rounded-xl border border-[#d6e4f0] bg-white hover:bg-[#f6fafe] text-slate-600 text-xs font-medium transition cursor-pointer';
+      });
+
+      updatePhotoThumbnailUI();
+
+      // Input profil & isi CV
+      ['fullName', 'role', 'email', 'phone', 'address', 'linkedin', 'instagram', 'otherSocial', 'summary', 'skills', 'certLang'].forEach(k => {
+        const el = document.getElementById('inp-' + k);
+        if (el) el.value = appState.profile[k] || '';
+      });
+
+      const chkShowSocial = document.getElementById('chk-showSocial');
+      if (chkShowSocial) {
+        chkShowSocial.checked = appState.profile.showSocial !== false;
+      }
+      renderExtraSocialEditor();
+
+      // Input Cover Letter
+      const clMap = {
+        'inp-cl-date': 'date',
+        'inp-cl-recipientName': 'recipientName',
+        'inp-cl-recipientTitle': 'recipientTitle',
+        'inp-cl-companyName': 'companyName',
+        'inp-cl-companyAddress': 'companyAddress',
+        'inp-cl-position': 'position',
+        'sel-cl-tone': 'tone',
+        'inp-cl-salutation': 'salutation',
+        'inp-cl-opening': 'opening',
+        'inp-cl-body': 'body',
+        'inp-cl-value': 'value',
+        'inp-cl-closing': 'closing'
+      };
+      Object.entries(clMap).forEach(([domId, key]) => {
+        const el = document.getElementById(domId);
+        if (el) el.value = appState.coverLetter[key] || '';
+      });
+
+      renderExperienceEditor();
+      renderEducationEditor();
+    }
+
+    function renderExtraSocialEditor() {
+      const container = document.getElementById('extra-social-list');
+      if (!container) return;
+
+      const list = Array.isArray(appState.profile.extraSocials) ? appState.profile.extraSocials : [];
+      container.innerHTML = list.map((item) => `
+        <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 bg-white border border-[#d6e4f0] rounded-xl p-2">
+          <select
+            onchange="updateExtraSocialField('${item.id}', 'platform', this.value)"
+            aria-label="Pilih Platform Media Sosial"
+            class="sm:w-40 rounded-lg border border-[#d6e4f0] bg-[#f6fafe] px-2.5 py-1.5 text-xs font-semibold text-[#0f2942] focus:outline-none focus:border-[#1d5b8c]"
+          >
+            ${SOCIAL_PLATFORMS.map(pl => `<option value="${escapeAttr(pl)}" ${item.platform === pl ? 'selected' : ''}>${escapeHtml(pl)}</option>`).join('')}
+          </select>
+          <input
+            type="text"
+            value="${escapeAttr(item.handle)}"
+            oninput="updateExtraSocialField('${item.id}', 'handle', this.value)"
+            placeholder="Username atau tautan akun (mis. github.com/username)"
+            class="flex-1 rounded-lg border border-[#d6e4f0] px-2.5 py-1.5 text-xs text-[#0f2942] focus:outline-none focus:border-[#1d5b8c]"
+          />
+          <button
+            type="button"
+            onclick="removeExtraSocial('${item.id}')"
+            title="Hapus akun media sosial"
+            class="px-2.5 py-1.5 rounded-lg text-xs font-semibold text-rose-600 hover:bg-rose-50 transition cursor-pointer shrink-0 text-center"
+          >
+            Hapus
+          </button>
+        </div>
+      `).join('');
+    }
+
+    function addExtraSocial() {
+      if (!Array.isArray(appState.profile.extraSocials)) {
+        appState.profile.extraSocials = [];
+      }
+      appState.profile.extraSocials.push({
+        id: uid(),
+        platform: 'GitHub',
+        handle: ''
+      });
+      if (appState.profile.showSocial === false) {
+        appState.profile.showSocial = true;
+        const chk = document.getElementById('chk-showSocial');
+        if (chk) chk.checked = true;
+      }
+      renderExtraSocialEditor();
+      persistState();
+      renderA4Preview();
+    }
+
+    function removeExtraSocial(id) {
+      appState.profile.extraSocials = (appState.profile.extraSocials || []).filter(item => item.id !== id);
+      renderExtraSocialEditor();
+      persistState();
+      renderA4Preview();
+    }
+
+    function updateExtraSocialField(id, key, val) {
+      const target = (appState.profile.extraSocials || []).find(item => item.id === id);
+      if (target) {
+        target[key] = val;
+        persistState();
+        renderA4Preview();
+      }
+    }
+
+    function renderExperienceEditor() {
+      const container = document.getElementById('experience-editor-list');
+      if (!container) return;
+
+      container.innerHTML = appState.experiences.map((exp, idx) => `
+        <div class="bg-[#f6fafe] border border-[#d6e4f0] rounded-2xl p-3.5 space-y-2.5">
+          <div class="flex items-center justify-between border-b border-[#d6e4f0] pb-1.5">
+            <span class="text-xs font-bold text-[#0f2942]">Pengalaman Kerja #${idx + 1}</span>
+            ${appState.experiences.length > 1 ? `
+              <button type="button" onclick="removeExperience('${exp.id}')" class="text-xs font-semibold text-rose-600 hover:underline cursor-pointer">Hapus</button>
+            ` : ''}
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+            <div>
+              <label class="block text-[11px] font-semibold text-slate-600 mb-0.5">Jabatan / Posisi</label>
+              <input type="text" value="${escapeAttr(exp.role)}" oninput="updateExpField('${exp.id}', 'role', this.value)" placeholder="Manajer Operasional" class="w-full rounded-xl border border-[#d6e4f0] bg-white px-2.5 py-1.5 text-xs text-[#0f2942] focus:outline-none focus:border-[#1d5b8c]" />
+            </div>
+            <div>
+              <label class="block text-[11px] font-semibold text-slate-600 mb-0.5">Nama Perusahaan</label>
+              <input type="text" value="${escapeAttr(exp.company)}" oninput="updateExpField('${exp.id}', 'company', this.value)" placeholder="PT Nusantara Sejahtera" class="w-full rounded-xl border border-[#d6e4f0] bg-white px-2.5 py-1.5 text-xs text-[#0f2942] focus:outline-none focus:border-[#1d5b8c]" />
+            </div>
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+            <div>
+              <label class="block text-[11px] font-semibold text-slate-600 mb-0.5">Lokasi Kota</label>
+              <input type="text" value="${escapeAttr(exp.location)}" oninput="updateExpField('${exp.id}', 'location', this.value)" placeholder="Jakarta Selatan" class="w-full rounded-xl border border-[#d6e4f0] bg-white px-2.5 py-1.5 text-xs text-[#0f2942] focus:outline-none focus:border-[#1d5b8c]" />
+            </div>
+            <div>
+              <label class="block text-[11px] font-semibold text-slate-600 mb-0.5">Periode Kerja</label>
+              <input type="text" value="${escapeAttr(exp.period)}" oninput="updateExpField('${exp.id}', 'period', this.value)" placeholder="Jan 2023 – Sekarang" class="w-full rounded-xl border border-[#d6e4f0] bg-white px-2.5 py-1.5 text-xs text-[#0f2942] focus:outline-none focus:border-[#1d5b8c]" />
+            </div>
+          </div>
+          <div>
+            <label class="block text-[11px] font-semibold text-slate-600 mb-0.5">Uraian Tugas &amp; Pencapaian Utama <span class="text-slate-400 font-normal">(tekan Enter untuk poin baru)</span></label>
+            <textarea rows="3" oninput="updateExpField('${exp.id}', 'desc', this.value)" placeholder="Tuliskan pencapaian terukur..." class="w-full rounded-xl border border-[#d6e4f0] bg-white p-2 text-xs text-[#0f2942] leading-relaxed focus:outline-none focus:border-[#1d5b8c]">${escapeHtml(exp.desc)}</textarea>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function addExperience() {
+      appState.experiences.push({ id: uid(), role: '', company: '', location: '', period: '', desc: '' });
+      renderExperienceEditor();
+      persistState();
+      renderA4Preview();
+    }
+
+    function removeExperience(id) {
+      appState.experiences = appState.experiences.filter(e => e.id !== id);
+      renderExperienceEditor();
+      persistState();
+      renderA4Preview();
+    }
+
+    function updateExpField(id, key, val) {
+      const target = appState.experiences.find(e => e.id === id);
+      if (target) {
+        target[key] = val;
+        persistState();
+        renderA4Preview();
+      }
+    }
+
+    function renderEducationEditor() {
+      const container = document.getElementById('education-editor-list');
+      if (!container) return;
+
+      container.innerHTML = appState.educations.map((edu, idx) => `
+        <div class="bg-[#f6fafe] border border-[#d6e4f0] rounded-2xl p-3.5 space-y-2.5">
+          <div class="flex items-center justify-between border-b border-[#d6e4f0] pb-1.5">
+            <span class="text-xs font-bold text-[#0f2942]">Pendidikan #${idx + 1}</span>
+            ${appState.educations.length > 1 ? `
+              <button type="button" onclick="removeEducation('${edu.id}')" class="text-xs font-semibold text-rose-600 hover:underline cursor-pointer">Hapus</button>
+            ` : ''}
+          </div>
+          <div>
+            <label class="block text-[11px] font-semibold text-slate-600 mb-0.5">Gelar &amp; Program Studi</label>
+            <input type="text" value="${escapeAttr(edu.degree)}" oninput="updateEduField('${edu.id}', 'degree', this.value)" placeholder="Sarjana Ekonomi (S.E.) — Manajemen" class="w-full rounded-xl border border-[#d6e4f0] bg-white px-2.5 py-1.5 text-xs text-[#0f2942] focus:outline-none focus:border-[#1d5b8c]" />
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+            <div>
+              <label class="block text-[11px] font-semibold text-slate-600 mb-0.5">Perguruan Tinggi / Institusi</label>
+              <input type="text" value="${escapeAttr(edu.institution)}" oninput="updateEduField('${edu.id}', 'institution', this.value)" placeholder="Universitas Indonesia" class="w-full rounded-xl border border-[#d6e4f0] bg-white px-2.5 py-1.5 text-xs text-[#0f2942] focus:outline-none focus:border-[#1d5b8c]" />
+            </div>
+            <div>
+              <label class="block text-[11px] font-semibold text-slate-600 mb-0.5">Tahun Lulus &amp; IPK</label>
+              <input type="text" value="${escapeAttr(edu.year)}" oninput="updateEduField('${edu.id}', 'year', this.value)" placeholder="2016 – 2020 • IPK 3.82" class="w-full rounded-xl border border-[#d6e4f0] bg-white px-2.5 py-1.5 text-xs text-[#0f2942] focus:outline-none focus:border-[#1d5b8c]" />
+            </div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function addEducation() {
+      appState.educations.push({ id: uid(), degree: '', institution: '', year: '' });
+      renderEducationEditor();
+      persistState();
+      renderA4Preview();
+    }
+
+    function removeEducation(id) {
+      appState.educations = appState.educations.filter(e => e.id !== id);
+      renderEducationEditor();
+      persistState();
+      renderA4Preview();
+    }
+
+    function updateEduField(id, key, val) {
+      const target = appState.educations.find(e => e.id === id);
+      if (target) {
+        target[key] = val;
+        persistState();
+        renderA4Preview();
+      }
+    }
+
+    /* -----------------------------------------------------------------------
+     * 8. PRATINJAU KERTAS A4 REAL-TIME (4 TEMPLATE STANDAR INTERNASIONAL)
+     * --------------------------------------------------------------------- */
+    function escapeHtml(str) {
+      if (!str) return '';
+      return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;');
+    }
+
+    function escapeAttr(str) {
+      return escapeHtml(str);
+    }
+
+    function parseBullets(text) {
+      return (text || '')
+        .split(/\r?\n/)
+        .map(line => line.replace(/^[\-\•\*]\s*/, '').trim())
+        .filter(Boolean);
+    }
+
+    function renderA4Preview() {
+      const stack = document.getElementById('a4-sheets-stack');
+      if (!stack) return;
+
+      const { template, previewDoc } = appState.config;
+      const sheets = [];
+
+      if (previewDoc === 'cv') {
+        sheets.push(buildCvSheetHtml());
+      } else if (previewDoc === 'cover-letter') {
+        sheets.push(buildCoverLetterSheetHtml());
+      } else {
+        // Paket Lengkap: Halaman 1 Cover Letter, Halaman 2 CV
+        sheets.push(buildCoverLetterSheetHtml());
+        sheets.push(buildCvSheetHtml());
+      }
+
+      stack.innerHTML = sheets.join('');
+
+      const pill = document.getElementById('preview-status-pill');
+      if (pill) {
+        const docLabel = {
+          'cv': '📄 CV',
+          'cover-letter': '✉️ Cover Letter',
+          'bundle': '📑 Paket Lengkap (2 Halaman A4)'
+        }[previewDoc];
+        pill.textContent = `${docLabel} • ${TEMPLATE_NAMES[template]}`;
+      }
+
+      applyPreviewZoom();
+    }
+
+    /* Bangun HTML Lembaran A4 CV untuk 4 Template Internasional */
+    function buildCvSheetHtml() {
+      const { template, accent, photoShape } = appState.config;
+      const palette = ACCENTS[accent] || ACCENTS.ocean;
+      const p = appState.profile;
+
+      const hasPhoto = Boolean(appState.photo.dataUrl) && photoShape !== 'hidden';
+      const fullName = p.fullName.trim() || 'NAMA LENGKAP ANDA';
+      const roleTitle = p.role.trim() || 'Posisi / Jabatan Target';
+      const contacts = getAllContactItems();
+      const socialItems = getSocialItems();
+
+      const skillsList = p.skills.split(',').map(s => s.trim()).filter(Boolean);
+      const validExps = appState.experiences.filter(e => e.role || e.company || e.desc);
+      const validEdus = appState.educations.filter(e => e.degree || e.institution);
+
+      const renderPhoto = (sizePx) => {
+        if (!hasPhoto) return '';
+        const radius = photoShape === 'circle' ? 'rounded-full' : photoShape === 'rounded' ? 'rounded-xl' : 'rounded-none';
+        return `
+          <div style="width:${sizePx}px;height:${sizePx}px;border-color:${palette.border};" class="shrink-0 overflow-hidden border-2 ${radius} bg-slate-100">
+            <img src="${appState.photo.dataUrl}" alt="Foto Profil" class="w-full h-full object-cover" />
+          </div>
+        `;
+      };
+
+      /* ===================================================================
+       * TEMPLATE 1: EKSEKUTIF MODERN
+       * Header atas bersih, foto kanan atas, tata letak 2 kolom proporsional
+       * ================================================================= */
+      if (template === 'executive') {
+        return `
+          <article class="a4-sheet text-slate-900 overflow-hidden">
+            <div class="h-2.5 w-full" style="background-color:${palette.primary};"></div>
+            <div class="p-9">
+              <!-- Masthead Eksekutif -->
+              <header class="pb-5 mb-6 border-b flex items-center justify-between gap-6" style="border-color:${palette.border};">
+                <div class="flex-1 min-w-0">
+                  <h1 class="text-[26px] font-extrabold tracking-tight text-slate-900 leading-tight">${escapeHtml(fullName)}</h1>
+                  <p class="text-[14px] font-semibold mt-1" style="color:${palette.primary};">${escapeHtml(roleTitle)}</p>
+                  ${contacts.length ? `
+                    <div class="mt-3 flex flex-wrap gap-1.5 text-[11px] font-medium text-slate-700">
+                      ${contacts.map(c => `<span class="px-2.5 py-0.5 rounded-md border" style="background-color:${palette.tint};border-color:${palette.border};">${escapeHtml(c)}</span>`).join('')}
+                    </div>
+                  ` : ''}
+                </div>
+                ${renderPhoto(96)}
+              </header>
+
+              <!-- Ringkasan Profesional -->
+              ${p.summary.trim() ? `
+                <section class="mb-6">
+                  <h2 class="text-[11.5px] font-extrabold uppercase tracking-wider mb-2" style="color:${palette.primary};">Ringkasan Profesional</h2>
+                  <p class="text-[12px] leading-[1.65] text-slate-700 text-justify">${escapeHtml(p.summary.trim())}</p>
+                </section>
+              ` : ''}
+
+              <!-- Tata Letak 2 Kolom Proporsional (64% Utama | 36% Pendukung) -->
+              <div class="grid grid-cols-12 gap-7">
+                <div class="col-span-8 space-y-5">
+                  ${validExps.length ? `
+                    <section>
+                      <h2 class="text-[11.5px] font-extrabold uppercase tracking-wider pb-1.5 mb-3 border-b" style="color:${palette.primary};border-color:${palette.border};">Pengalaman Kerja</h2>
+                      <div class="space-y-4">
+                        ${validExps.map(exp => {
+                          const bullets = parseBullets(exp.desc);
+                          const sub = [exp.company.trim(), exp.location.trim()].filter(Boolean).join(' • ');
+                          return `
+                            <div>
+                              <div class="flex items-baseline justify-between gap-2">
+                                <h3 class="font-bold text-[13px] text-slate-900">${escapeHtml(exp.role)}</h3>
+                                ${exp.period.trim() ? `<span class="text-[10.5px] font-semibold shrink-0" style="color:${palette.primary};">${escapeHtml(exp.period.trim())}</span>` : ''}
+                              </div>
+                              ${sub ? `<div class="text-[11.5px] font-semibold text-slate-600 mt-0.5">${escapeHtml(sub)}</div>` : ''}
+                              ${bullets.length ? `
+                                <ul class="list-disc pl-4 mt-1.5 space-y-1 text-[11.5px] leading-[1.55] text-slate-700">
+                                  ${bullets.map(b => `<li>${escapeHtml(b)}</li>`).join('')}
+                                </ul>
+                              ` : ''}
+                            </div>
+                          `;
+                        }).join('')}
+                      </div>
+                    </section>
+                  ` : ''}
+                </div>
+
+                <div class="col-span-4 space-y-5 pl-4 border-l" style="border-color:${palette.border};">
+                  ${validEdus.length ? `
+                    <section>
+                      <h2 class="text-[11.5px] font-extrabold uppercase tracking-wider pb-1.5 mb-2.5 border-b" style="color:${palette.primary};border-color:${palette.border};">Pendidikan</h2>
+                      <div class="space-y-3">
+                        ${validEdus.map(edu => `
+                          <div>
+                            <h3 class="font-bold text-[12px] text-slate-900 leading-snug">${escapeHtml(edu.degree)}</h3>
+                            ${edu.institution.trim() ? `<div class="text-[11px] font-medium text-slate-600 mt-0.5">${escapeHtml(edu.institution.trim())}</div>` : ''}
+                            ${edu.year.trim() ? `<div class="text-[10.5px] font-semibold mt-0.5" style="color:${palette.primary};">${escapeHtml(edu.year.trim())}</div>` : ''}
+                          </div>
+                        `).join('')}
+                      </div>
+                    </section>
+                  ` : ''}
+
+                  ${skillsList.length ? `
+                    <section>
+                      <h2 class="text-[11.5px] font-extrabold uppercase tracking-wider pb-1.5 mb-2.5 border-b" style="color:${palette.primary};border-color:${palette.border};">Keahlian Utama</h2>
+                      <div class="flex flex-wrap gap-1.5">
+                        ${skillsList.map(s => `<span class="px-2 py-1 rounded text-[10.5px] font-medium border" style="background-color:${palette.tint};border-color:${palette.border};color:#0f2942;">${escapeHtml(s)}</span>`).join('')}
+                      </div>
+                    </section>
+                  ` : ''}
+
+                  ${p.certLang.trim() ? `
+                    <section>
+                      <h2 class="text-[11.5px] font-extrabold uppercase tracking-wider pb-1.5 mb-2 border-b" style="color:${palette.primary};border-color:${palette.border};">Sertifikasi &amp; Bahasa</h2>
+                      <p class="text-[11px] leading-[1.55] text-slate-700">${escapeHtml(p.certLang.trim())}</p>
+                    </section>
+                  ` : ''}
+                </div>
+              </div>
+            </div>
+          </article>
+        `;
+      }
+
+      /* ===================================================================
+       * TEMPLATE 2: MINIMALIS SWISS
+       * Tipografi Swiss/Eropa, ruang putih lega, periode di kolom kiri
+       * ================================================================= */
+      if (template === 'swiss') {
+        return `
+          <article class="a4-sheet text-slate-900 p-10">
+            <!-- Masthead Swiss -->
+            <header class="pb-6 mb-6 border-b border-slate-300 flex items-start justify-between gap-6">
+              <div class="flex-1">
+                <h1 class="text-[28px] font-extrabold tracking-tight text-slate-900 leading-none">${escapeHtml(fullName)}</h1>
+                <p class="text-[14px] font-medium mt-2" style="color:${palette.primary};">${escapeHtml(roleTitle)}</p>
+                ${contacts.length ? `
+                  <div class="mt-3 text-[11px] text-slate-500 flex flex-wrap gap-x-3 gap-y-1">
+                    ${contacts.map(c => `<span>${escapeHtml(c)}</span>`).join('')}
+                  </div>
+                ` : ''}
+              </div>
+              ${renderPhoto(88)}
+            </header>
+
+            <!-- Grid Kronologis Swiss (26% Kolom Kiri | 74% Kolom Kanan) -->
+            <div class="space-y-6">
+              ${p.summary.trim() ? `
+                <section class="grid grid-cols-12 gap-4 pb-5 border-b border-slate-200">
+                  <div class="col-span-3">
+                    <h2 class="text-[10.5px] font-extrabold uppercase tracking-widest" style="color:${palette.primary};">Profil</h2>
+                  </div>
+                  <div class="col-span-9">
+                    <p class="text-[12px] leading-[1.65] text-slate-700">${escapeHtml(p.summary.trim())}</p>
+                  </div>
+                </section>
+              ` : ''}
+
+              ${validExps.length ? `
+                <section class="pb-5 border-b border-slate-200 space-y-4">
+                  <div class="grid grid-cols-12 gap-4">
+                    <div class="col-span-3">
+                      <h2 class="text-[10.5px] font-extrabold uppercase tracking-widest" style="color:${palette.primary};">Pengalaman</h2>
+                    </div>
+                    <div class="col-span-9"></div>
+                  </div>
+                  ${validExps.map(exp => {
+                    const bullets = parseBullets(exp.desc);
+                    const sub = [exp.company.trim(), exp.location.trim()].filter(Boolean).join(', ');
+                    return `
+                      <div class="grid grid-cols-12 gap-4">
+                        <div class="col-span-3 pr-2">
+                          <div class="text-[11px] font-semibold text-slate-500">${escapeHtml(exp.period.trim())}</div>
+                        </div>
+                        <div class="col-span-9">
+                          <h3 class="font-bold text-[13px] text-slate-900">${escapeHtml(exp.role)}</h3>
+                          ${sub ? `<div class="text-[11.5px] font-medium text-slate-600 mt-0.5">${escapeHtml(sub)}</div>` : ''}
+                          ${bullets.length ? `
+                            <ul class="list-disc pl-4 mt-1.5 space-y-1 text-[11.5px] leading-[1.55] text-slate-700">
+                              ${bullets.map(b => `<li>${escapeHtml(b)}</li>`).join('')}
+                            </ul>
+                          ` : ''}
+                        </div>
+                      </div>
+                    `;
+                  }).join('')}
+                </section>
+              ` : ''}
+
+              ${validEdus.length ? `
+                <section class="pb-5 border-b border-slate-200 space-y-3">
+                  <div class="grid grid-cols-12 gap-4">
+                    <div class="col-span-3">
+                      <h2 class="text-[10.5px] font-extrabold uppercase tracking-widest" style="color:${palette.primary};">Pendidikan</h2>
+                    </div>
+                    <div class="col-span-9"></div>
+                  </div>
+                  ${validEdus.map(edu => `
+                    <div class="grid grid-cols-12 gap-4">
+                      <div class="col-span-3 pr-2">
+                        <div class="text-[11px] font-semibold text-slate-500">${escapeHtml(edu.year.trim())}</div>
+                      </div>
+                      <div class="col-span-9">
+                        <h3 class="font-bold text-[12.5px] text-slate-900">${escapeHtml(edu.degree)}</h3>
+                        ${edu.institution.trim() ? `<div class="text-[11.5px] text-slate-600">${escapeHtml(edu.institution.trim())}</div>` : ''}
+                      </div>
+                    </div>
+                  `).join('')}
+                </section>
+              ` : ''}
+
+              ${(skillsList.length || p.certLang.trim()) ? `
+                <section class="grid grid-cols-12 gap-4">
+                  <div class="col-span-3">
+                    <h2 class="text-[10.5px] font-extrabold uppercase tracking-widest" style="color:${palette.primary};">Kompetensi</h2>
+                  </div>
+                  <div class="col-span-9 space-y-2 text-[11.5px] leading-[1.6] text-slate-700">
+                    ${skillsList.length ? `<div><span class="font-bold text-slate-900">Keahlian: </span>${escapeHtml(skillsList.join(' • '))}</div>` : ''}
+                    ${p.certLang.trim() ? `<div><span class="font-bold text-slate-900">Sertifikasi &amp; Bahasa: </span>${escapeHtml(p.certLang.trim())}</div>` : ''}
+                  </div>
+                </section>
+              ` : ''}
+            </div>
+          </article>
+        `;
+      }
+
+      /* ===================================================================
+       * TEMPLATE 3: SIDEBAR KORPORAT
+       * 2 Kolom: Sidebar warna sejuk di kiri + area utama putih bersih di kanan
+       * ================================================================= */
+      if (template === 'sidebar') {
+        return `
+          <article class="a4-sheet text-slate-900 overflow-hidden">
+            <div class="flex min-h-[1123px]">
+              <aside class="w-[33%] p-7 border-r shrink-0" style="background-color:${palette.tint};border-color:${palette.border};">
+                ${hasPhoto ? `<div class="mb-6 flex justify-center">${renderPhoto(114)}</div>` : ''}
+
+                <section class="mb-6">
+                  <h2 class="text-[11px] font-extrabold uppercase tracking-wider pb-1.5 mb-2.5 border-b" style="color:${palette.primary};border-color:${palette.border};">Kontak</h2>
+                  <ul class="space-y-2 text-[11px] text-slate-700 break-words">
+                    ${p.email.trim() ? `<li><span class="font-bold text-slate-900 block text-[9.5px] uppercase tracking-wider">Email</span>${escapeHtml(p.email.trim())}</li>` : ''}
+                    ${p.phone.trim() ? `<li><span class="font-bold text-slate-900 block text-[9.5px] uppercase tracking-wider">Telepon / WA</span>${escapeHtml(p.phone.trim())}</li>` : ''}
+                    ${p.address.trim() ? `<li><span class="font-bold text-slate-900 block text-[9.5px] uppercase tracking-wider">Domisili</span>${escapeHtml(p.address.trim())}</li>` : ''}
+                    ${p.linkedin.trim() ? `<li><span class="font-bold text-slate-900 block text-[9.5px] uppercase tracking-wider">LinkedIn / Portofolio</span>${escapeHtml(p.linkedin.trim())}</li>` : ''}
+                    ${socialItems.length ? `<li><span class="font-bold text-slate-900 block text-[9.5px] uppercase tracking-wider">Media Sosial</span>${socialItems.map(s => `<span class="block leading-snug mt-0.5">${escapeHtml(s)}</span>`).join('')}</li>` : ''}
+                  </ul>
+                </section>
+
+                ${skillsList.length ? `
+                  <section class="mb-6">
+                    <h2 class="text-[11px] font-extrabold uppercase tracking-wider pb-1.5 mb-2.5 border-b" style="color:${palette.primary};border-color:${palette.border};">Keahlian Utama</h2>
+                    <div class="flex flex-wrap gap-1.5">
+                      ${skillsList.map(s => `<span class="px-2 py-0.5 rounded text-[10.5px] font-medium bg-white border" style="border-color:${palette.border};color:#0f2942;">${escapeHtml(s)}</span>`).join('')}
+                    </div>
+                  </section>
+                ` : ''}
+
+                ${p.certLang.trim() ? `
+                  <section>
+                    <h2 class="text-[11px] font-extrabold uppercase tracking-wider pb-1.5 mb-2 border-b" style="color:${palette.primary};border-color:${palette.border};">Sertifikasi &amp; Bahasa</h2>
+                    <p class="text-[11px] leading-[1.55] text-slate-700">${escapeHtml(p.certLang.trim())}</p>
+                  </section>
+                ` : ''}
+              </aside>
+
+              <div class="w-[67%] p-8">
+                <header class="pb-4 mb-6 border-b-2" style="border-color:${palette.primary};">
+                  <h1 class="text-[25px] font-extrabold tracking-tight text-slate-900 leading-tight">${escapeHtml(fullName)}</h1>
+                  <p class="text-[13.5px] font-semibold mt-1" style="color:${palette.primary};">${escapeHtml(roleTitle)}</p>
+                </header>
+
+                ${p.summary.trim() ? `
+                  <section class="mb-6">
+                    <h2 class="text-[11.5px] font-extrabold uppercase tracking-wider mb-2" style="color:${palette.primary};">Ringkasan Profesional</h2>
+                    <p class="text-[12px] leading-[1.62] text-slate-700 text-justify">${escapeHtml(p.summary.trim())}</p>
+                  </section>
+                ` : ''}
+
+                ${validExps.length ? `
+                  <section class="mb-6">
+                    <h2 class="text-[11.5px] font-extrabold uppercase tracking-wider pb-1 mb-3 border-b" style="color:${palette.primary};border-color:${palette.border};">Pengalaman Kerja</h2>
+                    <div class="space-y-4">
+                      ${validExps.map(exp => {
+                        const bullets = parseBullets(exp.desc);
+                        const sub = [exp.company.trim(), exp.location.trim()].filter(Boolean).join(' • ');
+                        return `
+                          <div>
+                            <div class="flex items-baseline justify-between gap-2">
+                              <h3 class="font-bold text-[13px] text-slate-900">${escapeHtml(exp.role)}</h3>
+                              ${exp.period.trim() ? `<span class="text-[10.5px] font-semibold shrink-0" style="color:${palette.primary};">${escapeHtml(exp.period.trim())}</span>` : ''}
+                            </div>
+                            ${sub ? `<div class="text-[11.5px] font-semibold text-slate-600 mt-0.5">${escapeHtml(sub)}</div>` : ''}
+                            ${bullets.length ? `
+                              <ul class="list-disc pl-4 mt-1.5 space-y-1 text-[11.5px] leading-[1.55] text-slate-700">
+                                ${bullets.map(b => `<li>${escapeHtml(b)}</li>`).join('')}
+                              </ul>
+                            ` : ''}
+                          </div>
+                        `;
+                      }).join('')}
+                    </div>
+                  </section>
+                ` : ''}
+
+                ${validEdus.length ? `
+                  <section>
+                    <h2 class="text-[11.5px] font-extrabold uppercase tracking-wider pb-1 mb-2.5 border-b" style="color:${palette.primary};border-color:${palette.border};">Pendidikan</h2>
+                    <div class="space-y-2.5">
+                      ${validEdus.map(edu => `
+                        <div>
+                          <div class="flex items-baseline justify-between gap-2">
+                            <h3 class="font-bold text-[12.5px] text-slate-900">${escapeHtml(edu.degree)}</h3>
+                            ${edu.year.trim() ? `<span class="text-[10.5px] font-semibold shrink-0" style="color:${palette.primary};">${escapeHtml(edu.year.trim())}</span>` : ''}
+                          </div>
+                          ${edu.institution.trim() ? `<div class="text-[11.5px] text-slate-600">${escapeHtml(edu.institution.trim())}</div>` : ''}
+                        </div>
+                      `).join('')}
+                    </div>
+                  </section>
+                ` : ''}
+              </div>
+            </div>
+          </article>
+        `;
+      }
+
+      /* ===================================================================
+       * TEMPLATE 4: KLASIK HARVARD (ATS)
+       * Standar klasik formal internasional, garis horizontal penuh & tegas
+       * ================================================================= */
+      return `
+        <article class="a4-sheet text-slate-900 p-10">
+          <header class="pb-4 mb-5 border-b-2" style="border-color:${palette.primary};">
+            <div class="flex items-center justify-between gap-5">
+              <div class="${hasPhoto ? 'text-left' : 'text-center w-full'}">
+                <h1 class="font-serif text-[23px] font-bold tracking-tight text-slate-900 uppercase">${escapeHtml(fullName)}</h1>
+                <p class="text-[13px] font-semibold mt-1" style="color:${palette.primary};">${escapeHtml(roleTitle)}</p>
+                ${contacts.length ? `
+                  <div class="mt-2 text-[11px] text-slate-700 flex flex-wrap ${hasPhoto ? 'justify-start' : 'justify-center'} gap-x-2 gap-y-1">
+                    ${contacts.map((c, i) => `<span>${escapeHtml(c)}</span>${i < contacts.length - 1 ? '<span class="text-slate-400">•</span>' : ''}`).join('')}
+                  </div>
+                ` : ''}
+              </div>
+              ${renderPhoto(84)}
+            </div>
+          </header>
+
+          ${p.summary.trim() ? `
+            <section class="mb-5">
+              <h2 class="font-serif text-[12px] font-bold uppercase tracking-wider pb-1 mb-2 border-b" style="color:${palette.primary};border-color:${palette.primary};">Ringkasan Profesional</h2>
+              <p class="text-[12px] leading-[1.6] text-slate-800 text-justify">${escapeHtml(p.summary.trim())}</p>
+            </section>
+          ` : ''}
+
+          ${validExps.length ? `
+            <section class="mb-5">
+              <h2 class="font-serif text-[12px] font-bold uppercase tracking-wider pb-1 mb-2.5 border-b" style="color:${palette.primary};border-color:${palette.primary};">Pengalaman Kerja</h2>
+              <div class="space-y-3.5">
+                ${validExps.map(exp => {
+                  const bullets = parseBullets(exp.desc);
+                  return `
+                    <div>
+                      <div class="flex items-baseline justify-between gap-2">
+                        <h3 class="font-bold text-[12.5px] text-slate-900">${escapeHtml(exp.company || exp.role)}</h3>
+                        ${exp.location.trim() ? `<span class="text-[11px] font-medium text-slate-600 shrink-0">${escapeHtml(exp.location.trim())}</span>` : ''}
+                      </div>
+                      <div class="flex items-baseline justify-between gap-2">
+                        <div class="text-[12px] italic font-semibold text-slate-800">${escapeHtml(exp.role)}</div>
+                        ${exp.period.trim() ? `<span class="text-[11px] italic text-slate-600 shrink-0">${escapeHtml(exp.period.trim())}</span>` : ''}
+                      </div>
+                      ${bullets.length ? `
+                        <ul class="list-disc pl-5 mt-1 space-y-1 text-[11.5px] leading-[1.55] text-slate-800">
+                          ${bullets.map(b => `<li>${escapeHtml(b)}</li>`).join('')}
+                        </ul>
+                      ` : ''}
+                    </div>
+                  `;
+                }).join('')}
+              </div>
+            </section>
+          ` : ''}
+
+          ${validEdus.length ? `
+            <section class="mb-5">
+              <h2 class="font-serif text-[12px] font-bold uppercase tracking-wider pb-1 mb-2 border-b" style="color:${palette.primary};border-color:${palette.primary};">Pendidikan</h2>
+              <div class="space-y-2">
+                ${validEdus.map(edu => `
+                  <div>
+                    <div class="flex items-baseline justify-between gap-2">
+                      <h3 class="font-bold text-[12.5px] text-slate-900">${escapeHtml(edu.institution || edu.degree)}</h3>
+                      ${edu.year.trim() ? `<span class="text-[11px] text-slate-600 shrink-0">${escapeHtml(edu.year.trim())}</span>` : ''}
+                    </div>
+                    ${edu.institution.trim() ? `<div class="text-[11.5px] italic text-slate-800">${escapeHtml(edu.degree)}</div>` : ''}
+                  </div>
+                `).join('')}
+              </div>
+            </section>
+          ` : ''}
+
+          ${(skillsList.length || p.certLang.trim()) ? `
+            <section>
+              <h2 class="font-serif text-[12px] font-bold uppercase tracking-wider pb-1 mb-2 border-b" style="color:${palette.primary};border-color:${palette.primary};">Keahlian, Sertifikasi &amp; Bahasa</h2>
+              <div class="space-y-1 text-[11.5px] leading-[1.55] text-slate-800">
+                ${skillsList.length ? `<div><span class="font-bold">Keahlian Utama: </span>${escapeHtml(skillsList.join(', '))}</div>` : ''}
+                ${p.certLang.trim() ? `<div><span class="font-bold">Sertifikasi &amp; Bahasa: </span>${escapeHtml(p.certLang.trim())}</div>` : ''}
+              </div>
+            </section>
+          ` : ''}
+        </article>
+      `;
+    }
+
+    /* Bangun HTML Lembaran A4 Cover Letter yang Selaras dengan 4 Template */
+    function buildCoverLetterSheetHtml() {
+      const { template, accent } = appState.config;
+      const palette = ACCENTS[accent] || ACCENTS.ocean;
+      const p = appState.profile;
+      const cl = appState.coverLetter;
+
+      const fullName = p.fullName.trim() || 'NAMA LENGKAP ANDA';
+      const roleTitle = p.role.trim() || 'Posisi / Jabatan Target';
+      const contacts = getAllContactItems();
+      const socialItems = getSocialItems();
+
+      const position = cl.position.trim() || roleTitle;
+      const paragraphs = [cl.opening, cl.body, cl.value].filter(v => v && v.trim());
+
+      const renderLetterBody = () => `
+        <div class="text-[12.5px] leading-[1.7] text-slate-800">
+          ${cl.date.trim() ? `<div class="text-right text-slate-600 font-medium mb-5">${escapeHtml(cl.date.trim())}</div>` : ''}
+
+          <div class="mb-5 space-y-0.5">
+            <div class="font-bold text-slate-900">Kepada Yth.</div>
+            ${cl.recipientName.trim() ? `<div class="font-bold text-slate-900">${escapeHtml(cl.recipientName.trim())}</div>` : ''}
+            ${cl.recipientTitle.trim() ? `<div class="text-slate-700">${escapeHtml(cl.recipientTitle.trim())}</div>` : ''}
+            ${cl.companyName.trim() ? `<div class="font-bold text-slate-900">${escapeHtml(cl.companyName.trim())}</div>` : ''}
+            ${cl.companyAddress.trim() ? `<div class="text-slate-600">${escapeHtml(cl.companyAddress.trim())}</div>` : ''}
+          </div>
+
+          ${position ? `
+            <div class="font-bold mb-5 py-2 px-3 rounded-lg border-l-4" style="background-color:${palette.tint};border-color:${palette.primary};color:#0f2942;">
+              Perihal: Lamaran Pekerjaan — ${escapeHtml(position)}
+            </div>
+          ` : ''}
+
+          ${cl.salutation.trim() ? `<p class="font-semibold text-slate-900 mb-3">${escapeHtml(cl.salutation.trim())}</p>` : ''}
+
+          <div class="space-y-3.5 text-justify">
+            ${paragraphs.map(para => `<p>${escapeHtml(para.trim())}</p>`).join('')}
+          </div>
+
+          ${cl.closing.trim() ? `
+            <div class="mt-5 whitespace-pre-line">
+              <p>${escapeHtml(cl.closing.trim())}</p>
+            </div>
+          ` : ''}
+
+          <div class="mt-11">
+            <div class="font-extrabold text-[13.5px] text-slate-900">${escapeHtml(fullName)}</div>
+            <div class="text-[11.5px] font-medium" style="color:${palette.primary};">${escapeHtml(roleTitle)}</div>
+          </div>
+        </div>
+      `;
+
+      // Template 3: Sidebar Korporat (Cover Letter dengan panel identitas vertikal serasi di kiri)
+      if (template === 'sidebar') {
+        return `
+          <article class="a4-sheet text-slate-900 overflow-hidden">
+            <div class="flex min-h-[1123px]">
+              <aside class="w-[30%] p-7 border-r shrink-0 flex flex-col justify-between" style="background-color:${palette.tint};border-color:${palette.border};">
+                <div>
+                  <div class="w-10 h-1.5 rounded-full mb-4" style="background-color:${palette.primary};"></div>
+                  <h1 class="text-[20px] font-extrabold text-slate-900 leading-snug">${escapeHtml(fullName)}</h1>
+                  <p class="text-[12px] font-semibold mt-1" style="color:${palette.primary};">${escapeHtml(roleTitle)}</p>
+
+                  <div class="mt-6 pt-5 border-t space-y-2.5 text-[11px] text-slate-700 break-words" style="border-color:${palette.border};">
+                    ${p.email.trim() ? `<div><span class="font-bold text-slate-900 block text-[9.5px] uppercase tracking-wider">Email</span>${escapeHtml(p.email.trim())}</div>` : ''}
+                    ${p.phone.trim() ? `<div><span class="font-bold text-slate-900 block text-[9.5px] uppercase tracking-wider">Telepon / WA</span>${escapeHtml(p.phone.trim())}</div>` : ''}
+                    ${p.address.trim() ? `<div><span class="font-bold text-slate-900 block text-[9.5px] uppercase tracking-wider">Domisili</span>${escapeHtml(p.address.trim())}</div>` : ''}
+                    ${p.linkedin.trim() ? `<div><span class="font-bold text-slate-900 block text-[9.5px] uppercase tracking-wider">LinkedIn / Portofolio</span>${escapeHtml(p.linkedin.trim())}</div>` : ''}
+                    ${socialItems.length ? `<div><span class="font-bold text-slate-900 block text-[9.5px] uppercase tracking-wider">Media Sosial</span>${socialItems.map(s => `<div class="leading-snug mt-0.5">${escapeHtml(s)}</div>`).join('')}</div>` : ''}
+                  </div>
+                </div>
+
+                <div class="text-[10px] font-semibold uppercase tracking-widest text-slate-400">
+                  Surat Lamaran Kerja
+                </div>
+              </aside>
+
+              <div class="w-[70%] p-10">
+                ${renderLetterBody()}
+              </div>
+            </div>
+          </article>
+        `;
+      }
+
+      // Template 2: Minimalis Swiss (Kop surat minimalis tipografi Swiss)
+      if (template === 'swiss') {
+        return `
+          <article class="a4-sheet text-slate-900 p-11">
+            <header class="pb-5 mb-7 border-b border-slate-300 flex items-start justify-between gap-6">
+              <div>
+                <h1 class="text-[24px] font-extrabold tracking-tight text-slate-900">${escapeHtml(fullName)}</h1>
+                <p class="text-[13px] font-medium mt-1" style="color:${palette.primary};">${escapeHtml(roleTitle)}</p>
+              </div>
+              <div class="text-right text-[11px] text-slate-600 space-y-0.5">
+                ${contacts.map(c => `<div>${escapeHtml(c)}</div>`).join('')}
+              </div>
+            </header>
+            ${renderLetterBody()}
+          </article>
+        `;
+      }
+
+      // Template 4: Klasik Harvard (ATS) (Surat bisnis formal klasik)
+      if (template === 'harvard') {
+        return `
+          <article class="a4-sheet text-slate-900 p-11">
+            <header class="text-center pb-4 mb-7 border-b-2" style="border-color:${palette.primary};">
+              <h1 class="font-serif text-[22px] font-bold uppercase tracking-tight text-slate-900">${escapeHtml(fullName)}</h1>
+              <p class="text-[12.5px] font-semibold mt-1" style="color:${palette.primary};">${escapeHtml(roleTitle)}</p>
+              ${contacts.length ? `
+                <div class="mt-2 text-[11px] text-slate-700 flex flex-wrap justify-center gap-x-2 gap-y-1">
+                  ${contacts.map((c, i) => `<span>${escapeHtml(c)}</span>${i < contacts.length - 1 ? '<span class="text-slate-400">•</span>' : ''}`).join('')}
+                </div>
+              ` : ''}
+            </header>
+            ${renderLetterBody()}
+          </article>
+        `;
+      }
+
+      // Template 1: Eksekutif Modern
+      return `
+        <article class="a4-sheet text-slate-900 overflow-hidden">
+          <div class="h-2.5 w-full" style="background-color:${palette.primary};"></div>
+          <div class="p-11">
+            <header class="pb-4 mb-7 border-b-2 flex items-center justify-between gap-4" style="border-color:${palette.primary};">
+              <div>
+                <h1 class="text-[24px] font-extrabold tracking-tight text-slate-900">${escapeHtml(fullName)}</h1>
+                <p class="text-[13px] font-semibold mt-0.5" style="color:${palette.primary};">${escapeHtml(roleTitle)}</p>
+              </div>
+              <div class="text-right text-[11px] text-slate-600 space-y-0.5">
+                ${contacts.map(c => `<div>${escapeHtml(c)}</div>`).join('')}
+              </div>
+            </header>
+            ${renderLetterBody()}
+          </div>
+        </article>
+      `;
+    }
+
+    /* -----------------------------------------------------------------------
+     * 9. KONTROL ZOOM PRATINJAU, TAB & DROPDOWN
+     * --------------------------------------------------------------------- */
+    function applyPreviewZoom() {
+      const container = document.getElementById('preview-scroll-container');
+      const wrapper = document.getElementById('preview-scale-wrapper');
+      const label = document.getElementById('lbl-preview-zoom');
+      if (!container || !wrapper) return;
+
+      const availW = container.clientWidth - 40;
+      const a4W = 794;
+      let scale = 1;
+
+      if (customPreviewZoom !== null) {
+        scale = customPreviewZoom;
+        if (label) label.textContent = Math.round(scale * 100) + '%';
+      } else {
+        scale = availW < a4W ? Math.max(0.36, availW / a4W) : Math.min(1, availW / a4W);
+        if (label) label.textContent = 'Auto';
+      }
+
+      wrapper.style.transform = `scale(${scale})`;
+      const naturalH = wrapper.scrollHeight || 1123;
+      wrapper.style.marginBottom = `${(naturalH * scale) - naturalH}px`;
+    }
+
+    function adjustPreviewZoom(delta) {
+      const container = document.getElementById('preview-scroll-container');
+      const current = customPreviewZoom !== null ? customPreviewZoom : Math.min(1, (container.clientWidth - 40) / 794);
+      customPreviewZoom = Math.min(1.25, Math.max(0.35, +(current + delta).toFixed(2)));
+      applyPreviewZoom();
+    }
+
+    function resetPreviewZoom() {
+      customPreviewZoom = null;
+      applyPreviewZoom();
+    }
+
+    function switchEditorTab(tabIndex) {
+      activeEditorTab = tabIndex;
+      document.querySelectorAll('.editor-tab-btn').forEach(btn => {
+        const active = Number(btn.dataset.editorTab) === tabIndex;
+        btn.className = active
+          ? 'editor-tab-btn px-3.5 py-2.5 rounded-t-xl text-xs font-bold border-t border-x border-[#d6e4f0] bg-white text-[#1d5b8c] -mb-[1px] transition cursor-pointer whitespace-nowrap'
+          : 'editor-tab-btn px-3.5 py-2.5 rounded-t-xl text-xs font-semibold border-t border-x border-transparent text-slate-500 hover:text-[#0f2942] transition cursor-pointer whitespace-nowrap';
+      });
+      document.querySelectorAll('.editor-panel').forEach((panel, idx) => {
+        panel.classList.toggle('hidden', idx + 1 !== tabIndex);
+      });
+    }
+
+    function switchMobileView(view) {
+      const editorPane = document.getElementById('editor-pane');
+      const previewPane = document.getElementById('preview-pane');
+      const btnEd = document.getElementById('mobile-tab-editor');
+      const btnPr = document.getElementById('mobile-tab-preview');
+
+      if (view === 'editor') {
+        editorPane.classList.remove('hidden');
+        previewPane.classList.add('hidden');
+        previewPane.classList.remove('flex');
+        btnEd.className = 'py-2 px-3 rounded-lg text-xs font-semibold transition flex items-center justify-center gap-1.5 bg-white text-[#1d5b8c] shadow-xs';
+        btnPr.className = 'py-2 px-3 rounded-lg text-xs font-semibold transition flex items-center justify-center gap-1.5 text-slate-600 hover:text-[#0f2942]';
+      } else {
+        editorPane.classList.add('hidden');
+        previewPane.classList.remove('hidden');
+        previewPane.classList.add('flex');
+        btnPr.className = 'py-2 px-3 rounded-lg text-xs font-semibold transition flex items-center justify-center gap-1.5 bg-white text-[#1d5b8c] shadow-xs';
+        btnEd.className = 'py-2 px-3 rounded-lg text-xs font-semibold transition flex items-center justify-center gap-1.5 text-slate-600 hover:text-[#0f2942]';
+        setTimeout(applyPreviewZoom, 30);
+      }
+    }
+
+    function toggleWordDropdown(event) {
+      event.stopPropagation();
+      const menu = document.getElementById('word-dropdown-menu');
+      menu.classList.toggle('hidden');
+    }
+
+    document.addEventListener('click', (e) => {
+      const wrapper = document.getElementById('word-dropdown-wrapper');
+      const menu = document.getElementById('word-dropdown-menu');
+      if (wrapper && menu && !wrapper.contains(e.target)) {
+        menu.classList.add('hidden');
+      }
+    });
+
+    /* -----------------------------------------------------------------------
+     * 10. GENERATOR FILE MICROSOFT WORD (.DOCX) MURNI (OFFICE OPEN XML)
+     * --------------------------------------------------------------------- */
+    const CRC32_LOOKUP = (() => {
+      const table = new Uint32Array(256);
+      for (let i = 0; i < 256; i++) {
+        let c = i;
+        for (let b = 0; b < 8; b++) {
+          c = (c & 1) ? (0xEDB88320 ^ (c >>> 1)) : (c >>> 1);
+        }
+        table[i] = c >>> 0;
+      }
+      return table;
+    })();
+
+    function crc32Bytes(data) {
+      let crc = 0xFFFFFFFF;
+      for (let i = 0; i < data.length; i++) {
+        crc = CRC32_LOOKUP[(crc ^ data[i]) & 0xFF] ^ (crc >>> 8);
+      }
+      return (crc ^ 0xFFFFFFFF) >>> 0;
+    }
+
+    function createZipBlob(files) {
+      const encoder = new TextEncoder();
+      const entries = files.map(f => {
+        const nameBytes = encoder.encode(f.name);
+        const dataBytes = f.data instanceof Uint8Array ? f.data : encoder.encode(String(f.data));
+        const crc = crc32Bytes(dataBytes);
+        return { nameBytes, dataBytes, crc };
+      });
+
+      let localSize = 0;
+      let centralSize = 0;
+      entries.forEach(e => {
+        localSize += 30 + e.nameBytes.length + e.dataBytes.length;
+        centralSize += 46 + e.nameBytes.length;
+      });
+
+      const out = new Uint8Array(localSize + centralSize + 22);
+      const view = new DataView(out.buffer);
+      let pos = 0;
+      const offsets = [];
+
+      entries.forEach(e => {
+        offsets.push(pos);
+        view.setUint32(pos, 0x04034b50, true);
+        view.setUint16(pos + 4, 20, true);
+        view.setUint16(pos + 6, 0x0800, true);
+        view.setUint16(pos + 8, 0, true);
+        view.setUint16(pos + 10, 0, true);
+        view.setUint16(pos + 12, 0x0021, true);
+        view.setUint32(pos + 14, e.crc, true);
+        view.setUint32(pos + 18, e.dataBytes.length, true);
+        view.setUint32(pos + 22, e.dataBytes.length, true);
+        view.setUint16(pos + 26, e.nameBytes.length, true);
+        view.setUint16(pos + 28, 0, true);
+        pos += 30;
+
+        out.set(e.nameBytes, pos);
+        pos += e.nameBytes.length;
+        out.set(e.dataBytes, pos);
+        pos += e.dataBytes.length;
+      });
+
+      const cdStart = pos;
+      entries.forEach((e, idx) => {
+        view.setUint32(pos, 0x02014b50, true);
+        view.setUint16(pos + 4, 20, true);
+        view.setUint16(pos + 6, 20, true);
+        view.setUint16(pos + 8, 0x0800, true);
+        view.setUint16(pos + 10, 0, true);
+        view.setUint16(pos + 12, 0, true);
+        view.setUint16(pos + 14, 0x0021, true);
+        view.setUint32(pos + 16, e.crc, true);
+        view.setUint32(pos + 20, e.dataBytes.length, true);
+        view.setUint32(pos + 24, e.dataBytes.length, true);
+        view.setUint16(pos + 28, e.nameBytes.length, true);
+        view.setUint16(pos + 30, 0, true);
+        view.setUint16(pos + 32, 0, true);
+        view.setUint16(pos + 34, 0, true);
+        view.setUint16(pos + 36, 0, true);
+        view.setUint32(pos + 38, 0, true);
+        view.setUint32(pos + 42, offsets[idx], true);
+        pos += 46;
+
+        out.set(e.nameBytes, pos);
+        pos += e.nameBytes.length;
+      });
+
+      view.setUint32(pos, 0x06054b50, true);
+      view.setUint16(pos + 4, 0, true);
+      view.setUint16(pos + 6, 0, true);
+      view.setUint16(pos + 8, entries.length, true);
+      view.setUint16(pos + 10, entries.length, true);
+      view.setUint32(pos + 12, centralSize, true);
+      view.setUint32(pos + 16, cdStart, true);
+      view.setUint16(pos + 20, 0, true);
+
+      return new Blob([out], {
+        type: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
+      });
+    }
+
+    function sanitizeXml(str) {
+      if (!str) return '';
+      return String(str)
+        .replace(/[\u0000-\u0008\u000B\u000C\u000E-\u001F\uFFFE\uFFFF]/g, '')
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&apos;');
+    }
+
+    function xmlRun(text, opts = {}) {
+      const { bold = false, italic = false, size = 20, color = '0F2942', font = 'Calibri' } = opts;
+      return `<w:r><w:rPr><w:rFonts w:ascii="${font}" w:hAnsi="${font}" w:cs="${font}"/>${bold ? '<w:b/>' : ''}${italic ? '<w:i/>' : ''}<w:color w:val="${color}"/><w:sz w:val="${size}"/><w:szCs w:val="${size}"/></w:rPr><w:t xml:space="preserve">${sanitizeXml(text)}</w:t></w:r>`;
+    }
+
+    function xmlPara(runs, opts = {}) {
+      const {
+        before = 0,
+        after = 65,
+        line = 264,
+        align = 'left',
+        borderBottomColor = '',
+        borderBottomSize = 8,
+        shadingFill = '',
+        borderLeftColor = '',
+        indentLeft = 0
+      } = opts;
+      let pBdr = '';
+      if (borderBottomColor || borderLeftColor) {
+        pBdr = '<w:pBdr>';
+        if (borderBottomColor) pBdr += `<w:bottom w:val="single" w:sz="${borderBottomSize}" w:space="4" w:color="${borderBottomColor}"/>`;
+        if (borderLeftColor) pBdr += `<w:left w:val="single" w:sz="18" w:space="8" w:color="${borderLeftColor}"/>`;
+        pBdr += '</w:pBdr>';
+      }
+      const shd = shadingFill ? `<w:shd w:val="clear" w:color="auto" w:fill="${shadingFill}"/>` : '';
+      const ind = indentLeft > 0 ? `<w:ind w:left="${indentLeft}"/>` : '';
+      return `<w:p><w:pPr><w:jc w:val="${align}"/>${pBdr}${shd}<w:spacing w:before="${before}" w:after="${after}" w:line="${line}" w:lineRule="auto"/>${ind}</w:pPr>${runs}</w:p>`;
+    }
+
+    function xmlBullet(runs, opts = {}) {
+      const { after = 36, line = 252, indentLeft = 260 } = opts;
+      return `<w:p><w:pPr><w:spacing w:before="0" w:after="${after}" w:line="${line}" w:lineRule="auto"/><w:ind w:left="${indentLeft}" w:hanging="140"/></w:pPr>${xmlRun('•  ', { bold: true, size: 18, color: '475569' })}${runs}</w:p>`;
+    }
+
+    function xmlPageBreak() {
+      return `<w:p><w:r><w:br w:type="page"/></w:r></w:p>`;
+    }
+
+    function xmlPhotoDrawing(relId, pxSize) {
+      const emu = Math.round(pxSize * 9525);
+      return `
+        <w:r>
+          <w:drawing>
+            <wp:inline distT="0" distB="0" distL="0" distR="0">
+              <wp:extent cx="${emu}" cy="${emu}"/>
+              <wp:effectExtent l="0" t="0" r="0" b="0"/>
+              <wp:docPr id="1" name="FotoProfil"/>
+              <wp:cNvGraphicFramePr>
+                <a:graphicFrameLocks xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main" noChangeAspect="1"/>
+              </wp:cNvGraphicFramePr>
+              <a:graphic xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main">
+                <a:graphicData uri="http://schemas.openxmlformats.org/drawingml/2006/picture">
+                  <pic:pic xmlns:pic="http://schemas.openxmlformats.org/drawingml/2006/picture">
+                    <pic:nvPicPr>
+                      <pic:cNvPr id="0" name="image1.png"/>
+                      <pic:cNvPicPr/>
+                    </pic:nvPicPr>
+                    <pic:blipFill>
+                      <a:blip r:embed="${relId}"/>
+                      <a:stretch><a:fillRect/></a:stretch>
+                    </pic:blipFill>
+                    <pic:spPr>
+                      <a:xfrm>
+                        <a:off x="0" y="0"/>
+                        <a:ext cx="${emu}" cy="${emu}"/>
+                      </a:xfrm>
+                      <a:prstGeom prst="rect"><a:avLst/></a:prstGeom>
+                    </pic:spPr>
+                  </pic:pic>
+                </a:graphicData>
+              </a:graphic>
+            </wp:inline>
+          </w:drawing>
+        </w:r>
+      `;
+    }
+
+    const BORDERLESS_TBL_PR = `
+      <w:tblPr>
+        <w:tblW w:w="5000" w:type="pct"/>
+        <w:tblBorders>
+          <w:top w:val="none" w:sz="0" w:space="0" w:color="auto"/>
+          <w:left w:val="none" w:sz="0" w:space="0" w:color="auto"/>
+          <w:bottom w:val="none" w:sz="0" w:space="0" w:color="auto"/>
+          <w:right w:val="none" w:sz="0" w:space="0" w:color="auto"/>
+          <w:insideH w:val="none" w:sz="0" w:space="0" w:color="auto"/>
+          <w:insideV w:val="none" w:sz="0" w:space="0" w:color="auto"/>
+        </w:tblBorders>
+      </w:tblPr>
+    `;
+
+    /* Menyusun XML OOXML untuk Bagian CV sesuai 4 Template Internasional */
+    function buildCvDocxXml(hasPhoto) {
+      const { template, accent } = appState.config;
+      const palette = ACCENTS[accent] || ACCENTS.ocean;
+      const p = appState.profile;
+
+      const fullName = p.fullName.trim() || 'NAMA LENGKAP ANDA';
+      const roleTitle = p.role.trim() || 'Posisi / Jabatan Target';
+      const contacts = getAllContactItems();
+      const socialItems = getSocialItems();
+
+      const skillsList = p.skills.split(',').map(s => s.trim()).filter(Boolean);
+      const validExps = appState.experiences.filter(e => e.role || e.company || e.desc);
+      const validEdus = appState.educations.filter(e => e.degree || e.institution);
+
+      const secHeader = (title, font = 'Calibri') => xmlPara(
+        xmlRun(title.toUpperCase(), { bold: true, size: 21, color: palette.hexPrimary, font }),
+        { before: 170, after: 75, line: 252, borderBottomColor: palette.hexPrimary, borderBottomSize: 8 }
+      );
+
+      /* TEMPLATE 3: SIDEBAR KORPORAT (.DOCX) */
+      if (template === 'sidebar') {
+        let leftCol = '';
+        if (hasPhoto) leftCol += xmlPara(xmlPhotoDrawing('rId1', 94), { align: 'center', after: 110 });
+        leftCol += secHeader('Kontak');
+        if (p.email.trim()) leftCol += xmlPara(xmlRun('EMAIL\n', { bold: true, size: 15, color: '0F2942' }) + xmlRun(p.email.trim(), { size: 18, color: '334155' }), { after: 45 });
+        if (p.phone.trim()) leftCol += xmlPara(xmlRun('TELEPON / WA\n', { bold: true, size: 15, color: '0F2942' }) + xmlRun(p.phone.trim(), { size: 18, color: '334155' }), { after: 45 });
+        if (p.address.trim()) leftCol += xmlPara(xmlRun('DOMISILI\n', { bold: true, size: 15, color: '0F2942' }) + xmlRun(p.address.trim(), { size: 18, color: '334155' }), { after: 45 });
+        if (p.linkedin.trim()) leftCol += xmlPara(xmlRun('LINKEDIN / PORTOFOLIO\n', { bold: true, size: 15, color: '0F2942' }) + xmlRun(p.linkedin.trim(), { size: 18, color: '334155' }), { after: 45 });
+        if (socialItems.length) {
+          leftCol += xmlPara(
+            xmlRun('MEDIA SOSIAL\n', { bold: true, size: 15, color: '0F2942' }) +
+            xmlRun(socialItems.join('\n'), { size: 18, color: '334155' }),
+            { after: 55 }
+          );
+        }
+
+        if (skillsList.length) {
+          leftCol += secHeader('Keahlian Utama');
+          skillsList.forEach(s => { leftCol += xmlBullet(xmlRun(s, { size: 18, color: '0F2942' }), { after: 28, indentLeft: 200 }); });
+        }
+        if (p.certLang.trim()) {
+          leftCol += secHeader('Sertifikasi & Bahasa');
+          leftCol += xmlPara(xmlRun(p.certLang.trim(), { size: 18, color: '334155' }), { after: 45 });
+        }
+
+        let rightCol = '';
+        rightCol += xmlPara(xmlRun(fullName, { bold: true, size: 36, color: '0F2942' }), { after: 20 });
+        rightCol += xmlPara(xmlRun(roleTitle, { bold: true, size: 22, color: palette.hexPrimary }), { after: 95, borderBottomColor: palette.hexPrimary, borderBottomSize: 12 });
+
+        if (p.summary.trim()) {
+          rightCol += secHeader('Ringkasan Profesional');
+          rightCol += xmlPara(xmlRun(p.summary.trim(), { size: 20, color: '1E293B' }), { align: 'both', after: 80 });
+        }
+        if (validExps.length) {
+          rightCol += secHeader('Pengalaman Kerja');
+          validExps.forEach(exp => {
+            const sub = [exp.company.trim(), exp.location.trim()].filter(Boolean).join(' • ');
+            rightCol += xmlPara(
+              xmlRun(exp.role, { bold: true, size: 21, color: '0F2942' }) +
+              (exp.period.trim() ? xmlRun(`   (${exp.period.trim()})`, { bold: true, size: 18, color: palette.hexPrimary }) : ''),
+              { before: 60, after: 15 }
+            );
+            if (sub) rightCol += xmlPara(xmlRun(sub, { bold: true, size: 19, color: '475569' }), { after: 35 });
+            parseBullets(exp.desc).forEach(b => { rightCol += xmlBullet(xmlRun(b, { size: 20, color: '1E293B' })); });
+          });
+        }
+        if (validEdus.length) {
+          rightCol += secHeader('Pendidikan');
+          validEdus.forEach(edu => {
+            rightCol += xmlPara(
+              xmlRun(edu.degree, { bold: true, size: 20, color: '0F2942' }) +
+              (edu.year.trim() ? xmlRun(`   (${edu.year.trim()})`, { bold: true, size: 18, color: palette.hexPrimary }) : ''),
+              { before: 50, after: 15 }
+            );
+            if (edu.institution.trim()) rightCol += xmlPara(xmlRun(edu.institution.trim(), { size: 19, color: '475569' }), { after: 45 });
+          });
+        }
+
+        return `
+          <w:tbl>
+            ${BORDERLESS_TBL_PR}
+            <w:tr>
+              <w:tc>
+                <w:tcPr>
+                  <w:tcW w:w="1680" w:type="pct"/>
+                  <w:shd w:val="clear" w:color="auto" w:fill="${palette.hexTint}"/>
+                  <w:tcBorders><w:right w:val="single" w:sz="6" w:space="0" w:color="${palette.hexBorder}"/></w:tcBorders>
+                  <w:tcMar><w:top w:w="180" w:type="dxa"/><w:bottom w:w="180" w:type="dxa"/><w:left w:w="180" w:type="dxa"/><w:right w:w="180" w:type="dxa"/></w:tcMar>
+                </w:tcPr>
+                ${leftCol}
+              </w:tc>
+              <w:tc>
+                <w:tcPr>
+                  <w:tcW w:w="3320" w:type="pct"/>
+                  <w:tcMar><w:top w:w="180" w:type="dxa"/><w:bottom w:w="180" w:type="dxa"/><w:left w:w="240" w:type="dxa"/><w:right w:w="140" w:type="dxa"/></w:tcMar>
+                </w:tcPr>
+                ${rightCol}
+              </w:tc>
+            </w:tr>
+          </w:tbl>
+        `;
+      }
+
+      /* TEMPLATE 2: MINIMALIS SWISS (.DOCX - Grid Kronologis 2 Kolom) */
+      if (template === 'swiss') {
+        let headerLeft = xmlPara(xmlRun(fullName, { bold: true, size: 40, color: '0F2942' }), { after: 25 });
+        headerLeft += xmlPara(xmlRun(roleTitle, { bold: true, size: 22, color: palette.hexPrimary }), { after: 40 });
+        if (contacts.length) headerLeft += xmlPara(xmlRun(contacts.join('   •   '), { size: 18, color: '64748B' }), { after: 30 });
+
+        let swissRows = '';
+        if (p.summary.trim()) {
+          swissRows += `
+            <w:tr>
+              <w:tc><w:tcPr><w:tcW w:w="1300" w:type="pct"/><w:tcMar><w:top w:w="110" w:type="dxa"/><w:bottom w:w="110" w:type="dxa"/></w:tcMar></w:tcPr>
+                ${xmlPara(xmlRun('PROFIL', { bold: true, size: 18, color: palette.hexPrimary }), { after: 0 })}
+              </w:tc>
+              <w:tc><w:tcPr><w:tcW w:w="3700" w:type="pct"/><w:tcMar><w:top w:w="110" w:type="dxa"/><w:bottom w:w="110" w:type="dxa"/></w:tcMar></w:tcPr>
+                ${xmlPara(xmlRun(p.summary.trim(), { size: 20, color: '1E293B' }), { after: 0 })}
+              </w:tc>
+            </w:tr>
+          `;
+        }
+        if (validExps.length) {
+          validExps.forEach((exp, idx) => {
+            const sub = [exp.company.trim(), exp.location.trim()].filter(Boolean).join(', ');
+            let detailXml = xmlPara(xmlRun(exp.role, { bold: true, size: 21, color: '0F2942' }), { after: 15 });
+            if (sub) detailXml += xmlPara(xmlRun(sub, { size: 19, color: '475569' }), { after: 35 });
+            parseBullets(exp.desc).forEach(b => { detailXml += xmlBullet(xmlRun(b, { size: 20, color: '1E293B' })); });
+
+            swissRows += `
+              <w:tr>
+                <w:tc><w:tcPr><w:tcW w:w="1300" w:type="pct"/><w:tcMar><w:top w:w="100" w:type="dxa"/><w:bottom w:w="80" w:type="dxa"/></w:tcMar></w:tcPr>
+                  ${idx === 0 ? xmlPara(xmlRun('PENGALAMAN\n', { bold: true, size: 18, color: palette.hexPrimary }), { after: 20 }) : ''}
+                  ${xmlPara(xmlRun(exp.period.trim(), { size: 18, color: '64748B' }), { after: 0 })}
+                </w:tc>
+                <w:tc><w:tcPr><w:tcW w:w="3700" w:type="pct"/><w:tcMar><w:top w:w="100" w:type="dxa"/><w:bottom w:w="80" w:type="dxa"/></w:tcMar></w:tcPr>
+                  ${detailXml}
+                </w:tc>
+              </w:tr>
+            `;
+          });
+        }
+        if (validEdus.length) {
+          validEdus.forEach((edu, idx) => {
+            let eduXml = xmlPara(xmlRun(edu.degree, { bold: true, size: 20, color: '0F2942' }), { after: 15 });
+            if (edu.institution.trim()) eduXml += xmlPara(xmlRun(edu.institution.trim(), { size: 19, color: '475569' }), { after: 0 });
+            swissRows += `
+              <w:tr>
+                <w:tc><w:tcPr><w:tcW w:w="1300" w:type="pct"/><w:tcMar><w:top w:w="90" w:type="dxa"/><w:bottom w:w="70" w:type="dxa"/></w:tcMar></w:tcPr>
+                  ${idx === 0 ? xmlPara(xmlRun('PENDIDIKAN\n', { bold: true, size: 18, color: palette.hexPrimary }), { after: 20 }) : ''}
+                  ${xmlPara(xmlRun(edu.year.trim(), { size: 18, color: '64748B' }), { after: 0 })}
+                </w:tc>
+                <w:tc><w:tcPr><w:tcW w:w="3700" w:type="pct"/><w:tcMar><w:top w:w="90" w:type="dxa"/><w:bottom w:w="70" w:type="dxa"/></w:tcMar></w:tcPr>
+                  ${eduXml}
+                </w:tc>
+              </w:tr>
+            `;
+          });
+        }
+        if (skillsList.length || p.certLang.trim()) {
+          let compXml = '';
+          if (skillsList.length) compXml += xmlPara(xmlRun('Keahlian: ', { bold: true, size: 20, color: '0F2942' }) + xmlRun(skillsList.join(' • '), { size: 20, color: '1E293B' }), { after: 35 });
+          if (p.certLang.trim()) compXml += xmlPara(xmlRun('Sertifikasi & Bahasa: ', { bold: true, size: 20, color: '0F2942' }) + xmlRun(p.certLang.trim(), { size: 20, color: '1E293B' }), { after: 0 });
+          swissRows += `
+            <w:tr>
+              <w:tc><w:tcPr><w:tcW w:w="1300" w:type="pct"/><w:tcMar><w:top w:w="100" w:type="dxa"/></w:tcMar></w:tcPr>
+                ${xmlPara(xmlRun('KOMPETENSI', { bold: true, size: 18, color: palette.hexPrimary }), { after: 0 })}
+              </w:tc>
+              <w:tc><w:tcPr><w:tcW w:w="3700" w:type="pct"/><w:tcMar><w:top w:w="100" w:type="dxa"/></w:tcMar></w:tcPr>
+                ${compXml}
+              </w:tc>
+            </w:tr>
+          `;
+        }
+
+        return `
+          <w:tbl>
+            <w:tblPr>
+              <w:tblW w:w="5000" w:type="pct"/>
+              <w:tblBorders>
+                <w:top w:val="none" w:sz="0" w:space="0" w:color="auto"/>
+                <w:left w:val="none" w:sz="0" w:space="0" w:color="auto"/>
+                <w:right w:val="none" w:sz="0" w:space="0" w:color="auto"/>
+                <w:insideH w:val="none" w:sz="0" w:space="0" w:color="auto"/>
+                <w:insideV w:val="none" w:sz="0" w:space="0" w:color="auto"/>
+                <w:bottom w:val="single" w:sz="8" w:space="0" w:color="CBD5E1"/>
+              </w:tblBorders>
+            </w:tblPr>
+            <w:tr>
+              <w:tc><w:tcPr><w:tcW w:w="${hasPhoto ? 4080 : 5000}" w:type="pct"/><w:vAlign w:val="center"/><w:tcMar><w:bottom w:w="90" w:type="dxa"/></w:tcMar></w:tcPr>${headerLeft}</w:tc>
+              ${hasPhoto ? `<w:tc><w:tcPr><w:tcW w:w="920" w:type="pct"/><w:vAlign w:val="center"/><w:tcMar><w:bottom w:w="90" w:type="dxa"/></w:tcMar></w:tcPr>${xmlPara(xmlPhotoDrawing('rId1', 84), { align: 'right', after: 0 })}</w:tc>` : ''}
+            </w:tr>
+          </w:tbl>
+          <w:tbl>
+            <w:tblPr>
+              <w:tblW w:w="5000" w:type="pct"/>
+              <w:tblBorders>
+                <w:top w:val="none" w:sz="0" w:space="0" w:color="auto"/>
+                <w:left w:val="none" w:sz="0" w:space="0" w:color="auto"/>
+                <w:bottom w:val="none" w:sz="0" w:space="0" w:color="auto"/>
+                <w:right w:val="none" w:sz="0" w:space="0" w:color="auto"/>
+                <w:insideV w:val="none" w:sz="0" w:space="0" w:color="auto"/>
+                <w:insideH w:val="single" w:sz="4" w:space="0" w:color="E2E8F0"/>
+              </w:tblBorders>
+            </w:tblPr>
+            ${swissRows}
+          </w:tbl>
+        `;
+      }
+
+      /* TEMPLATE 1 (EKSEKUTIF MODERN) & TEMPLATE 4 (KLASIK HARVARD ATS) */
+      const isHarvard = template === 'harvard';
+      const headFont = isHarvard ? 'Georgia' : 'Calibri';
+      const headAlign = (isHarvard && !hasPhoto) ? 'center' : 'left';
+
+      let headerInfo = xmlPara(xmlRun(isHarvard ? fullName.toUpperCase() : fullName, { bold: true, size: 38, color: '0F2942', font: headFont }), { align: headAlign, after: 25 });
+      headerInfo += xmlPara(xmlRun(roleTitle, { bold: true, size: 22, color: palette.hexPrimary }), { align: headAlign, after: 45 });
+      if (contacts.length) {
+        headerInfo += xmlPara(xmlRun(contacts.join('   •   '), { size: 18, color: '475569' }), { align: headAlign, after: 35 });
+      }
+
+      let bodyBlocks = '';
+      if (p.summary.trim()) {
+        bodyBlocks += secHeader('Ringkasan Profesional', headFont);
+        bodyBlocks += xmlPara(xmlRun(p.summary.trim(), { size: 20, color: '1E293B' }), { align: 'both', after: 85 });
+      }
+      if (validExps.length) {
+        bodyBlocks += secHeader('Pengalaman Kerja', headFont);
+        validExps.forEach(exp => {
+          const sub = [exp.company.trim(), exp.location.trim()].filter(Boolean).join(' • ');
+          bodyBlocks += xmlPara(
+            xmlRun(exp.role, { bold: true, size: 21, color: '0F2942' }) +
+            (exp.period.trim() ? xmlRun(`   (${exp.period.trim()})`, { bold: true, size: 18, color: palette.hexPrimary }) : ''),
+            { before: 65, after: 15 }
+          );
+          if (sub) bodyBlocks += xmlPara(xmlRun(sub, { bold: !isHarvard, italic: isHarvard, size: 19, color: '475569' }), { after: 35 });
+          parseBullets(exp.desc).forEach(b => { bodyBlocks += xmlBullet(xmlRun(b, { size: 20, color: '1E293B' })); });
+        });
+      }
+      if (validEdus.length) {
+        bodyBlocks += secHeader('Pendidikan', headFont);
+        validEdus.forEach(edu => {
+          bodyBlocks += xmlPara(
+            xmlRun(edu.degree, { bold: true, size: 20, color: '0F2942' }) +
+            (edu.year.trim() ? xmlRun(`   (${edu.year.trim()})`, { bold: true, size: 18, color: palette.hexPrimary }) : ''),
+            { before: 50, after: 15 }
+          );
+          if (edu.institution.trim()) bodyBlocks += xmlPara(xmlRun(edu.institution.trim(), { size: 19, color: '475569' }), { after: 50 });
+        });
+      }
+      if (skillsList.length || p.certLang.trim()) {
+        bodyBlocks += secHeader('Keahlian, Sertifikasi & Bahasa', headFont);
+        if (skillsList.length) {
+          bodyBlocks += xmlPara(
+            xmlRun('Keahlian Utama: ', { bold: true, size: 20, color: '0F2942' }) +
+            xmlRun(skillsList.join(', '), { size: 20, color: '1E293B' }),
+            { after: 40 }
+          );
+        }
+        if (p.certLang.trim()) {
+          bodyBlocks += xmlPara(
+            xmlRun('Sertifikasi & Bahasa: ', { bold: true, size: 20, color: '0F2942' }) +
+            xmlRun(p.certLang.trim(), { size: 20, color: '1E293B' }),
+            { after: 50 }
+          );
+        }
+      }
+
+      return `
+        <w:tbl>
+          <w:tblPr>
+            <w:tblW w:w="5000" w:type="pct"/>
+            <w:tblBorders>
+              <w:top w:val="none" w:sz="0" w:space="0" w:color="auto"/>
+              <w:left w:val="none" w:sz="0" w:space="0" w:color="auto"/>
+              <w:right w:val="none" w:sz="0" w:space="0" w:color="auto"/>
+              <w:insideH w:val="none" w:sz="0" w:space="0" w:color="auto"/>
+              <w:insideV w:val="none" w:sz="0" w:space="0" w:color="auto"/>
+              <w:bottom w:val="single" w:sz="14" w:space="0" w:color="${palette.hexPrimary}"/>
+            </w:tblBorders>
+          </w:tblPr>
+          <w:tr>
+            <w:tc><w:tcPr><w:tcW w:w="${hasPhoto ? 4080 : 5000}" w:type="pct"/><w:vAlign w:val="center"/><w:tcMar><w:bottom w:w="90" w:type="dxa"/></w:tcMar></w:tcPr>${headerInfo}</w:tc>
+            ${hasPhoto ? `<w:tc><w:tcPr><w:tcW w:w="920" w:type="pct"/><w:vAlign w:val="center"/><w:tcMar><w:bottom w:w="90" w:type="dxa"/></w:tcMar></w:tcPr>${xmlPara(xmlPhotoDrawing('rId1', 86), { align: 'right', after: 0 })}</w:tc>` : ''}
+          </w:tr>
+        </w:tbl>
+        ${bodyBlocks}
+      `;
+    }
+
+    /* Menyusun XML OOXML untuk Cover Letter sesuai 4 Template Internasional */
+    function buildCoverLetterDocxXml() {
+      const { template, accent } = appState.config;
+      const palette = ACCENTS[accent] || ACCENTS.ocean;
+      const p = appState.profile;
+      const cl = appState.coverLetter;
+
+      const fullName = p.fullName.trim() || 'NAMA LENGKAP ANDA';
+      const roleTitle = p.role.trim() || 'Posisi / Jabatan Target';
+      const contacts = getAllContactItems();
+      const socialItems = getSocialItems();
+      const position = cl.position.trim() || roleTitle;
+      const paragraphs = [cl.opening, cl.body, cl.value].filter(v => v && v.trim());
+
+      const buildLetterBodyXml = () => {
+        let xml = '';
+        if (cl.date.trim()) {
+          xml += xmlPara(xmlRun(cl.date.trim(), { size: 20, color: '475569' }), { align: 'right', after: 150 });
+        }
+
+        xml += xmlPara(xmlRun('Kepada Yth.', { bold: true, size: 20, color: '0F2942' }), { after: 15 });
+        if (cl.recipientName.trim()) xml += xmlPara(xmlRun(cl.recipientName.trim(), { bold: true, size: 20, color: '0F2942' }), { after: 15 });
+        if (cl.recipientTitle.trim()) xml += xmlPara(xmlRun(cl.recipientTitle.trim(), { size: 20, color: '334155' }), { after: 15 });
+        if (cl.companyName.trim()) xml += xmlPara(xmlRun(cl.companyName.trim(), { bold: true, size: 21, color: '0F2942' }), { after: 15 });
+        if (cl.companyAddress.trim()) xml += xmlPara(xmlRun(cl.companyAddress.trim(), { size: 19, color: '475569' }), { after: 140 });
+
+        if (position) {
+          xml += xmlPara(xmlRun(`Perihal: Lamaran Pekerjaan — ${position}`, { bold: true, size: 20, color: '0F2942' }), {
+            before: 40,
+            after: 150,
+            shadingFill: palette.hexTint,
+            borderLeftColor: palette.hexPrimary
+          });
+        }
+
+        if (cl.salutation.trim()) {
+          xml += xmlPara(xmlRun(cl.salutation.trim(), { bold: true, size: 20, color: '0F2942' }), { after: 120 });
+        }
+
+        paragraphs.forEach(text => {
+          xml += xmlPara(xmlRun(text.trim(), { size: 20, color: '1E293B' }), { align: 'both', after: 125, line: 276 });
+        });
+
+        if (cl.closing.trim()) {
+          cl.closing.trim().split(/\r?\n/).forEach((line, idx, arr) => {
+            xml += xmlPara(xmlRun(line, { size: 20, color: '1E293B' }), {
+              before: idx === 0 ? 60 : 0,
+              after: idx === arr.length - 1 ? 380 : 25,
+              line: 264
+            });
+          });
+        }
+
+        xml += xmlPara(xmlRun(fullName, { bold: true, size: 22, color: '0F2942' }), { after: 15 });
+        xml += xmlPara(xmlRun(roleTitle, { size: 19, color: palette.hexPrimary }), { after: 30 });
+        return xml;
+      };
+
+      // Template 3: Sidebar Korporat (.DOCX)
+      if (template === 'sidebar') {
+        let sideCol = xmlPara(xmlRun(fullName, { bold: true, size: 30, color: '0F2942' }), { after: 25 });
+        sideCol += xmlPara(xmlRun(roleTitle, { bold: true, size: 20, color: palette.hexPrimary }), { after: 140, borderBottomColor: palette.hexBorder, borderBottomSize: 6 });
+        if (p.email.trim()) sideCol += xmlPara(xmlRun('EMAIL\n', { bold: true, size: 15, color: '0F2942' }) + xmlRun(p.email.trim(), { size: 18, color: '334155' }), { after: 55 });
+        if (p.phone.trim()) sideCol += xmlPara(xmlRun('TELEPON / WA\n', { bold: true, size: 15, color: '0F2942' }) + xmlRun(p.phone.trim(), { size: 18, color: '334155' }), { after: 55 });
+        if (p.address.trim()) sideCol += xmlPara(xmlRun('DOMISILI\n', { bold: true, size: 15, color: '0F2942' }) + xmlRun(p.address.trim(), { size: 18, color: '334155' }), { after: 55 });
+        if (p.linkedin.trim()) sideCol += xmlPara(xmlRun('LINKEDIN\n', { bold: true, size: 15, color: '0F2942' }) + xmlRun(p.linkedin.trim(), { size: 18, color: '334155' }), { after: 55 });
+        if (socialItems.length) {
+          sideCol += xmlPara(
+            xmlRun('MEDIA SOSIAL\n', { bold: true, size: 15, color: '0F2942' }) +
+            xmlRun(socialItems.join('\n'), { size: 18, color: '334155' }),
+            { after: 55 }
+          );
+        }
+
+        return `
+          <w:tbl>
+            ${BORDERLESS_TBL_PR}
+            <w:tr>
+              <w:tc>
+                <w:tcPr>
+                  <w:tcW w:w="1550" w:type="pct"/>
+                  <w:shd w:val="clear" w:color="auto" w:fill="${palette.hexTint}"/>
+                  <w:tcBorders><w:right w:val="single" w:sz="6" w:space="0" w:color="${palette.hexBorder}"/></w:tcBorders>
+                  <w:tcMar><w:top w:w="220" w:type="dxa"/><w:bottom w:w="220" w:type="dxa"/><w:left w:w="180" w:type="dxa"/><w:right w:w="180" w:type="dxa"/></w:tcMar>
+                </w:tcPr>
+                ${sideCol}
+              </w:tc>
+              <w:tc>
+                <w:tcPr>
+                  <w:tcW w:w="3450" w:type="pct"/>
+                  <w:tcMar><w:top w:w="220" w:type="dxa"/><w:bottom w:w="220" w:type="dxa"/><w:left w:w="260" w:type="dxa"/><w:right w:w="140" w:type="dxa"/></w:tcMar>
+                </w:tcPr>
+                ${buildLetterBodyXml()}
+              </w:tc>
+            </w:tr>
+          </w:tbl>
+        `;
+      }
+
+      const isHarvard = template === 'harvard';
+      const headFont = isHarvard ? 'Georgia' : 'Calibri';
+      const headAlign = isHarvard ? 'center' : 'left';
+
+      let letterhead = xmlPara(xmlRun(isHarvard ? fullName.toUpperCase() : fullName, { bold: true, size: 36, color: '0F2942', font: headFont }), { align: headAlign, after: 20 });
+      letterhead += xmlPara(xmlRun(roleTitle, { bold: true, size: 21, color: palette.hexPrimary }), { align: headAlign, after: 35 });
+      if (contacts.length) {
+        letterhead += xmlPara(xmlRun(contacts.join('   •   '), { size: 18, color: '475569' }), {
+          align: headAlign,
+          after: 180,
+          borderBottomColor: template === 'swiss' ? 'CBD5E1' : palette.hexPrimary,
+          borderBottomSize: template === 'swiss' ? 8 : 12
+        });
+      }
+
+      return letterhead + buildLetterBodyXml();
+    }
+
+    /**
+     * Ekspor Microsoft Word (.docx): 'cv' | 'cover-letter' | 'bundle'
+     */
+    async function exportDocx(mode = 'cv') {
+      const dropdownMenu = document.getElementById('word-dropdown-menu');
+      if (dropdownMenu) dropdownMenu.classList.add('hidden');
+
+      const btn = document.getElementById('btn-word-dropdown');
+      const originalHtml = btn.innerHTML;
+      btn.disabled = true;
+      btn.innerHTML = `
+        <svg class="w-4 h-4 animate-spin" fill="none" viewBox="0 0 24 24">
+          <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+          <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"></path>
+        </svg>
+        <span>Menyusun .DOCX...</span>
+      `;
+
+      try {
+        const includesCv = mode === 'cv' || mode === 'bundle';
+        const photoBytes = includesCv ? await buildShapedPhotoPngBytes(appState.config.photoShape) : null;
+        const hasPhoto = Boolean(photoBytes);
+
+        let bodyXml = '';
+        if (mode === 'cv') {
+          bodyXml = buildCvDocxXml(hasPhoto);
+        } else if (mode === 'cover-letter') {
+          bodyXml = buildCoverLetterDocxXml();
+        } else {
+          // Paket Lengkap: Cover Letter diikuti pemisah halaman lalu CV
+          bodyXml = buildCoverLetterDocxXml() + xmlPageBreak() + buildCvDocxXml(hasPhoto);
+        }
+
+        const marginTwips = appState.config.template === 'sidebar' ? 520 : 860;
+
+        const documentXml = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<w:document xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main"
+            xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships"
+            xmlns:wp="http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing">
+  <w:body>
+    ${bodyXml}
+    <w:sectPr>
+      <w:pgSz w:w="11906" w:h="16838"/>
+      <w:pgMar w:top="${marginTwips}" w:right="${marginTwips}" w:bottom="${marginTwips}" w:left="${marginTwips}" w:header="450" w:footer="450" w:gutter="0"/>
+    </w:sectPr>
+  </w:body>
+</w:document>`;
+
+        const contentTypesXml = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types">
+  <Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/>
+  <Default Extension="xml" ContentType="application/xml"/>
+  ${hasPhoto ? '<Default Extension="png" ContentType="image/png"/>' : ''}
+  <Override PartName="/word/document.xml" ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.document.main+xml"/>
+</Types>`;
+
+        const rootRelsXml = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">
+  <Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument" Target="word/document.xml"/>
+</Relationships>`;
+
+        const docRelsXml = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">
+  ${hasPhoto ? '<Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/image" Target="media/image1.png"/>' : ''}
+</Relationships>`;
+
+        const zipEntries = [
+          { name: '[Content_Types].xml', data: contentTypesXml },
+          { name: '_rels/.rels', data: rootRelsXml },
+          { name: 'word/_rels/document.xml.rels', data: docRelsXml },
+          { name: 'word/document.xml', data: documentXml }
+        ];
+
+        if (hasPhoto) {
+          zipEntries.push({ name: 'word/media/image1.png', data: photoBytes });
+        }
+
+        const docxBlob = createZipBlob(zipEntries);
+
+        const safeName = (appState.profile.fullName || 'Kandidat')
+          .trim()
+          .replace(/[^a-zA-Z0-9\s]/g, '')
+          .replace(/\s+/g, '_') || 'Kandidat';
+        const prefixMap = {
+          'cv': 'CV',
+          'cover-letter': 'Cover_Letter',
+          'bundle': 'Paket_CV_Cover_Letter'
+        };
+        const fileName = `${prefixMap[mode]}_${safeName}.docx`;
+
+        const url = URL.createObjectURL(docxBlob);
+        const link = document.createElement('a');
+        link.href = url;
+        link.download = fileName;
+        document.body.appendChild(link);
+        link.click();
+        setTimeout(() => {
+          document.body.removeChild(link);
+          URL.revokeObjectURL(url);
+        }, 250);
+
+        showToast(`Berhasil mengunduh ${fileName}!`, 'success');
+      } catch (err) {
+        console.error('Gagal mengekspor file .docx:', err);
+        showToast('Terjadi kendala saat membuat file .docx. Silakan coba lagi.', 'error');
+      } finally {
+        btn.disabled = false;
+        btn.innerHTML = originalHtml;
+      }
+    }
+
+    /* -----------------------------------------------------------------------
+     * 11. MODAL RESET & NOTIFIKASI TOAST
+     * --------------------------------------------------------------------- */
+    function openResetModal() {
+      const m = document.getElementById('reset-modal');
+      m.classList.remove('hidden');
+      m.classList.add('flex');
+    }
+
+    function closeResetModal() {
+      const m = document.getElementById('reset-modal');
+      m.classList.add('hidden');
+      m.classList.remove('flex');
+    }
+
+    function confirmResetDefault() {
+      appState = buildInitialStateFromPreset('management');
+      localStorage.removeItem(STORAGE_KEY);
+      syncAllInputs();
+      renderA4Preview();
+      closeResetModal();
+      showToast('Data dikembalikan ke contoh awal.', 'info');
+    }
+
+    function confirmResetEmpty() {
+      appState = createBlankState();
+      localStorage.removeItem(STORAGE_KEY);
+      syncAllInputs();
+      renderA4Preview();
+      closeResetModal();
+      showToast('Semua isian formulir telah dikosongkan.', 'info');
+    }
+
+    function showToast(message, type = 'info') {
+      const container = document.getElementById('toast-container');
+      if (!container) return;
+
+      const toast = document.createElement('div');
+      const theme = type === 'success'
+        ? 'bg-[#0f2942] border-teal-400/50 text-white'
+        : type === 'error'
+        ? 'bg-rose-700 border-rose-300 text-white'
+        : 'bg-[#1d5b8c] border-sky-300/40 text-white';
+
+      const icon = type === 'success'
+        ? `<span class="w-5 h-5 rounded-full bg-teal-400/20 text-teal-300 flex items-center justify-center shrink-0 font-bold">✓</span>`
+        : type === 'error'
+        ? `<span class="w-5 h-5 rounded-full bg-white/20 text-white flex items-center justify-center shrink-0 font-bold">!</span>`
+        : `<span class="w-5 h-5 rounded-full bg-white/20 text-sky-200 flex items-center justify-center shrink-0 font-bold">i</span>`;
+
+      toast.className = `pointer-events-auto flex items-center gap-2.5 px-4 py-3 rounded-2xl border shadow-xl text-xs font-medium transition-all duration-200 transform translate-y-2 opacity-0 ${theme}`;
+      toast.innerHTML = `${icon}<span class="leading-snug">${escapeHtml(message)}</span>`;
+
+      container.appendChild(toast);
+      requestAnimationFrame(() => toast.classList.remove('translate-y-2', 'opacity-0'));
+
+      setTimeout(() => {
+        toast.classList.add('opacity-0', 'translate-y-2');
+        setTimeout(() => toast.remove(), 220);
+      }, 3200);
+    }
+
+    /* -----------------------------------------------------------------------
+     * 12. INISIALISASI HALAMAN
+     * --------------------------------------------------------------------- */
+    window.addEventListener('DOMContentLoaded', () => {
+      loadInitialState();
+      setupPhotoDragDrop();
+      switchEditorTab(1);
+      syncAllInputs();
+      renderA4Preview();
+      window.addEventListener('resize', applyPreviewZoom);
+    });
+  </script>
+</body>
+</html>
