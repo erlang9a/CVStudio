@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Studio CV &amp; Cover Letter Profesional</title>
+  <title>Studio CV, Cover Letter &amp; Surat Resign Profesional</title>
 
   <!-- Google Fonts: Inter untuk antarmuka modern & Merriweather untuk gaya klasik formal -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -117,7 +117,7 @@
     }
   </style>
 </head>
-<body class="min-h-screen flex flex-col relative selection:bg-sky-100 selection:text-sky-900">
+<body class="min-h-screen lg:h-screen lg:overflow-hidden flex flex-col relative selection:bg-sky-100 selection:text-sky-900">
 
   <!-- ===================================================================== -->
   <!-- LATAR BELAKANG ILUSTRASI HALUS BERTEMA PEKERJAAN FORMAL PROFESIONAL    -->
@@ -206,24 +206,27 @@
         </div>
         <div class="min-w-0">
           <div class="flex items-center gap-2">
-            <h1 class="font-bold text-sm sm:text-base tracking-tight text-[#0f2942] truncate">Studio CV &amp; Cover Letter Profesional</h1>
+            <h1 class="font-bold text-sm sm:text-base tracking-tight text-[#0f2942] truncate">Studio CV, Cover Letter &amp; Surat Resign</h1>
             <span class="hidden md:inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-semibold bg-[#e8f1f8] text-[#1d5b8c] border border-[#c5dbed] shrink-0">
               Standar Internasional
             </span>
           </div>
-          <p class="text-[11px] text-slate-500 hidden sm:block truncate">Pembuat CV &amp; Surat Lamaran Kerja Bahasa Indonesia • Ekspor Word (.docx) &amp; PDF</p>
+          <p class="text-[11px] text-slate-500 hidden sm:block truncate">Pembuat CV, Cover Letter &amp; Surat Pengunduran Diri • Ekspor Word (.docx) &amp; PDF</p>
         </div>
       </div>
 
-      <!-- Tombol Ganti Tampilan Pratinjau (CV / Cover Letter / Paket Lengkap) -->
-      <div class="inline-flex items-center bg-[#eef5fb] p-1 rounded-xl border border-[#d6e4f0] order-3 lg:order-2 w-full lg:w-auto justify-center" role="group" aria-label="Pilihan Tampilan Pratinjau">
-        <button type="button" data-preview-doc="cv" onclick="setPreviewDocMode('cv')" class="preview-doc-btn flex-1 lg:flex-initial px-3 py-1.5 rounded-lg text-xs font-semibold transition cursor-pointer">
-          📄 Lihat CV
+      <!-- Tombol Ganti Tampilan Pratinjau (CV / Cover Letter / Surat Resign / Paket Lengkap) -->
+      <div class="inline-flex items-center bg-[#eef5fb] p-1 rounded-xl border border-[#d6e4f0] order-3 lg:order-2 w-full lg:w-auto justify-center overflow-x-auto" role="group" aria-label="Pilihan Tampilan Pratinjau">
+        <button type="button" data-preview-doc="cv" onclick="setPreviewDocMode('cv')" class="preview-doc-btn flex-1 lg:flex-initial px-2.5 sm:px-3 py-1.5 rounded-lg text-xs font-semibold transition cursor-pointer whitespace-nowrap">
+          📄 CV
         </button>
-        <button type="button" data-preview-doc="cover-letter" onclick="setPreviewDocMode('cover-letter')" class="preview-doc-btn flex-1 lg:flex-initial px-3 py-1.5 rounded-lg text-xs font-semibold transition cursor-pointer">
-          ✉️ Lihat Cover Letter
+        <button type="button" data-preview-doc="cover-letter" onclick="setPreviewDocMode('cover-letter')" class="preview-doc-btn flex-1 lg:flex-initial px-2.5 sm:px-3 py-1.5 rounded-lg text-xs font-semibold transition cursor-pointer whitespace-nowrap">
+          ✉️ Cover Letter
         </button>
-        <button type="button" data-preview-doc="bundle" onclick="setPreviewDocMode('bundle')" class="preview-doc-btn flex-1 lg:flex-initial px-3 py-1.5 rounded-lg text-xs font-semibold transition cursor-pointer">
+        <button type="button" data-preview-doc="resign" onclick="setPreviewDocMode('resign')" class="preview-doc-btn flex-1 lg:flex-initial px-2.5 sm:px-3 py-1.5 rounded-lg text-xs font-semibold transition cursor-pointer whitespace-nowrap">
+          📋 Surat Resign
+        </button>
+        <button type="button" data-preview-doc="bundle" onclick="setPreviewDocMode('bundle')" class="preview-doc-btn flex-1 lg:flex-initial px-2.5 sm:px-3 py-1.5 rounded-lg text-xs font-semibold transition cursor-pointer whitespace-nowrap">
           📑 Paket Lengkap
         </button>
       </div>
@@ -300,6 +303,17 @@
                 <div class="text-[11px] text-slate-500">Surat lamaran kerja dengan kop surat serasi</div>
               </div>
             </button>
+            <button
+              type="button"
+              onclick="exportDocx('resign')"
+              class="w-full text-left px-3.5 py-2.5 hover:bg-[#f2f7fb] flex items-start gap-2.5 transition cursor-pointer"
+            >
+              <span class="text-base leading-none mt-0.5">📋</span>
+              <div>
+                <div class="text-xs font-bold text-[#0f2942]">Download Surat Resign (.docx)</div>
+                <div class="text-[11px] text-slate-500">Surat pengunduran diri resmi siap cetak</div>
+              </div>
+            </button>
             <div class="border-t border-slate-100 my-1"></div>
             <button
               type="button"
@@ -346,23 +360,23 @@
   <!-- ===================================================================== -->
   <!-- 2. WORKSPACE UTAMA (EDITOR KIRI + PRATINJAU KERTAS A4 KANAN)          -->
   <!-- ===================================================================== -->
-  <main id="workspace-main" class="relative z-10 flex-1 max-w-[1640px] w-full mx-auto flex flex-col lg:flex-row">
+  <main id="workspace-main" class="relative z-10 flex-1 min-h-0 max-w-[1640px] w-full mx-auto flex flex-col lg:flex-row">
 
     <!-- =================================================================== -->
-    <!-- PANEL KIRI: EDITOR 3 TAB (100% BAHASA INDONESIA)                    -->
+    <!-- PANEL KIRI: EDITOR FORMULIR (4 TAB)                                 -->
     <!-- =================================================================== -->
     <section
       id="editor-pane"
-      class="no-print w-full lg:w-[46%] xl:w-[44%] bg-white/95 backdrop-blur-xs border-r border-[#d6e4f0] flex flex-col lg:h-[calc(100vh-3.75rem)] lg:sticky lg:top-[3.75rem]"
+      class="no-print w-full lg:w-[45%] xl:w-[43%] lg:max-w-[660px] bg-white/95 backdrop-blur-sm border-r border-[#d6e4f0] flex lg:flex flex-col min-h-0 shrink-0"
     >
-      <!-- Navigasi 3 Tab Utama -->
+      <!-- Navigasi 4 Tab Utama -->
       <nav class="bg-[#f4f8fc] border-b border-[#d6e4f0] px-3 pt-2.5 flex items-center justify-between gap-2 shrink-0">
         <div class="flex gap-1.5 overflow-x-auto" role="tablist">
           <button
             type="button"
             data-editor-tab="1"
             onclick="switchEditorTab(1)"
-            class="editor-tab-btn px-3.5 py-2.5 rounded-t-xl text-xs font-bold border-t border-x transition cursor-pointer whitespace-nowrap"
+            class="editor-tab-btn px-3 py-2.5 rounded-t-xl text-xs font-bold border-t border-x transition cursor-pointer whitespace-nowrap"
           >
             1. Template &amp; Profil
           </button>
@@ -370,7 +384,7 @@
             type="button"
             data-editor-tab="2"
             onclick="switchEditorTab(2)"
-            class="editor-tab-btn px-3.5 py-2.5 rounded-t-xl text-xs font-bold border-t border-x transition cursor-pointer whitespace-nowrap"
+            class="editor-tab-btn px-3 py-2.5 rounded-t-xl text-xs font-bold border-t border-x transition cursor-pointer whitespace-nowrap"
           >
             2. Isi CV
           </button>
@@ -378,9 +392,17 @@
             type="button"
             data-editor-tab="3"
             onclick="switchEditorTab(3)"
-            class="editor-tab-btn px-3.5 py-2.5 rounded-t-xl text-xs font-bold border-t border-x transition cursor-pointer whitespace-nowrap"
+            class="editor-tab-btn px-3 py-2.5 rounded-t-xl text-xs font-bold border-t border-x transition cursor-pointer whitespace-nowrap"
           >
             3. Cover Letter
+          </button>
+          <button
+            type="button"
+            data-editor-tab="4"
+            onclick="switchEditorTab(4)"
+            class="editor-tab-btn px-3 py-2.5 rounded-t-xl text-xs font-bold border-t border-x transition cursor-pointer whitespace-nowrap"
+          >
+            4. Surat Resign
           </button>
         </div>
 
@@ -919,8 +941,202 @@
             <button type="button" onclick="switchEditorTab(2)" class="px-3.5 py-2 rounded-xl border border-[#d6e4f0] hover:bg-slate-50 text-xs font-semibold text-slate-700 cursor-pointer">
               &larr; Isi CV
             </button>
-            <button type="button" onclick="exportDocx('bundle')" class="px-4 py-2.5 rounded-xl bg-[#1d5b8c] hover:bg-[#16476e] text-white text-xs font-bold transition cursor-pointer">
-              📑 Download Paket Lengkap (.docx)
+            <div class="flex items-center gap-2">
+              <button type="button" onclick="exportDocx('cover-letter')" class="px-3.5 py-2.5 rounded-xl border border-[#c5dbed] bg-[#eef5fb] hover:bg-[#e0edf8] text-[#1d5b8c] text-xs font-bold transition cursor-pointer">
+                ✉️ Unduh (.docx)
+              </button>
+              <button type="button" onclick="switchEditorTab(4)" class="px-4 py-2.5 rounded-xl bg-[#1d5b8c] hover:bg-[#16476e] text-white text-xs font-bold transition cursor-pointer">
+                4. Surat Resign &rarr;
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- =============================================================== -->
+        <!-- TAB 4: SURAT RESIGN (PENGUNDURAN DIRI) DENGAN PILIHAN GAYA      -->
+        <!-- =============================================================== -->
+        <div id="editor-panel-4" class="editor-panel hidden space-y-5">
+
+          <!-- Pilihan 5 Gaya Surat Resign -->
+          <div class="bg-[#f6fafe] border border-[#d6e4f0] rounded-2xl p-4 space-y-3">
+            <div>
+              <h2 class="text-sm font-bold text-[#0f2942]">Pilih Gaya Surat Pengunduran Diri (Resign)</h2>
+              <p class="text-xs text-slate-500">Klik salah satu gaya untuk menyusun redaksi surat resign secara otomatis</p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+              <button
+                type="button"
+                data-resign-style="formal"
+                onclick="selectResignStyle('formal')"
+                class="resign-style-btn text-left p-3 rounded-xl border bg-white transition cursor-pointer"
+              >
+                <div class="flex items-center gap-1.5 text-xs font-bold text-[#0f2942]">
+                  <span>🏛️</span>
+                  <span>1. Formal Korporat &amp; Baku</span>
+                </div>
+                <p class="text-[11px] text-slate-500 leading-snug mt-1">Bahasa resmi sesuai kaidah surat administrasi perusahaan besar, bank, &amp; BUMN.</p>
+              </button>
+
+              <button
+                type="button"
+                data-resign-style="grateful"
+                onclick="selectResignStyle('grateful')"
+                class="resign-style-btn text-left p-3 rounded-xl border bg-white transition cursor-pointer"
+              >
+                <div class="flex items-center gap-1.5 text-xs font-bold text-[#0f2942]">
+                  <span>🤝</span>
+                  <span>2. Hangat &amp; Penuh Apresiasi</span>
+                </div>
+                <p class="text-[11px] text-slate-500 leading-snug mt-1">Menekankan rasa terima kasih atas bimbingan pimpinan &amp; kebersamaan tim.</p>
+              </button>
+
+              <button
+                type="button"
+                data-resign-style="concise"
+                onclick="selectResignStyle('concise')"
+                class="resign-style-btn text-left p-3 rounded-xl border bg-white transition cursor-pointer"
+              >
+                <div class="flex items-center gap-1.5 text-xs font-bold text-[#0f2942]">
+                  <span>⚡</span>
+                  <span>3. Singkat, Lugas &amp; Padat</span>
+                </div>
+                <p class="text-[11px] text-slate-500 leading-snug mt-1">Langsung pada inti permohonan resign, tanggal efektif, dan penyelesaian tugas.</p>
+              </button>
+
+              <button
+                type="button"
+                data-resign-style="handover"
+                onclick="selectResignStyle('handover')"
+                class="resign-style-btn text-left p-3 rounded-xl border bg-white transition cursor-pointer"
+              >
+                <div class="flex items-center gap-1.5 text-xs font-bold text-[#0f2942]">
+                  <span>📋</span>
+                  <span>4. Fokus Serah Terima (Handover)</span>
+                </div>
+                <p class="text-[11px] text-slate-500 leading-snug mt-1">Menonjolkan kesiapan masa transisi, dokumentasi kerja, &amp; alih tugas tim.</p>
+              </button>
+
+              <button
+                type="button"
+                data-resign-style="personal"
+                onclick="selectResignStyle('personal')"
+                class="resign-style-btn sm:col-span-2 text-left p-3 rounded-xl border bg-white transition cursor-pointer"
+              >
+                <div class="flex items-center gap-1.5 text-xs font-bold text-[#0f2942]">
+                  <span>🌿</span>
+                  <span>5. Alasan Pribadi / Keluarga / Melanjutkan Studi</span>
+                </div>
+                <p class="text-[11px] text-slate-500 leading-snug mt-1">Redaksi santun dan bijaksana untuk pengunduran diri karena faktor keluarga, domisili, atau pendidikan.</p>
+              </button>
+            </div>
+          </div>
+
+          <!-- Data Tujuan & Detail Pengunduran Diri -->
+          <div class="bg-[#f6fafe] border border-[#d6e4f0] rounded-2xl p-4 space-y-3.5">
+            <h2 class="text-sm font-bold text-[#0f2942]">Data Pengunduran Diri</h2>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div>
+                <label class="block text-xs font-semibold text-slate-700 mb-1">Kota &amp; Tanggal Surat</label>
+                <input type="text" id="inp-rs-date" oninput="updateField('resignLetter', 'date', this.value)" placeholder="Tangerang, 25 November 2026" class="w-full rounded-xl border border-[#d6e4f0] bg-white px-3 py-2 text-xs sm:text-sm text-[#0f2942] focus:outline-none focus:border-[#1d5b8c]" />
+              </div>
+              <div>
+                <label class="block text-xs font-semibold text-slate-700 mb-1">Tanggal Efektif Berhenti (Last Day)</label>
+                <input type="text" id="inp-rs-lastWorkingDate" oninput="updateField('resignLetter', 'lastWorkingDate', this.value)" placeholder="25 Desember 2026" class="w-full rounded-xl border border-[#d6e4f0] bg-white px-3 py-2 text-xs sm:text-sm text-[#0f2942] focus:outline-none focus:border-[#1d5b8c]" />
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div>
+                <label class="block text-xs font-semibold text-slate-700 mb-1">Nama Atasan / HRD Penerima</label>
+                <input type="text" id="inp-rs-recipientName" oninput="updateField('resignLetter', 'recipientName', this.value)" placeholder="Bapak Hendra Kusuma, S.E." class="w-full rounded-xl border border-[#d6e4f0] bg-white px-3 py-2 text-xs sm:text-sm text-[#0f2942] focus:outline-none focus:border-[#1d5b8c]" />
+              </div>
+              <div>
+                <label class="block text-xs font-semibold text-slate-700 mb-1">Jabatan Penerima</label>
+                <input type="text" id="inp-rs-recipientTitle" oninput="updateField('resignLetter', 'recipientTitle', this.value)" placeholder="Manajer Sumber Daya Manusia (HRD)" class="w-full rounded-xl border border-[#d6e4f0] bg-white px-3 py-2 text-xs sm:text-sm text-[#0f2942] focus:outline-none focus:border-[#1d5b8c]" />
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div>
+                <label class="block text-xs font-semibold text-slate-700 mb-1">Nama Perusahaan Saat Ini</label>
+                <input type="text" id="inp-rs-companyName" oninput="updateField('resignLetter', 'companyName', this.value)" placeholder="PT Nusantara Logistik & Distribusi Tbk" class="w-full rounded-xl border border-[#d6e4f0] bg-white px-3 py-2 text-xs sm:text-sm text-[#0f2942] focus:outline-none focus:border-[#1d5b8c]" />
+              </div>
+              <div>
+                <label class="block text-xs font-semibold text-slate-700 mb-1">Jabatan / Divisi Anda Saat Ini</label>
+                <input type="text" id="inp-rs-currentRole" oninput="updateField('resignLetter', 'currentRole', this.value)" placeholder="Manajer Operasional Regional" class="w-full rounded-xl border border-[#d6e4f0] bg-white px-3 py-2 text-xs sm:text-sm text-[#0f2942] focus:outline-none focus:border-[#1d5b8c]" />
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div>
+                <label class="block text-xs font-semibold text-slate-700 mb-1">Alamat Perusahaan</label>
+                <input type="text" id="inp-rs-companyAddress" oninput="updateField('resignLetter', 'companyAddress', this.value)" placeholder="Jl. Jenderal Sudirman Kav. 45, Jakarta" class="w-full rounded-xl border border-[#d6e4f0] bg-white px-3 py-2 text-xs sm:text-sm text-[#0f2942] focus:outline-none focus:border-[#1d5b8c]" />
+              </div>
+              <div>
+                <label for="sel-rs-reason" class="block text-xs font-semibold text-slate-700 mb-1">Fokus Alasan Pengunduran Diri</label>
+                <select
+                  id="sel-rs-reason"
+                  onchange="updateField('resignLetter', 'reasonType', this.value)"
+                  class="w-full rounded-xl border border-[#d6e4f0] bg-white px-3 py-2 text-xs font-semibold text-[#0f2942] focus:outline-none focus:border-[#1d5b8c]"
+                >
+                  <option value="career">Pengembangan Karier &amp; Peluang Baru</option>
+                  <option value="education">Melanjutkan Pendidikan / Studi</option>
+                  <option value="family">Alasan Keluarga &amp; Domisili</option>
+                  <option value="entrepreneur">Fokus Wirausaha / Proyek Mandiri</option>
+                  <option value="personal">Pertimbangan Pribadi</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="pt-1">
+              <button
+                type="button"
+                onclick="autoGenerateResignLetter()"
+                class="w-full py-3 px-4 rounded-xl bg-[#1d5b8c] hover:bg-[#16476e] active:scale-[0.99] text-white text-xs sm:text-sm font-bold shadow-sm flex items-center justify-center gap-2 transition cursor-pointer"
+              >
+                <span>⚡ Auto-Generate Surat Resign Sesuai Gaya Pilihan</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Editor Paragraf Surat Resign -->
+          <div class="bg-white border border-[#d6e4f0] rounded-2xl p-4 space-y-3.5">
+            <h3 class="text-sm font-bold text-[#0f2942] border-b border-slate-100 pb-2">Isi Surat Pengunduran Diri (Dapat Diedit Manual)</h3>
+
+            <div>
+              <label class="block text-xs font-semibold text-slate-700 mb-1">Salam Pembuka</label>
+              <input type="text" id="inp-rs-salutation" oninput="updateField('resignLetter', 'salutation', this.value)" class="w-full rounded-xl border border-[#d6e4f0] px-3 py-2 text-xs sm:text-sm text-[#0f2942] focus:outline-none focus:border-[#1d5b8c]" />
+            </div>
+
+            <div>
+              <label class="block text-xs font-semibold text-slate-700 mb-1">Paragraf Pembuka (Pernyataan Pengunduran Diri &amp; Tanggal Efektif)</label>
+              <textarea id="inp-rs-opening" rows="3" oninput="updateField('resignLetter', 'opening', this.value)" class="w-full rounded-xl border border-[#d6e4f0] p-2.5 text-xs sm:text-sm text-[#0f2942] leading-relaxed focus:outline-none focus:border-[#1d5b8c]"></textarea>
+            </div>
+
+            <div>
+              <label class="block text-xs font-semibold text-slate-700 mb-1">Paragraf Isi (Alasan &amp; Apresiasi kepada Perusahaan)</label>
+              <textarea id="inp-rs-body" rows="3" oninput="updateField('resignLetter', 'body', this.value)" class="w-full rounded-xl border border-[#d6e4f0] p-2.5 text-xs sm:text-sm text-[#0f2942] leading-relaxed focus:outline-none focus:border-[#1d5b8c]"></textarea>
+            </div>
+
+            <div>
+              <label class="block text-xs font-semibold text-slate-700 mb-1">Paragraf Komitmen Transisi &amp; Serah Terima Pekerjaan</label>
+              <textarea id="inp-rs-handover" rows="3" oninput="updateField('resignLetter', 'handover', this.value)" class="w-full rounded-xl border border-[#d6e4f0] p-2.5 text-xs sm:text-sm text-[#0f2942] leading-relaxed focus:outline-none focus:border-[#1d5b8c]"></textarea>
+            </div>
+
+            <div>
+              <label class="block text-xs font-semibold text-slate-700 mb-1">Paragraf Penutup &amp; Salam Hormat</label>
+              <textarea id="inp-rs-closing" rows="3" oninput="updateField('resignLetter', 'closing', this.value)" class="w-full rounded-xl border border-[#d6e4f0] p-2.5 text-xs sm:text-sm text-[#0f2942] leading-relaxed focus:outline-none focus:border-[#1d5b8c]"></textarea>
+            </div>
+          </div>
+
+          <div class="flex items-center justify-between pt-1">
+            <button type="button" onclick="switchEditorTab(3)" class="px-3.5 py-2 rounded-xl border border-[#d6e4f0] hover:bg-slate-50 text-xs font-semibold text-slate-700 cursor-pointer">
+              &larr; Cover Letter
+            </button>
+            <button type="button" onclick="exportDocx('resign')" class="px-4 py-2.5 rounded-xl bg-[#1d5b8c] hover:bg-[#16476e] text-white text-xs font-bold transition cursor-pointer">
+              📋 Download Surat Resign (.docx)
             </button>
           </div>
         </div>
@@ -933,7 +1149,7 @@
     <!-- =================================================================== -->
     <section
       id="preview-pane"
-      class="hidden lg:flex flex-1 flex-col lg:h-[calc(100vh-3.75rem)] overflow-hidden"
+      class="hidden lg:flex flex-1 min-w-0 min-h-0 flex-col overflow-hidden"
     >
       <!-- Toolbar Pratinjau A4 -->
       <div class="no-print bg-white/85 backdrop-blur border-b border-[#d6e4f0] px-4 py-2 flex flex-wrap items-center justify-between gap-2 shrink-0">
@@ -1185,6 +1401,22 @@
           body: 'Pada posisi saya saat ini sebagai Manajer Operasional Regional di PT Nusantara Logistik & Distribusi Tbk, saya bertanggung jawab memimpin 35 anggota tim di 4 cabang dengan tingkat pencapaian SLA sebesar 98,4%. Selain itu, inisiatif restrukturisasi proses pengadaan dan alur distribusi yang saya terapkan berhasil menghemat biaya operasional tahunan hingga 22% sekaligus meningkatkan produktivitas tim.',
           value: 'Saya memiliki kompetensi mendalam dalam perencanaan strategis, pengendalian anggaran, penyusunan standar operasional prosedur (SOP), serta sertifikasi Lean Six Sigma Green Belt. Perpaduan antara ketajaman analisis bisnis dan kepemimpinan yang kolaboratif akan membantu tim PT Sentosa Mitra Corpora mencapai target operasional secara berkelanjutan.',
           closing: 'Besar harapan saya untuk dapat diberikan kesempatan mengikuti tahap wawancara guna menjelaskan kualifikasi serta rencana kontribusi saya secara lebih rinci. Atas perhatian dan pertimbangan Ibu, saya ucapkan terima kasih.\n\nHormat saya,'
+        },
+        resignLetter: {
+          style: 'formal',
+          reasonType: 'career',
+          date: 'Tangerang, 25 November 2026',
+          lastWorkingDate: '25 Desember 2026',
+          recipientName: 'Bapak/Ibu Pimpinan HRD',
+          recipientTitle: 'Manajer Sumber Daya Manusia (HRD)',
+          companyName: 'PT Nusantara Logistik & Distribusi Tbk',
+          companyAddress: 'Jl. Jenderal Sudirman Kav. 45, Jakarta Selatan',
+          currentRole: 'Manajer Operasional Regional',
+          salutation: 'Dengan hormat,',
+          opening: 'Melalui surat ini, saya Hendra Wijaya, S.E., M.M., bermaksud mengajukan permohonan pengunduran diri dari jabatan saya sebagai Manajer Operasional Regional di PT Nusantara Logistik & Distribusi Tbk, terhitung efektif mulai tanggal 25 Desember 2026.',
+          body: 'Keputusan ini saya ambil setelah melalui pertimbangan yang matang sehubungan dengan rencana pengembangan karier dan tantangan profesional baru. Saya mengucapkan terima kasih yang sebesar-besarnya atas kepercayaan, bimbingan, serta kesempatan berharga yang telah diberikan perusahaan kepada saya selama bertugas.',
+          handover: 'Selama masa pemberitahuan (one month notice) hingga tanggal efektif pengunduran diri, saya berkomitmen penuh untuk menyelesaikan seluruh tanggung jawab yang sedang berjalan serta melakukan proses serah terima pekerjaan dan dokumen secara terstruktur agar operasional tim tetap berjalan lancar.',
+          closing: 'Apabila selama masa kerja terdapat tutur kata maupun tindakan yang kurang berkenan, saya memohon maaf yang sebesar-besarnya. Semoga PT Nusantara Logistik & Distribusi Tbk senantiasa meraih kesuksesan dan kemajuan di masa mendatang.\n\nHormat saya,'
         }
       },
 
@@ -1243,6 +1475,22 @@
           body: 'Dalam peran saya saat ini sebagai Senior Finance & Accounting Lead di PT Graha Manufaktur Nusantara, saya memimpin penyusunan laporan keuangan konsolidasi berbasis PSAK serta pengawasan kepatuhan pajak korporasi. Melalui optimalisasi sistem ERP dan rekonsiliasi terstruktur, saya berhasil mempercepat proses tutup buku bulanan hingga 35% tanpa temuan audit.',
           value: 'Keahlian saya dalam analisis laporan keuangan, manajemen arus kas, pengendalian internal, serta penguasaan SAP dan pemodelan keuangan tingkat lanjut akan memberikan dukungan strategis bagi pengambilan keputusan manajemen PT Mandiri Investama Sejahtera.',
           closing: 'Saya sangat berharap dapat diberikan kesempatan mengikuti sesi wawancara untuk memaparkan pengalaman saya lebih lanjut. Atas perhatian dan kesempatan yang Bapak berikan, saya ucapkan terima kasih.\n\nHormat saya,'
+        },
+        resignLetter: {
+          style: 'formal',
+          reasonType: 'career',
+          date: 'Jakarta, 25 November 2026',
+          lastWorkingDate: '25 Desember 2026',
+          recipientName: 'Bapak/Ibu Pimpinan HRD',
+          recipientTitle: 'Manajer Sumber Daya Manusia (HRD)',
+          companyName: 'PT Graha Manufaktur Nusantara',
+          companyAddress: 'Jl. M.H. Thamrin No. 28, Jakarta Pusat',
+          currentRole: 'Senior Finance & Accounting Lead',
+          salutation: 'Dengan hormat,',
+          opening: 'Melalui surat ini, saya Budi Santoso, S.Ak., CPA, bermaksud mengajukan permohonan pengunduran diri dari jabatan saya sebagai Senior Finance & Accounting Lead di PT Graha Manufaktur Nusantara, terhitung efektif mulai tanggal 25 Desember 2026.',
+          body: 'Keputusan ini saya ambil setelah melalui pertimbangan matang demi pengembangan karier profesional saya ke tahap berikutnya. Saya menyampaikan apresiasi dan terima kasih atas dukungan manajemen serta kerja sama yang solid selama saya berkarya di perusahaan.',
+          handover: 'Hingga hari kerja terakhir saya, saya berkomitmen menyelesaikan seluruh laporan keuangan bulanan, rekonsiliasi data, serta melakukan serah terima berkas dan akses sistem secara tertib kepada rekan pengganti.',
+          closing: 'Saya memohon maaf apabila selama menjalankan tugas terdapat kekhilafan. Semoga PT Graha Manufaktur Nusantara terus bertumbuh dan mencapai kesuksesan yang lebih besar.\n\nHormat saya,'
         }
       },
 
@@ -1307,6 +1555,22 @@
           body: 'Saat ini saya menjabat sebagai Lead Fullstack Software Engineer di PT Solusi Finansial Digital Indonesia, di mana saya memimpin 7 insinyur perangkat lunak dalam mengelola platform transaksi dengan 1,2 juta transaksi bulanan. Melalui penerapan standar kode bersih dan otomatisasi pengujian, tim kami mampu mempercepat perilisan fitur hingga 40% dengan tingkat ketersediaan sistem 99,98%.',
           value: 'Penguasaan mendalam saya pada arsitektur layanan mikro, TypeScript, React, Node.js, PostgreSQL, serta praktik keamanan aplikasi cloud akan membantu PT Bank Digital Nusantara Tbk menghadirkan solusi teknologi yang tangguh dan ramah pengguna.',
           closing: 'Terima kasih atas waktu dan pertimbangan Ibu. Saya sangat menantikan kesempatan berdiskusi dalam sesi wawancara mengenai kontribusi teknis yang dapat saya berikan bagi tim Anda.\n\nHormat saya,'
+        },
+        resignLetter: {
+          style: 'handover',
+          reasonType: 'career',
+          date: 'Jakarta, 25 November 2026',
+          lastWorkingDate: '25 Desember 2026',
+          recipientName: 'Bapak/Ibu Pimpinan Engineering & HRD',
+          recipientTitle: 'Head of People & Talent',
+          companyName: 'PT Solusi Finansial Digital Indonesia',
+          companyAddress: 'Kawasan SCBD Lot 10, Jakarta Selatan',
+          currentRole: 'Lead Fullstack Software Engineer',
+          salutation: 'Dengan hormat,',
+          opening: 'Melalui surat ini, saya Raka Pratama, S.Kom., M.T.I., mengajukan permohonan pengunduran diri dari posisi Lead Fullstack Software Engineer di PT Solusi Finansial Digital Indonesia, dengan hari kerja terakhir pada tanggal 25 Desember 2026.',
+          body: 'Keputusan ini saya ambil untuk mengejar peluang pengembangan karier baru di bidang arsitektur teknologi. Saya sangat berterima kasih atas pengalaman luar biasa, kepercayaan, dan kolaborasi bersama seluruh tim teknis maupun manajemen selama ini.',
+          handover: 'Untuk memastikan kelancaran transisi proyek, saya telah menyiapkan dokumentasi teknis arsitektur sistem, panduan deployment, serta jadwal pendampingan serah terima kode dan repositori secara menyeluruh sebelum tanggal efektif berakhirnya masa kerja saya.',
+          closing: 'Mohon maaf apabila terdapat hal yang kurang berkenan selama saya bekerja. Saya mendoakan agar PT Solusi Finansial Digital Indonesia terus berinovasi dan sukses selalu.\n\nHormat saya,'
         }
       },
 
@@ -1365,6 +1629,22 @@
           body: 'Sebagai Corporate Marketing & Client Relation Manager di PT Citra Media & Konsultan Bisnis, saya dipercaya mengelola portofolio 90+ klien korporat dengan tingkat retensi tahunan mencapai 95%, serta memimpin kampanye pemasaran B2B yang menumbuhkan perolehan prospek baru sebesar 130%.',
           value: 'Keahlian saya dalam komunikasi persuasif, manajemen hubungan pelanggan (CRM), hubungan media, serta kemampuan berbahasa Indonesia dan Inggris secara fasih akan menjadi nilai tambah nyata bagi ekspansi bisnis PT Samudra Hospitality Indonesia.',
           closing: 'Besar harapan saya untuk dapat mengikuti tahap wawancara guna memaparkan portofolio dan gagasan saya secara langsung. Atas perhatian Bapak, saya ucapkan terima kasih.\n\nHormat saya,'
+        },
+        resignLetter: {
+          style: 'grateful',
+          reasonType: 'career',
+          date: 'Jakarta, 25 November 2026',
+          lastWorkingDate: '25 Desember 2026',
+          recipientName: 'Bapak/Ibu Pimpinan HRD',
+          recipientTitle: 'Manajer Sumber Daya Manusia (HRD)',
+          companyName: 'PT Citra Media & Konsultan Bisnis',
+          companyAddress: 'Jl. Kebon Sirih No. 18, Jakarta Pusat',
+          currentRole: 'Corporate Marketing & Client Relation Manager',
+          salutation: 'Dengan hormat,',
+          opening: 'Melalui surat ini, saya Nadia Putri Maharani, S.I.Kom., menyampaikan permohonan pengunduran diri dari jabatan Corporate Marketing & Client Relation Manager di PT Citra Media & Konsultan Bisnis, terhitung efektif pada tanggal 25 Desember 2026.',
+          body: 'Saya mengucapkan terima kasih yang tulus kepada jajaran pimpinan dan seluruh rekan kerja atas bimbingan, suasana kerja yang suportif, serta berbagai kesempatan berharga yang telah membentuk perkembangan karier saya selama bergabung di perusahaan ini.',
+          handover: 'Selama sisa masa kerja hingga tanggal efektif tersebut, saya akan menuntaskan seluruh kampanye berjalan serta melakukan proses serah terima portofolio klien dan dokumen kemitraan dengan sebaik-baiknya.',
+          closing: 'Saya memohon maaf apabila selama berinteraksi terdapat kesalahan maupun kekurangan. Semoga PT Citra Media & Konsultan Bisnis senantiasa sukses dan terus berkembang.\n\nHormat saya,'
         }
       },
 
@@ -1423,6 +1703,22 @@
           body: 'Selama masa studi, saya menjalani program magang sebagai Analis Operasional Bisnis di PT Rantai Pasok Nasional Indonesia, di mana kajian alur kerja yang saya susun berhasil memberikan efisiensi biaya sebesar 12%. Selain itu, pengalaman memimpin 25 anggota organisasi kemahasiswaan mengasah kemampuan komunikasi dan kerja sama tim saya.',
           value: 'Berbekal penguasaan Microsoft Excel tingkat lanjut, SQL, Power BI, serta kemampuan komunikasi yang baik dalam Bahasa Indonesia dan Bahasa Inggris, saya siap beradaptasi dengan cepat dan memberikan kontribusi nyata bagi proyek-proyek strategis perusahaan.',
           closing: 'Besar harapan saya untuk diberikan kesempatan mengikuti tahapan seleksi dan wawancara. Atas perhatian dan kesempatan yang Bapak/Ibu berikan, saya ucapkan terima kasih.\n\nHormat saya,'
+        },
+        resignLetter: {
+          style: 'concise',
+          reasonType: 'education',
+          date: 'Tangerang, 25 November 2026',
+          lastWorkingDate: '25 Desember 2026',
+          recipientName: 'Bapak/Ibu Pimpinan HRD',
+          recipientTitle: 'Divisi Sumber Daya Manusia',
+          companyName: 'PT Rantai Pasok Nasional Indonesia',
+          companyAddress: 'Jl. TB Simatupang Kav. 14, Jakarta Selatan',
+          currentRole: 'Analis Operasional Bisnis',
+          salutation: 'Dengan hormat,',
+          opening: 'Melalui surat ini, saya Alya Rahmadani, S.M., mengajukan permohonan pengunduran diri dari posisi Analis Operasional Bisnis di PT Rantai Pasok Nasional Indonesia, terhitung efektif mulai tanggal 25 Desember 2026.',
+          body: 'Pengunduran diri ini saya ajukan karena saya akan fokus melanjutkan studi ke jenjang berikutnya. Saya mengucapkan terima kasih atas kesempatan belajar dan pengalaman kerja yang sangat berharga selama bergabung di perusahaan.',
+          handover: 'Saya siap menyelesaikan seluruh laporan analisis yang menjadi tanggung jawab saya serta menyerahkan seluruh dokumen kerja kepada atasan langsung sebelum tanggal efektif tersebut.',
+          closing: 'Atas perhatian, pengertian, dan kerja sama Bapak/Ibu, saya ucapkan terima kasih.\n\nHormat saya,'
         }
       }
     };
@@ -1438,7 +1734,7 @@
       return {
         config: {
           template: 'executive',     // 'executive' | 'swiss' | 'sidebar' | 'harvard'
-          previewDoc: 'cv',          // 'cv' | 'cover-letter' | 'bundle'
+          previewDoc: 'cv',          // 'cv' | 'cover-letter' | 'resign' | 'bundle'
           accent: 'ocean',           // 'ocean' | 'sage' | 'slate' | 'graphite'
           photoShape: 'circle'       // 'circle' | 'rounded' | 'square' | 'hidden'
         },
@@ -1452,7 +1748,8 @@
         profile: JSON.parse(JSON.stringify(preset.profile)),
         experiences: JSON.parse(JSON.stringify(preset.experiences)),
         educations: JSON.parse(JSON.stringify(preset.educations)),
-        coverLetter: JSON.parse(JSON.stringify(preset.coverLetter))
+        coverLetter: JSON.parse(JSON.stringify(preset.coverLetter)),
+        resignLetter: JSON.parse(JSON.stringify(preset.resignLetter))
       };
     }
 
@@ -1505,6 +1802,22 @@
           body: '',
           value: '',
           closing: 'Besar harapan saya untuk dapat diberikan kesempatan mengikuti tahap wawancara. Atas perhatian Bapak/Ibu, saya ucapkan terima kasih.\n\nHormat saya,'
+        },
+        resignLetter: {
+          style: 'formal',
+          reasonType: 'career',
+          date: 'Tangerang, 25 November 2026',
+          lastWorkingDate: '',
+          recipientName: '',
+          recipientTitle: 'Manajer Sumber Daya Manusia (HRD)',
+          companyName: '',
+          companyAddress: '',
+          currentRole: '',
+          salutation: 'Dengan hormat,',
+          opening: '',
+          body: '',
+          handover: '',
+          closing: 'Atas perhatian dan kerja sama Bapak/Ibu, saya ucapkan terima kasih.\n\nHormat saya,'
         }
       };
     }
@@ -1550,7 +1863,8 @@
             profile: mergedProfile,
             experiences: Array.isArray(parsed.experiences) ? parsed.experiences : base.experiences,
             educations: Array.isArray(parsed.educations) ? parsed.educations : base.educations,
-            coverLetter: { ...base.coverLetter, ...(parsed.coverLetter || {}) }
+            coverLetter: { ...base.coverLetter, ...(parsed.coverLetter || {}) },
+            resignLetter: { ...base.resignLetter, ...(parsed.resignLetter || {}) }
           };
           return;
         }
@@ -1663,11 +1977,12 @@
       appState.experiences = JSON.parse(JSON.stringify(preset.experiences));
       appState.educations = JSON.parse(JSON.stringify(preset.educations));
       appState.coverLetter = JSON.parse(JSON.stringify(preset.coverLetter));
+      appState.resignLetter = JSON.parse(JSON.stringify(preset.resignLetter));
 
       syncAllInputs();
       persistState();
       renderA4Preview();
-      showToast(`Contoh CV & Cover Letter "${preset.profile.role}" diterapkan!`, 'success');
+      showToast(`Contoh CV, Cover Letter & Surat Resign "${preset.profile.role}" diterapkan!`, 'success');
     }
 
     function autoGenerateSummary() {
@@ -1741,6 +2056,80 @@
       persistState();
       renderA4Preview();
       showToast('Cover Letter berhasil dibuat otomatis dari data CV Anda!', 'success');
+    }
+
+    const RESIGN_STYLE_LABELS = {
+      formal: 'Formal Korporat & Baku',
+      grateful: 'Hangat & Penuh Apresiasi',
+      concise: 'Singkat, Lugas & Padat',
+      handover: 'Fokus Serah Terima (Handover)',
+      personal: 'Alasan Pribadi / Keluarga / Studi'
+    };
+
+    const RESIGN_REASON_CLAUSES = {
+      career: 'rencana pengembangan karier dan tantangan profesional baru',
+      education: 'rencana melanjutkan pendidikan ke jenjang yang lebih tinggi',
+      family: 'pertimbangan keluarga dan penyesuaian domisili',
+      entrepreneur: 'rencana merintis serta mengelola usaha mandiri',
+      personal: 'pertimbangan pribadi yang telah saya pikirkan secara matang'
+    };
+
+    function selectResignStyle(styleKey) {
+      appState.resignLetter.style = styleKey;
+      autoGenerateResignLetter(true);
+    }
+
+    function autoGenerateResignLetter(fromStyleSelect = false) {
+      const p = appState.profile;
+      const rs = appState.resignLetter;
+
+      const fullName = p.fullName.trim() || 'Nama Lengkap Anda';
+      const firstExp = appState.experiences.find(e => e.role || e.company);
+      const role = rs.currentRole.trim() || (firstExp && firstExp.role ? firstExp.role.trim() : '') || p.role.trim() || 'Karyawan';
+      const company = rs.companyName.trim() || (firstExp && firstExp.company ? firstExp.company.trim() : '') || 'Perusahaan';
+      const lastDay = rs.lastWorkingDate.trim() || '30 hari sejak tanggal surat ini';
+      const style = rs.style || 'formal';
+      const reasonClause = RESIGN_REASON_CLAUSES[rs.reasonType] || RESIGN_REASON_CLAUSES.career;
+
+      rs.salutation = 'Dengan hormat,';
+
+      if (style === 'grateful') {
+        rs.opening = `Melalui surat ini, saya ${fullName} menyampaikan permohonan pengunduran diri dari jabatan saya sebagai ${role} di ${company}, terhitung efektif mulai tanggal ${lastDay}.`;
+        rs.body = `Keputusan ini saya ambil setelah melalui pertimbangan yang matang sehubungan dengan ${reasonClause}. Saya mengucapkan terima kasih yang tulus kepada jajaran pimpinan dan seluruh rekan kerja atas bimbingan, kepercayaan, serta suasana kerja yang hangat dan suportif selama saya bergabung di ${company}.`;
+        rs.handover = `Selama sisa masa kerja hingga tanggal efektif tersebut, saya berkomitmen penuh menuntaskan seluruh tanggung jawab yang sedang berjalan serta melakukan serah terima tugas dan dokumen secara terstruktur agar kelancaran tim tetap terjaga.`;
+        rs.closing = `Saya memohon maaf yang sebesar-besarnya apabila selama berinteraksi dan bekerja sama terdapat tutur kata maupun tindakan yang kurang berkenan. Semoga ${company} senantiasa meraih kesuksesan dan kemajuan yang berkelanjutan.\n\nHormat saya,`;
+      } else if (style === 'concise') {
+        rs.opening = `Dengan surat ini, saya ${fullName} mengajukan permohonan pengunduran diri dari posisi ${role} di ${company}, dengan hari kerja terakhir pada tanggal ${lastDay}.`;
+        rs.body = `Pengunduran diri ini saya ajukan terkait dengan ${reasonClause}. Saya mengucapkan terima kasih atas kesempatan, pengalaman, dan kerja sama yang telah diberikan selama masa bakti saya di ${company}.`;
+        rs.handover = `Saya siap menyelesaikan seluruh pekerjaan yang menjadi kewajiban saya serta menyerahkan seluruh berkas dan fasilitas perusahaan sebelum tanggal efektif pengunduran diri.`;
+        rs.closing = `Atas perhatian, pengertian, dan dukungan Bapak/Ibu, saya ucapkan terima kasih.\n\nHormat saya,`;
+      } else if (style === 'handover') {
+        rs.opening = `Melalui surat ini, saya ${fullName} bermaksud mengajukan permohonan pengunduran diri dari jabatan ${role} di ${company}, terhitung efektif pada tanggal ${lastDay}.`;
+        rs.body = `Keputusan ini diambil berkaitan dengan ${reasonClause}. Saya sangat menghargai setiap pembelajaran, kepercayaan, dan kolaborasi profesional yang telah terjalin bersama seluruh tim di ${company}.`;
+        rs.handover = `Untuk memastikan masa transisi (one month notice) berjalan tanpa hambatan, saya telah menyusun daftar status pekerjaan terkini, dokumentasi prosedur kerja, serta jadwal pendampingan serah terima tugas secara menyeluruh kepada rekan pengganti maupun atasan langsung sebelum tanggal ${lastDay}.`;
+        rs.closing = `Apabila selama masa kerja terdapat hal yang kurang berkenan, saya menyampaikan permohonan maaf. Semoga ${company} terus bertumbuh dan mencapai target terbaiknya di masa mendatang.\n\nHormat saya,`;
+      } else if (style === 'personal') {
+        rs.opening = `Dengan hormat, melalui surat ini saya ${fullName} bermaksud mengajukan permohonan pengunduran diri dari jabatan saya sebagai ${role} di ${company}, terhitung efektif mulai tanggal ${lastDay}.`;
+        rs.body = `Keputusan ini saya ambil dengan berat hati karena adanya ${reasonClause} yang memerlukan perhatian penuh dari saya. Saya berterima kasih atas pengertian, dukungan, serta kesempatan berharga yang telah diberikan manajemen ${company} selama ini.`;
+        rs.handover = `Selama masa pemberitahuan hingga tanggal ${lastDay}, saya tetap berdedikasi menyelesaikan tanggung jawab kerja yang ada serta melakukan proses serah terima tugas dengan sebaik-baiknya.`;
+        rs.closing = `Saya memohon maaf apabila terdapat kekhilafan selama menjalankan tugas. Semoga hubungan baik tetap terjaga dan ${company} senantiasa sukses selalu.\n\nHormat saya,`;
+      } else {
+        // Formal Korporat & Baku
+        rs.opening = `Melalui surat ini, saya ${fullName} bermaksud mengajukan permohonan pengunduran diri dari jabatan saya sebagai ${role} di ${company}, terhitung efektif mulai tanggal ${lastDay}.`;
+        rs.body = `Keputusan ini saya ambil setelah melalui pertimbangan yang matang sehubungan dengan ${reasonClause}. Saya mengucapkan terima kasih yang sebesar-besarnya atas kepercayaan, bimbingan, serta kesempatan profesional yang telah diberikan perusahaan selama masa kerja saya.`;
+        rs.handover = `Selama masa pemberitahuan hingga tanggal efektif pengunduran diri, saya berkomitmen penuh untuk menyelesaikan seluruh kewajiban pekerjaan yang sedang berjalan serta melakukan serah terima tugas dan dokumen secara tertib demi kelancaran operasional perusahaan.`;
+        rs.closing = `Apabila selama masa kerja terdapat tutur kata maupun tindakan yang kurang berkenan, saya memohon maaf yang sebesar-besarnya. Semoga ${company} senantiasa meraih kesuksesan dan kemajuan di masa mendatang.\n\nHormat saya,`;
+      }
+
+      syncAllInputs();
+      persistState();
+      renderA4Preview();
+      showToast(
+        fromStyleSelect
+          ? `Gaya "${RESIGN_STYLE_LABELS[style]}" diterapkan pada Surat Resign!`
+          : 'Surat Resign berhasil disusun otomatis!',
+        'success'
+      );
     }
 
     /* -----------------------------------------------------------------------
@@ -2013,6 +2402,15 @@
           : 'photo-shape-btn py-1.5 px-2.5 rounded-xl border border-[#d6e4f0] bg-white hover:bg-[#f6fafe] text-slate-600 text-xs font-medium transition cursor-pointer';
       });
 
+      // Tombol 5 pilihan gaya Surat Resign
+      document.querySelectorAll('.resign-style-btn').forEach(btn => {
+        const active = btn.dataset.resignStyle === (appState.resignLetter && appState.resignLetter.style);
+        const spanClass = btn.dataset.resignStyle === 'personal' ? 'sm:col-span-2 ' : '';
+        btn.className = active
+          ? `resign-style-btn ${spanClass}text-left p-3 rounded-xl border-2 border-[#1d5b8c] bg-[#eef5fb]/85 shadow-xs transition cursor-pointer`
+          : `resign-style-btn ${spanClass}text-left p-3 rounded-xl border border-[#d6e4f0] bg-white hover:bg-[#f6fafe] transition cursor-pointer`;
+      });
+
       updatePhotoThumbnailUI();
 
       // Input profil & isi CV
@@ -2045,6 +2443,27 @@
       Object.entries(clMap).forEach(([domId, key]) => {
         const el = document.getElementById(domId);
         if (el) el.value = appState.coverLetter[key] || '';
+      });
+
+      // Input Surat Resign
+      const rsMap = {
+        'inp-rs-date': 'date',
+        'inp-rs-lastWorkingDate': 'lastWorkingDate',
+        'inp-rs-recipientName': 'recipientName',
+        'inp-rs-recipientTitle': 'recipientTitle',
+        'inp-rs-companyName': 'companyName',
+        'inp-rs-currentRole': 'currentRole',
+        'inp-rs-companyAddress': 'companyAddress',
+        'sel-rs-reason': 'reasonType',
+        'inp-rs-salutation': 'salutation',
+        'inp-rs-opening': 'opening',
+        'inp-rs-body': 'body',
+        'inp-rs-handover': 'handover',
+        'inp-rs-closing': 'closing'
+      };
+      Object.entries(rsMap).forEach(([domId, key]) => {
+        const el = document.getElementById(domId);
+        if (el && appState.resignLetter) el.value = appState.resignLetter[key] || '';
       });
 
       renderExperienceEditor();
@@ -2269,6 +2688,8 @@
         sheets.push(buildCvSheetHtml());
       } else if (previewDoc === 'cover-letter') {
         sheets.push(buildCoverLetterSheetHtml());
+      } else if (previewDoc === 'resign') {
+        sheets.push(buildResignLetterSheetHtml());
       } else {
         // Paket Lengkap: Halaman 1 Cover Letter, Halaman 2 CV
         sheets.push(buildCoverLetterSheetHtml());
@@ -2282,6 +2703,7 @@
         const docLabel = {
           'cv': '📄 CV',
           'cover-letter': '✉️ Cover Letter',
+          'resign': '📋 Surat Resign',
           'bundle': '📑 Paket Lengkap (2 Halaman A4)'
         }[previewDoc];
         pill.textContent = `${docLabel} • ${TEMPLATE_NAMES[template]}`;
@@ -2845,6 +3267,144 @@
       `;
     }
 
+    /* Bangun HTML Lembaran A4 Surat Resign (Pengunduran Diri) Selaras dengan 4 Template */
+    function buildResignLetterSheetHtml() {
+      const { template, accent } = appState.config;
+      const palette = ACCENTS[accent] || ACCENTS.ocean;
+      const p = appState.profile;
+      const rs = appState.resignLetter || {};
+
+      const fullName = p.fullName.trim() || 'NAMA LENGKAP ANDA';
+      const senderRole = (rs.currentRole || '').trim() || p.role.trim() || 'Jabatan Saat Ini';
+      const contacts = getAllContactItems();
+      const socialItems = getSocialItems();
+
+      const paragraphs = [rs.opening, rs.body, rs.handover].filter(v => v && v.trim());
+
+      const renderResignBody = () => `
+        <div class="text-[12.5px] leading-[1.7] text-slate-800">
+          ${(rs.date || '').trim() ? `<div class="text-right text-slate-600 font-medium mb-5">${escapeHtml(rs.date.trim())}</div>` : ''}
+
+          <div class="mb-5 space-y-0.5">
+            <div class="font-bold text-slate-900">Kepada Yth.</div>
+            ${(rs.recipientName || '').trim() ? `<div class="font-bold text-slate-900">${escapeHtml(rs.recipientName.trim())}</div>` : ''}
+            ${(rs.recipientTitle || '').trim() ? `<div class="text-slate-700">${escapeHtml(rs.recipientTitle.trim())}</div>` : ''}
+            ${(rs.companyName || '').trim() ? `<div class="font-bold text-slate-900">${escapeHtml(rs.companyName.trim())}</div>` : ''}
+            ${(rs.companyAddress || '').trim() ? `<div class="text-slate-600">${escapeHtml(rs.companyAddress.trim())}</div>` : ''}
+          </div>
+
+          <div class="font-bold mb-5 py-2 px-3 rounded-lg border-l-4" style="background-color:${palette.tint};border-color:${palette.primary};color:#0f2942;">
+            Perihal: Permohonan Pengunduran Diri${senderRole ? ` — ${escapeHtml(senderRole)}` : ''}
+          </div>
+
+          ${(rs.salutation || '').trim() ? `<p class="font-semibold text-slate-900 mb-3">${escapeHtml(rs.salutation.trim())}</p>` : ''}
+
+          <div class="space-y-3.5 text-justify">
+            ${paragraphs.map(para => `<p>${escapeHtml(para.trim())}</p>`).join('')}
+          </div>
+
+          ${(rs.closing || '').trim() ? `
+            <div class="mt-5 whitespace-pre-line">
+              <p>${escapeHtml(rs.closing.trim())}</p>
+            </div>
+          ` : ''}
+
+          <div class="mt-12">
+            <div class="font-extrabold text-[13.5px] text-slate-900">${escapeHtml(fullName)}</div>
+            <div class="text-[11.5px] font-medium" style="color:${palette.primary};">${escapeHtml(senderRole)}</div>
+          </div>
+        </div>
+      `;
+
+      // Template 3: Sidebar Korporat
+      if (template === 'sidebar') {
+        return `
+          <article class="a4-sheet text-slate-900 overflow-hidden">
+            <div class="flex min-h-[1123px]">
+              <aside class="w-[30%] p-7 border-r shrink-0 flex flex-col justify-between" style="background-color:${palette.tint};border-color:${palette.border};">
+                <div>
+                  <div class="w-10 h-1.5 rounded-full mb-4" style="background-color:${palette.primary};"></div>
+                  <h1 class="text-[20px] font-extrabold text-slate-900 leading-snug">${escapeHtml(fullName)}</h1>
+                  <p class="text-[12px] font-semibold mt-1" style="color:${palette.primary};">${escapeHtml(senderRole)}</p>
+
+                  <div class="mt-6 pt-5 border-t space-y-2.5 text-[11px] text-slate-700 break-words" style="border-color:${palette.border};">
+                    ${p.email.trim() ? `<div><span class="font-bold text-slate-900 block text-[9.5px] uppercase tracking-wider">Email</span>${escapeHtml(p.email.trim())}</div>` : ''}
+                    ${p.phone.trim() ? `<div><span class="font-bold text-slate-900 block text-[9.5px] uppercase tracking-wider">Telepon / WA</span>${escapeHtml(p.phone.trim())}</div>` : ''}
+                    ${p.address.trim() ? `<div><span class="font-bold text-slate-900 block text-[9.5px] uppercase tracking-wider">Domisili</span>${escapeHtml(p.address.trim())}</div>` : ''}
+                    ${p.linkedin.trim() ? `<div><span class="font-bold text-slate-900 block text-[9.5px] uppercase tracking-wider">LinkedIn / Portofolio</span>${escapeHtml(p.linkedin.trim())}</div>` : ''}
+                    ${socialItems.length ? `<div><span class="font-bold text-slate-900 block text-[9.5px] uppercase tracking-wider">Media Sosial</span>${socialItems.map(s => `<div class="leading-snug mt-0.5">${escapeHtml(s)}</div>`).join('')}</div>` : ''}
+                  </div>
+                </div>
+
+                <div class="text-[10px] font-semibold uppercase tracking-widest text-slate-400">
+                  Surat Pengunduran Diri
+                </div>
+              </aside>
+
+              <div class="w-[70%] p-10">
+                ${renderResignBody()}
+              </div>
+            </div>
+          </article>
+        `;
+      }
+
+      // Template 2: Minimalis Swiss
+      if (template === 'swiss') {
+        return `
+          <article class="a4-sheet text-slate-900 p-11">
+            <header class="pb-5 mb-7 border-b border-slate-300 flex items-start justify-between gap-6">
+              <div>
+                <h1 class="text-[24px] font-extrabold tracking-tight text-slate-900">${escapeHtml(fullName)}</h1>
+                <p class="text-[13px] font-medium mt-1" style="color:${palette.primary};">${escapeHtml(senderRole)}</p>
+              </div>
+              <div class="text-right text-[11px] text-slate-600 space-y-0.5">
+                ${contacts.map(c => `<div>${escapeHtml(c)}</div>`).join('')}
+              </div>
+            </header>
+            ${renderResignBody()}
+          </article>
+        `;
+      }
+
+      // Template 4: Klasik Harvard (ATS)
+      if (template === 'harvard') {
+        return `
+          <article class="a4-sheet text-slate-900 p-11">
+            <header class="text-center pb-4 mb-7 border-b-2" style="border-color:${palette.primary};">
+              <h1 class="font-serif text-[22px] font-bold uppercase tracking-tight text-slate-900">${escapeHtml(fullName)}</h1>
+              <p class="text-[12.5px] font-semibold mt-1" style="color:${palette.primary};">${escapeHtml(senderRole)}</p>
+              ${contacts.length ? `
+                <div class="mt-2 text-[11px] text-slate-700 flex flex-wrap justify-center gap-x-2 gap-y-1">
+                  ${contacts.map((c, i) => `<span>${escapeHtml(c)}</span>${i < contacts.length - 1 ? '<span class="text-slate-400">•</span>' : ''}`).join('')}
+                </div>
+              ` : ''}
+            </header>
+            ${renderResignBody()}
+          </article>
+        `;
+      }
+
+      // Template 1: Eksekutif Modern
+      return `
+        <article class="a4-sheet text-slate-900 overflow-hidden">
+          <div class="h-2.5 w-full" style="background-color:${palette.primary};"></div>
+          <div class="p-11">
+            <header class="pb-4 mb-7 border-b-2 flex items-center justify-between gap-4" style="border-color:${palette.primary};">
+              <div>
+                <h1 class="text-[24px] font-extrabold tracking-tight text-slate-900">${escapeHtml(fullName)}</h1>
+                <p class="text-[13px] font-semibold mt-0.5" style="color:${palette.primary};">${escapeHtml(senderRole)}</p>
+              </div>
+              <div class="text-right text-[11px] text-slate-600 space-y-0.5">
+                ${contacts.map(c => `<div>${escapeHtml(c)}</div>`).join('')}
+              </div>
+            </header>
+            ${renderResignBody()}
+          </div>
+        </article>
+      `;
+    }
+
     /* -----------------------------------------------------------------------
      * 9. KONTROL ZOOM PRATINJAU, TAB & DROPDOWN
      * --------------------------------------------------------------------- */
@@ -2854,7 +3414,8 @@
       const label = document.getElementById('lbl-preview-zoom');
       if (!container || !wrapper) return;
 
-      const availW = container.clientWidth - 40;
+      const availW = container.clientWidth - 48;
+      if (availW <= 0) return;
       const a4W = 794;
       let scale = 1;
 
@@ -2888,12 +3449,21 @@
       document.querySelectorAll('.editor-tab-btn').forEach(btn => {
         const active = Number(btn.dataset.editorTab) === tabIndex;
         btn.className = active
-          ? 'editor-tab-btn px-3.5 py-2.5 rounded-t-xl text-xs font-bold border-t border-x border-[#d6e4f0] bg-white text-[#1d5b8c] -mb-[1px] transition cursor-pointer whitespace-nowrap'
-          : 'editor-tab-btn px-3.5 py-2.5 rounded-t-xl text-xs font-semibold border-t border-x border-transparent text-slate-500 hover:text-[#0f2942] transition cursor-pointer whitespace-nowrap';
+          ? 'editor-tab-btn px-3 py-2.5 rounded-t-xl text-xs font-bold border-t border-x border-[#d6e4f0] bg-white text-[#1d5b8c] -mb-[1px] transition cursor-pointer whitespace-nowrap'
+          : 'editor-tab-btn px-3 py-2.5 rounded-t-xl text-xs font-semibold border-t border-x border-transparent text-slate-500 hover:text-[#0f2942] transition cursor-pointer whitespace-nowrap';
       });
       document.querySelectorAll('.editor-panel').forEach((panel, idx) => {
         panel.classList.toggle('hidden', idx + 1 !== tabIndex);
       });
+
+      // Otomatis selaraskan pratinjau A4 dengan tab dokumen yang sedang dibuka
+      if (tabIndex === 4 && appState && appState.config.previewDoc !== 'resign') {
+        setPreviewDocMode('resign');
+      } else if (tabIndex === 3 && appState && appState.config.previewDoc === 'resign') {
+        setPreviewDocMode('cover-letter');
+      } else if (tabIndex === 2 && appState && appState.config.previewDoc === 'resign') {
+        setPreviewDocMode('cv');
+      }
     }
 
     function switchMobileView(view) {
@@ -2901,15 +3471,18 @@
       const previewPane = document.getElementById('preview-pane');
       const btnEd = document.getElementById('mobile-tab-editor');
       const btnPr = document.getElementById('mobile-tab-preview');
+      if (!editorPane || !previewPane) return;
 
       if (view === 'editor') {
         editorPane.classList.remove('hidden');
+        editorPane.classList.add('flex');
         previewPane.classList.add('hidden');
         previewPane.classList.remove('flex');
         btnEd.className = 'py-2 px-3 rounded-lg text-xs font-semibold transition flex items-center justify-center gap-1.5 bg-white text-[#1d5b8c] shadow-xs';
         btnPr.className = 'py-2 px-3 rounded-lg text-xs font-semibold transition flex items-center justify-center gap-1.5 text-slate-600 hover:text-[#0f2942]';
       } else {
         editorPane.classList.add('hidden');
+        editorPane.classList.remove('flex');
         previewPane.classList.remove('hidden');
         previewPane.classList.add('flex');
         btnPr.className = 'py-2 px-3 rounded-lg text-xs font-semibold transition flex items-center justify-center gap-1.5 bg-white text-[#1d5b8c] shadow-xs';
@@ -3546,8 +4119,122 @@
       return letterhead + buildLetterBodyXml();
     }
 
+    /* Menyusun XML OOXML untuk Surat Resign sesuai 4 Template Internasional */
+    function buildResignDocxXml() {
+      const { template, accent } = appState.config;
+      const palette = ACCENTS[accent] || ACCENTS.ocean;
+      const p = appState.profile;
+      const rs = appState.resignLetter || {};
+
+      const fullName = p.fullName.trim() || 'NAMA LENGKAP ANDA';
+      const senderRole = (rs.currentRole || '').trim() || p.role.trim() || 'Jabatan Saat Ini';
+      const contacts = getAllContactItems();
+      const socialItems = getSocialItems();
+      const paragraphs = [rs.opening, rs.body, rs.handover].filter(v => v && v.trim());
+
+      const buildResignBodyXml = () => {
+        let xml = '';
+        if ((rs.date || '').trim()) {
+          xml += xmlPara(xmlRun(rs.date.trim(), { size: 20, color: '475569' }), { align: 'right', after: 150 });
+        }
+
+        xml += xmlPara(xmlRun('Kepada Yth.', { bold: true, size: 20, color: '0F2942' }), { after: 15 });
+        if ((rs.recipientName || '').trim()) xml += xmlPara(xmlRun(rs.recipientName.trim(), { bold: true, size: 20, color: '0F2942' }), { after: 15 });
+        if ((rs.recipientTitle || '').trim()) xml += xmlPara(xmlRun(rs.recipientTitle.trim(), { size: 20, color: '334155' }), { after: 15 });
+        if ((rs.companyName || '').trim()) xml += xmlPara(xmlRun(rs.companyName.trim(), { bold: true, size: 21, color: '0F2942' }), { after: 15 });
+        if ((rs.companyAddress || '').trim()) xml += xmlPara(xmlRun(rs.companyAddress.trim(), { size: 19, color: '475569' }), { after: 140 });
+
+        xml += xmlPara(xmlRun(`Perihal: Permohonan Pengunduran Diri${senderRole ? ' — ' + senderRole : ''}`, { bold: true, size: 20, color: '0F2942' }), {
+          before: 40,
+          after: 150,
+          shadingFill: palette.hexTint,
+          borderLeftColor: palette.hexPrimary
+        });
+
+        if ((rs.salutation || '').trim()) {
+          xml += xmlPara(xmlRun(rs.salutation.trim(), { bold: true, size: 20, color: '0F2942' }), { after: 120 });
+        }
+
+        paragraphs.forEach(text => {
+          xml += xmlPara(xmlRun(text.trim(), { size: 20, color: '1E293B' }), { align: 'both', after: 125, line: 276 });
+        });
+
+        if ((rs.closing || '').trim()) {
+          rs.closing.trim().split(/\r?\n/).forEach((line, idx, arr) => {
+            xml += xmlPara(xmlRun(line, { size: 20, color: '1E293B' }), {
+              before: idx === 0 ? 60 : 0,
+              after: idx === arr.length - 1 ? 400 : 25,
+              line: 264
+            });
+          });
+        }
+
+        xml += xmlPara(xmlRun(fullName, { bold: true, size: 22, color: '0F2942' }), { after: 15 });
+        xml += xmlPara(xmlRun(senderRole, { size: 19, color: palette.hexPrimary }), { after: 30 });
+        return xml;
+      };
+
+      // Template 3: Sidebar Korporat (.DOCX)
+      if (template === 'sidebar') {
+        let sideCol = xmlPara(xmlRun(fullName, { bold: true, size: 30, color: '0F2942' }), { after: 25 });
+        sideCol += xmlPara(xmlRun(senderRole, { bold: true, size: 20, color: palette.hexPrimary }), { after: 140, borderBottomColor: palette.hexBorder, borderBottomSize: 6 });
+        if (p.email.trim()) sideCol += xmlPara(xmlRun('EMAIL\n', { bold: true, size: 15, color: '0F2942' }) + xmlRun(p.email.trim(), { size: 18, color: '334155' }), { after: 55 });
+        if (p.phone.trim()) sideCol += xmlPara(xmlRun('TELEPON / WA\n', { bold: true, size: 15, color: '0F2942' }) + xmlRun(p.phone.trim(), { size: 18, color: '334155' }), { after: 55 });
+        if (p.address.trim()) sideCol += xmlPara(xmlRun('DOMISILI\n', { bold: true, size: 15, color: '0F2942' }) + xmlRun(p.address.trim(), { size: 18, color: '334155' }), { after: 55 });
+        if (p.linkedin.trim()) sideCol += xmlPara(xmlRun('LINKEDIN\n', { bold: true, size: 15, color: '0F2942' }) + xmlRun(p.linkedin.trim(), { size: 18, color: '334155' }), { after: 55 });
+        if (socialItems.length) {
+          sideCol += xmlPara(
+            xmlRun('MEDIA SOSIAL\n', { bold: true, size: 15, color: '0F2942' }) +
+            xmlRun(socialItems.join('\n'), { size: 18, color: '334155' }),
+            { after: 55 }
+          );
+        }
+
+        return `
+          <w:tbl>
+            ${BORDERLESS_TBL_PR}
+            <w:tr>
+              <w:tc>
+                <w:tcPr>
+                  <w:tcW w:w="1550" w:type="pct"/>
+                  <w:shd w:val="clear" w:color="auto" w:fill="${palette.hexTint}"/>
+                  <w:tcBorders><w:right w:val="single" w:sz="6" w:space="0" w:color="${palette.hexBorder}"/></w:tcBorders>
+                  <w:tcMar><w:top w:w="220" w:type="dxa"/><w:bottom w:w="220" w:type="dxa"/><w:left w:w="180" w:type="dxa"/><w:right w:w="180" w:type="dxa"/></w:tcMar>
+                </w:tcPr>
+                ${sideCol}
+              </w:tc>
+              <w:tc>
+                <w:tcPr>
+                  <w:tcW w:w="3450" w:type="pct"/>
+                  <w:tcMar><w:top w:w="220" w:type="dxa"/><w:bottom w:w="220" w:type="dxa"/><w:left w:w="260" w:type="dxa"/><w:right w:w="140" w:type="dxa"/></w:tcMar>
+                </w:tcPr>
+                ${buildResignBodyXml()}
+              </w:tc>
+            </w:tr>
+          </w:tbl>
+        `;
+      }
+
+      const isHarvard = template === 'harvard';
+      const headFont = isHarvard ? 'Georgia' : 'Calibri';
+      const headAlign = isHarvard ? 'center' : 'left';
+
+      let letterhead = xmlPara(xmlRun(isHarvard ? fullName.toUpperCase() : fullName, { bold: true, size: 36, color: '0F2942', font: headFont }), { align: headAlign, after: 20 });
+      letterhead += xmlPara(xmlRun(senderRole, { bold: true, size: 21, color: palette.hexPrimary }), { align: headAlign, after: 35 });
+      if (contacts.length) {
+        letterhead += xmlPara(xmlRun(contacts.join('   •   '), { size: 18, color: '475569' }), {
+          align: headAlign,
+          after: 180,
+          borderBottomColor: template === 'swiss' ? 'CBD5E1' : palette.hexPrimary,
+          borderBottomSize: template === 'swiss' ? 8 : 12
+        });
+      }
+
+      return letterhead + buildResignBodyXml();
+    }
+
     /**
-     * Ekspor Microsoft Word (.docx): 'cv' | 'cover-letter' | 'bundle'
+     * Ekspor Microsoft Word (.docx): 'cv' | 'cover-letter' | 'resign' | 'bundle'
      */
     async function exportDocx(mode = 'cv') {
       const dropdownMenu = document.getElementById('word-dropdown-menu');
@@ -3574,6 +4261,8 @@
           bodyXml = buildCvDocxXml(hasPhoto);
         } else if (mode === 'cover-letter') {
           bodyXml = buildCoverLetterDocxXml();
+        } else if (mode === 'resign') {
+          bodyXml = buildResignDocxXml();
         } else {
           // Paket Lengkap: Cover Letter diikuti pemisah halaman lalu CV
           bodyXml = buildCoverLetterDocxXml() + xmlPageBreak() + buildCvDocxXml(hasPhoto);
@@ -3632,6 +4321,7 @@
         const prefixMap = {
           'cv': 'CV',
           'cover-letter': 'Cover_Letter',
+          'resign': 'Surat_Resign',
           'bundle': 'Paket_CV_Cover_Letter'
         };
         const fileName = `${prefixMap[mode]}_${safeName}.docx`;
