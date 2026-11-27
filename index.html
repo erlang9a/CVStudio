@@ -959,9 +959,11 @@
 
           <!-- Pilihan 5 Gaya Surat Resign -->
           <div class="bg-[#f6fafe] border border-[#d6e4f0] rounded-2xl p-4 space-y-3">
-            <div>
-              <h2 class="text-sm font-bold text-[#0f2942]">Pilih Gaya Surat Pengunduran Diri (Resign)</h2>
-              <p class="text-xs text-slate-500">Klik salah satu gaya untuk menyusun redaksi surat resign secara otomatis</p>
+            <div class="flex flex-wrap items-start justify-between gap-2">
+              <div>
+                <h2 class="text-sm font-bold text-[#0f2942]">Pilih Gaya Bahasa Surat Pengunduran Diri</h2>
+                <p class="text-xs text-slate-500">Tampilan kertas otomatis menggunakan format surat resmi standar (polos, rapi, &amp; siap tanda tangan)</p>
+              </div>
             </div>
 
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
@@ -2700,13 +2702,16 @@
 
       const pill = document.getElementById('preview-status-pill');
       if (pill) {
-        const docLabel = {
-          'cv': '📄 CV',
-          'cover-letter': '✉️ Cover Letter',
-          'resign': '📋 Surat Resign',
-          'bundle': '📑 Paket Lengkap (2 Halaman A4)'
-        }[previewDoc];
-        pill.textContent = `${docLabel} • ${TEMPLATE_NAMES[template]}`;
+        if (previewDoc === 'resign') {
+          pill.textContent = '📋 Surat Resign • Format Surat Resmi Standar';
+        } else {
+          const docLabel = {
+            'cv': '📄 CV',
+            'cover-letter': '✉️ Cover Letter',
+            'bundle': '📑 Paket Lengkap (2 Halaman A4)'
+          }[previewDoc];
+          pill.textContent = `${docLabel} • ${TEMPLATE_NAMES[template]}`;
+        }
       }
 
       applyPreviewZoom();
@@ -2718,220 +2723,129 @@
       const palette = ACCENTS[accent] || ACCENTS.ocean;
       const p = appState.profile;
 
-      const hasPhoto = Boolean(appState.photo.dataUrl) && photoShape !== 'hidden';
-      const fullName = p.fullName.trim() || 'NAMA LENGKAP ANDA';
+      const fullName = p.fullName.trim() || 'Nama Lengkap Anda';
       const roleTitle = p.role.trim() || 'Posisi / Jabatan Target';
       const contacts = getAllContactItems();
       const socialItems = getSocialItems();
-
       const skillsList = p.skills.split(',').map(s => s.trim()).filter(Boolean);
       const validExps = appState.experiences.filter(e => e.role || e.company || e.desc);
       const validEdus = appState.educations.filter(e => e.degree || e.institution);
 
-      const renderPhoto = (sizePx) => {
-        if (!hasPhoto) return '';
-        const radius = photoShape === 'circle' ? 'rounded-full' : photoShape === 'rounded' ? 'rounded-xl' : 'rounded-none';
+      const showPhoto = Boolean(appState.photo.dataUrl) && photoShape !== 'hidden';
+      const photoRadiusClass = photoShape === 'circle'
+        ? 'rounded-full'
+        : photoShape === 'rounded'
+        ? 'rounded-2xl'
+        : 'rounded-none';
+
+      const renderPhoto = (sizeClass = 'w-24 h-24') => {
+        if (!showPhoto) return '';
         return `
-          <div style="width:${sizePx}px;height:${sizePx}px;border-color:${palette.border};" class="shrink-0 overflow-hidden border-2 ${radius} bg-slate-100">
-            <img src="${appState.photo.dataUrl}" alt="Foto Profil" class="w-full h-full object-cover" />
+          <img
+            src="${appState.photo.dataUrl}"
+            alt="${escapeAttr(fullName)}"
+            class="${sizeClass} object-cover border-2 shadow-xs shrink-0 ${photoRadiusClass}"
+            style="border-color:${palette.border};"
+          />
+        `;
+      };
+
+      const renderExpItem = (exp, isHarvard = false) => {
+        const sub = [exp.company.trim(), exp.location.trim()].filter(Boolean).join(' • ');
+        const bullets = parseBullets(exp.desc);
+        return `
+          <div class="space-y-1">
+            <div class="flex items-baseline justify-between gap-2">
+              <h4 class="text-[13px] font-bold text-slate-900">${escapeHtml(exp.role || 'Jabatan')}</h4>
+              ${exp.period.trim() ? `<span class="text-[11px] font-semibold shrink-0" style="color:${palette.primary};">${escapeHtml(exp.period.trim())}</span>` : ''}
+            </div>
+            ${sub ? `<div class="text-[11.5px] ${isHarvard ? 'italic' : 'font-semibold'} text-slate-600">${escapeHtml(sub)}</div>` : ''}
+            ${bullets.length ? `
+              <ul class="list-disc pl-4 space-y-1 text-[11.5px] leading-[1.55] text-slate-700 pt-0.5">
+                ${bullets.map(b => `<li>${escapeHtml(b)}</li>`).join('')}
+              </ul>
+            ` : ''}
           </div>
         `;
       };
 
-      /* ===================================================================
-       * TEMPLATE 1: EKSEKUTIF MODERN
-       * Header atas bersih, foto kanan atas, tata letak 2 kolom proporsional
-       * ================================================================= */
-      if (template === 'executive') {
+      const renderEduItem = (edu) => `
+        <div class="space-y-0.5">
+          <div class="flex items-baseline justify-between gap-2">
+            <h4 class="text-[12px] font-bold text-slate-900">${escapeHtml(edu.degree || 'Gelar Pendidikan')}</h4>
+            ${edu.year.trim() ? `<span class="text-[10.5px] font-semibold shrink-0" style="color:${palette.primary};">${escapeHtml(edu.year.trim())}</span>` : ''}
+          </div>
+          ${edu.institution.trim() ? `<div class="text-[11.5px] text-slate-600">${escapeHtml(edu.institution.trim())}</div>` : ''}
+        </div>
+      `;
+
+      // Template 3: Sidebar Korporat
+      if (template === 'sidebar') {
         return `
-          <article class="a4-sheet text-slate-900 overflow-hidden">
-            <div class="h-2.5 w-full" style="background-color:${palette.primary};"></div>
-            <div class="p-9">
-              <!-- Masthead Eksekutif -->
-              <header class="pb-5 mb-6 border-b flex items-center justify-between gap-6" style="border-color:${palette.border};">
-                <div class="flex-1 min-w-0">
-                  <h1 class="text-[26px] font-extrabold tracking-tight text-slate-900 leading-tight">${escapeHtml(fullName)}</h1>
-                  <p class="text-[14px] font-semibold mt-1" style="color:${palette.primary};">${escapeHtml(roleTitle)}</p>
-                  ${contacts.length ? `
-                    <div class="mt-3 flex flex-wrap gap-1.5 text-[11px] font-medium text-slate-700">
-                      ${contacts.map(c => `<span class="px-2.5 py-0.5 rounded-md border" style="background-color:${palette.tint};border-color:${palette.border};">${escapeHtml(c)}</span>`).join('')}
+          <article class="a4-sheet text-slate-900 flex overflow-hidden">
+            <aside class="w-[252px] shrink-0 p-7 border-r flex flex-col gap-5" style="background-color:${palette.tint}; border-color:${palette.border};">
+              ${showPhoto ? `<div class="flex justify-center pt-1">${renderPhoto('w-28 h-28')}</div>` : ''}
+
+              <div class="space-y-2">
+                <h3 class="text-[11px] font-extrabold uppercase tracking-wider pb-1 border-b" style="color:${palette.primary}; border-color:${palette.border};">Kontak</h3>
+                <div class="space-y-2 text-[11px] text-slate-700 break-words">
+                  ${p.email.trim() ? `<div><div class="text-[9.5px] font-bold uppercase text-slate-500">Email</div><div>${escapeHtml(p.email.trim())}</div></div>` : ''}
+                  ${p.phone.trim() ? `<div><div class="text-[9.5px] font-bold uppercase text-slate-500">Telepon / WA</div><div>${escapeHtml(p.phone.trim())}</div></div>` : ''}
+                  ${p.address.trim() ? `<div><div class="text-[9.5px] font-bold uppercase text-slate-500">Domisili</div><div>${escapeHtml(p.address.trim())}</div></div>` : ''}
+                  ${p.linkedin.trim() ? `<div><div class="text-[9.5px] font-bold uppercase text-slate-500">LinkedIn / Portofolio</div><div>${escapeHtml(p.linkedin.trim())}</div></div>` : ''}
+                  ${socialItems.length ? `
+                    <div>
+                      <div class="text-[9.5px] font-bold uppercase text-slate-500">Media Sosial</div>
+                      <div class="space-y-0.5 mt-0.5">${socialItems.map(s => `<div>${escapeHtml(s)}</div>`).join('')}</div>
                     </div>
                   ` : ''}
                 </div>
-                ${renderPhoto(96)}
-              </header>
+              </div>
 
-              <!-- Ringkasan Profesional -->
-              ${p.summary.trim() ? `
-                <section class="mb-6">
-                  <h2 class="text-[11.5px] font-extrabold uppercase tracking-wider mb-2" style="color:${palette.primary};">Ringkasan Profesional</h2>
-                  <p class="text-[12px] leading-[1.65] text-slate-700 text-justify">${escapeHtml(p.summary.trim())}</p>
-                </section>
+              ${skillsList.length ? `
+                <div class="space-y-2">
+                  <h3 class="text-[11px] font-extrabold uppercase tracking-wider pb-1 border-b" style="color:${palette.primary}; border-color:${palette.border};">Keahlian Utama</h3>
+                  <ul class="space-y-1.5 text-[11px] text-slate-800">
+                    ${skillsList.map(s => `<li class="flex items-start gap-1.5"><span class="font-bold" style="color:${palette.primary};">•</span><span>${escapeHtml(s)}</span></li>`).join('')}
+                  </ul>
+                </div>
               ` : ''}
 
-              <!-- Tata Letak 2 Kolom Proporsional (64% Utama | 36% Pendukung) -->
-              <div class="grid grid-cols-12 gap-7">
-                <div class="col-span-8 space-y-5">
-                  ${validExps.length ? `
-                    <section>
-                      <h2 class="text-[11.5px] font-extrabold uppercase tracking-wider pb-1.5 mb-3 border-b" style="color:${palette.primary};border-color:${palette.border};">Pengalaman Kerja</h2>
-                      <div class="space-y-4">
-                        ${validExps.map(exp => {
-                          const bullets = parseBullets(exp.desc);
-                          const sub = [exp.company.trim(), exp.location.trim()].filter(Boolean).join(' • ');
-                          return `
-                            <div>
-                              <div class="flex items-baseline justify-between gap-2">
-                                <h3 class="font-bold text-[13px] text-slate-900">${escapeHtml(exp.role)}</h3>
-                                ${exp.period.trim() ? `<span class="text-[10.5px] font-semibold shrink-0" style="color:${palette.primary};">${escapeHtml(exp.period.trim())}</span>` : ''}
-                              </div>
-                              ${sub ? `<div class="text-[11.5px] font-semibold text-slate-600 mt-0.5">${escapeHtml(sub)}</div>` : ''}
-                              ${bullets.length ? `
-                                <ul class="list-disc pl-4 mt-1.5 space-y-1 text-[11.5px] leading-[1.55] text-slate-700">
-                                  ${bullets.map(b => `<li>${escapeHtml(b)}</li>`).join('')}
-                                </ul>
-                              ` : ''}
-                            </div>
-                          `;
-                        }).join('')}
-                      </div>
-                    </section>
-                  ` : ''}
+              ${p.certLang.trim() ? `
+                <div class="space-y-1.5">
+                  <h3 class="text-[11px] font-extrabold uppercase tracking-wider pb-1 border-b" style="color:${palette.primary}; border-color:${palette.border};">Sertifikasi &amp; Bahasa</h3>
+                  <p class="text-[11px] leading-[1.55] text-slate-700">${escapeHtml(p.certLang.trim())}</p>
                 </div>
+              ` : ''}
+            </aside>
 
-                <div class="col-span-4 space-y-5 pl-4 border-l" style="border-color:${palette.border};">
-                  ${validEdus.length ? `
-                    <section>
-                      <h2 class="text-[11.5px] font-extrabold uppercase tracking-wider pb-1.5 mb-2.5 border-b" style="color:${palette.primary};border-color:${palette.border};">Pendidikan</h2>
-                      <div class="space-y-3">
-                        ${validEdus.map(edu => `
-                          <div>
-                            <h3 class="font-bold text-[12px] text-slate-900 leading-snug">${escapeHtml(edu.degree)}</h3>
-                            ${edu.institution.trim() ? `<div class="text-[11px] font-medium text-slate-600 mt-0.5">${escapeHtml(edu.institution.trim())}</div>` : ''}
-                            ${edu.year.trim() ? `<div class="text-[10.5px] font-semibold mt-0.5" style="color:${palette.primary};">${escapeHtml(edu.year.trim())}</div>` : ''}
-                          </div>
-                        `).join('')}
-                      </div>
-                    </section>
-                  ` : ''}
+            <div class="flex-1 p-9 space-y-6">
+              <header class="pb-4 border-b-2" style="border-color:${palette.primary};">
+                <h1 class="text-[25px] font-extrabold tracking-tight text-slate-900 leading-tight">${escapeHtml(fullName)}</h1>
+                <p class="text-[13px] font-bold mt-1" style="color:${palette.primary};">${escapeHtml(roleTitle)}</p>
+              </header>
 
-                  ${skillsList.length ? `
-                    <section>
-                      <h2 class="text-[11.5px] font-extrabold uppercase tracking-wider pb-1.5 mb-2.5 border-b" style="color:${palette.primary};border-color:${palette.border};">Keahlian Utama</h2>
-                      <div class="flex flex-wrap gap-1.5">
-                        ${skillsList.map(s => `<span class="px-2 py-1 rounded text-[10.5px] font-medium border" style="background-color:${palette.tint};border-color:${palette.border};color:#0f2942;">${escapeHtml(s)}</span>`).join('')}
-                      </div>
-                    </section>
-                  ` : ''}
-
-                  ${p.certLang.trim() ? `
-                    <section>
-                      <h2 class="text-[11.5px] font-extrabold uppercase tracking-wider pb-1.5 mb-2 border-b" style="color:${palette.primary};border-color:${palette.border};">Sertifikasi &amp; Bahasa</h2>
-                      <p class="text-[11px] leading-[1.55] text-slate-700">${escapeHtml(p.certLang.trim())}</p>
-                    </section>
-                  ` : ''}
-                </div>
-              </div>
-            </div>
-          </article>
-        `;
-      }
-
-      /* ===================================================================
-       * TEMPLATE 2: MINIMALIS SWISS
-       * Tipografi Swiss/Eropa, ruang putih lega, periode di kolom kiri
-       * ================================================================= */
-      if (template === 'swiss') {
-        return `
-          <article class="a4-sheet text-slate-900 p-10">
-            <!-- Masthead Swiss -->
-            <header class="pb-6 mb-6 border-b border-slate-300 flex items-start justify-between gap-6">
-              <div class="flex-1">
-                <h1 class="text-[28px] font-extrabold tracking-tight text-slate-900 leading-none">${escapeHtml(fullName)}</h1>
-                <p class="text-[14px] font-medium mt-2" style="color:${palette.primary};">${escapeHtml(roleTitle)}</p>
-                ${contacts.length ? `
-                  <div class="mt-3 text-[11px] text-slate-500 flex flex-wrap gap-x-3 gap-y-1">
-                    ${contacts.map(c => `<span>${escapeHtml(c)}</span>`).join('')}
-                  </div>
-                ` : ''}
-              </div>
-              ${renderPhoto(88)}
-            </header>
-
-            <!-- Grid Kronologis Swiss (26% Kolom Kiri | 74% Kolom Kanan) -->
-            <div class="space-y-6">
               ${p.summary.trim() ? `
-                <section class="grid grid-cols-12 gap-4 pb-5 border-b border-slate-200">
-                  <div class="col-span-3">
-                    <h2 class="text-[10.5px] font-extrabold uppercase tracking-widest" style="color:${palette.primary};">Profil</h2>
-                  </div>
-                  <div class="col-span-9">
-                    <p class="text-[12px] leading-[1.65] text-slate-700">${escapeHtml(p.summary.trim())}</p>
-                  </div>
+                <section class="space-y-2">
+                  <h2 class="text-[11.5px] font-extrabold uppercase tracking-wider pb-1 border-b" style="color:${palette.primary}; border-color:${palette.border};">Ringkasan Profesional</h2>
+                  <p class="text-[11.5px] leading-[1.65] text-slate-700 text-justify">${escapeHtml(p.summary.trim())}</p>
                 </section>
               ` : ''}
 
               ${validExps.length ? `
-                <section class="pb-5 border-b border-slate-200 space-y-4">
-                  <div class="grid grid-cols-12 gap-4">
-                    <div class="col-span-3">
-                      <h2 class="text-[10.5px] font-extrabold uppercase tracking-widest" style="color:${palette.primary};">Pengalaman</h2>
-                    </div>
-                    <div class="col-span-9"></div>
+                <section class="space-y-3.5">
+                  <h2 class="text-[11.5px] font-extrabold uppercase tracking-wider pb-1 border-b" style="color:${palette.primary}; border-color:${palette.border};">Pengalaman Kerja</h2>
+                  <div class="space-y-4">
+                    ${validExps.map(exp => renderExpItem(exp, false)).join('')}
                   </div>
-                  ${validExps.map(exp => {
-                    const bullets = parseBullets(exp.desc);
-                    const sub = [exp.company.trim(), exp.location.trim()].filter(Boolean).join(', ');
-                    return `
-                      <div class="grid grid-cols-12 gap-4">
-                        <div class="col-span-3 pr-2">
-                          <div class="text-[11px] font-semibold text-slate-500">${escapeHtml(exp.period.trim())}</div>
-                        </div>
-                        <div class="col-span-9">
-                          <h3 class="font-bold text-[13px] text-slate-900">${escapeHtml(exp.role)}</h3>
-                          ${sub ? `<div class="text-[11.5px] font-medium text-slate-600 mt-0.5">${escapeHtml(sub)}</div>` : ''}
-                          ${bullets.length ? `
-                            <ul class="list-disc pl-4 mt-1.5 space-y-1 text-[11.5px] leading-[1.55] text-slate-700">
-                              ${bullets.map(b => `<li>${escapeHtml(b)}</li>`).join('')}
-                            </ul>
-                          ` : ''}
-                        </div>
-                      </div>
-                    `;
-                  }).join('')}
                 </section>
               ` : ''}
 
               ${validEdus.length ? `
-                <section class="pb-5 border-b border-slate-200 space-y-3">
-                  <div class="grid grid-cols-12 gap-4">
-                    <div class="col-span-3">
-                      <h2 class="text-[10.5px] font-extrabold uppercase tracking-widest" style="color:${palette.primary};">Pendidikan</h2>
-                    </div>
-                    <div class="col-span-9"></div>
-                  </div>
-                  ${validEdus.map(edu => `
-                    <div class="grid grid-cols-12 gap-4">
-                      <div class="col-span-3 pr-2">
-                        <div class="text-[11px] font-semibold text-slate-500">${escapeHtml(edu.year.trim())}</div>
-                      </div>
-                      <div class="col-span-9">
-                        <h3 class="font-bold text-[12.5px] text-slate-900">${escapeHtml(edu.degree)}</h3>
-                        ${edu.institution.trim() ? `<div class="text-[11.5px] text-slate-600">${escapeHtml(edu.institution.trim())}</div>` : ''}
-                      </div>
-                    </div>
-                  `).join('')}
-                </section>
-              ` : ''}
-
-              ${(skillsList.length || p.certLang.trim()) ? `
-                <section class="grid grid-cols-12 gap-4">
-                  <div class="col-span-3">
-                    <h2 class="text-[10.5px] font-extrabold uppercase tracking-widest" style="color:${palette.primary};">Kompetensi</h2>
-                  </div>
-                  <div class="col-span-9 space-y-2 text-[11.5px] leading-[1.6] text-slate-700">
-                    ${skillsList.length ? `<div><span class="font-bold text-slate-900">Keahlian: </span>${escapeHtml(skillsList.join(' • '))}</div>` : ''}
-                    ${p.certLang.trim() ? `<div><span class="font-bold text-slate-900">Sertifikasi &amp; Bahasa: </span>${escapeHtml(p.certLang.trim())}</div>` : ''}
+                <section class="space-y-2.5">
+                  <h2 class="text-[11.5px] font-extrabold uppercase tracking-wider pb-1 border-b" style="color:${palette.primary}; border-color:${palette.border};">Pendidikan</h2>
+                  <div class="space-y-2.5">
+                    ${validEdus.map(edu => renderEduItem(edu)).join('')}
                   </div>
                 </section>
               ` : ''}
@@ -2940,212 +2854,204 @@
         `;
       }
 
-      /* ===================================================================
-       * TEMPLATE 3: SIDEBAR KORPORAT
-       * 2 Kolom: Sidebar warna sejuk di kiri + area utama putih bersih di kanan
-       * ================================================================= */
-      if (template === 'sidebar') {
+      // Template 2: Minimalis Swiss
+      if (template === 'swiss') {
         return `
-          <article class="a4-sheet text-slate-900 overflow-hidden">
-            <div class="flex min-h-[1123px]">
-              <aside class="w-[33%] p-7 border-r shrink-0" style="background-color:${palette.tint};border-color:${palette.border};">
-                ${hasPhoto ? `<div class="mb-6 flex justify-center">${renderPhoto(114)}</div>` : ''}
+          <article class="a4-sheet text-slate-900 p-11">
+            <header class="pb-6 mb-6 border-b border-slate-300 flex items-center justify-between gap-6">
+              <div class="space-y-1.5">
+                <h1 class="text-[27px] font-extrabold tracking-tight text-slate-900 leading-tight">${escapeHtml(fullName)}</h1>
+                <p class="text-[13.5px] font-bold" style="color:${palette.primary};">${escapeHtml(roleTitle)}</p>
+                ${contacts.length ? `<div class="text-[11px] text-slate-500 pt-0.5">${contacts.map(c => escapeHtml(c)).join(' &nbsp;•&nbsp; ')}</div>` : ''}
+              </div>
+              ${renderPhoto('w-24 h-24')}
+            </header>
 
-                <section class="mb-6">
-                  <h2 class="text-[11px] font-extrabold uppercase tracking-wider pb-1.5 mb-2.5 border-b" style="color:${palette.primary};border-color:${palette.border};">Kontak</h2>
-                  <ul class="space-y-2 text-[11px] text-slate-700 break-words">
-                    ${p.email.trim() ? `<li><span class="font-bold text-slate-900 block text-[9.5px] uppercase tracking-wider">Email</span>${escapeHtml(p.email.trim())}</li>` : ''}
-                    ${p.phone.trim() ? `<li><span class="font-bold text-slate-900 block text-[9.5px] uppercase tracking-wider">Telepon / WA</span>${escapeHtml(p.phone.trim())}</li>` : ''}
-                    ${p.address.trim() ? `<li><span class="font-bold text-slate-900 block text-[9.5px] uppercase tracking-wider">Domisili</span>${escapeHtml(p.address.trim())}</li>` : ''}
-                    ${p.linkedin.trim() ? `<li><span class="font-bold text-slate-900 block text-[9.5px] uppercase tracking-wider">LinkedIn / Portofolio</span>${escapeHtml(p.linkedin.trim())}</li>` : ''}
-                    ${socialItems.length ? `<li><span class="font-bold text-slate-900 block text-[9.5px] uppercase tracking-wider">Media Sosial</span>${socialItems.map(s => `<span class="block leading-snug mt-0.5">${escapeHtml(s)}</span>`).join('')}</li>` : ''}
-                  </ul>
+            <div class="divide-y divide-slate-200">
+              ${p.summary.trim() ? `
+                <section class="py-4 grid grid-cols-12 gap-5">
+                  <div class="col-span-3 text-[11px] font-extrabold uppercase tracking-wider pt-0.5" style="color:${palette.primary};">Profil</div>
+                  <div class="col-span-9 text-[11.5px] leading-[1.65] text-slate-700 text-justify">${escapeHtml(p.summary.trim())}</div>
                 </section>
+              ` : ''}
+
+              ${validExps.length ? `
+                <section class="py-4 grid grid-cols-12 gap-5">
+                  <div class="col-span-3 text-[11px] font-extrabold uppercase tracking-wider pt-0.5" style="color:${palette.primary};">Pengalaman</div>
+                  <div class="col-span-9 space-y-4">
+                    ${validExps.map(exp => renderExpItem(exp, false)).join('')}
+                  </div>
+                </section>
+              ` : ''}
+
+              ${validEdus.length ? `
+                <section class="py-4 grid grid-cols-12 gap-5">
+                  <div class="col-span-3 text-[11px] font-extrabold uppercase tracking-wider pt-0.5" style="color:${palette.primary};">Pendidikan</div>
+                  <div class="col-span-9 space-y-2.5">
+                    ${validEdus.map(edu => renderEduItem(edu)).join('')}
+                  </div>
+                </section>
+              ` : ''}
+
+              ${(skillsList.length || p.certLang.trim()) ? `
+                <section class="py-4 grid grid-cols-12 gap-5">
+                  <div class="col-span-3 text-[11px] font-extrabold uppercase tracking-wider pt-0.5" style="color:${palette.primary};">Kompetensi</div>
+                  <div class="col-span-9 space-y-2 text-[11.5px] text-slate-700">
+                    ${skillsList.length ? `<div><span class="font-bold text-slate-900">Keahlian Utama:</span> ${escapeHtml(skillsList.join(' • '))}</div>` : ''}
+                    ${p.certLang.trim() ? `<div><span class="font-bold text-slate-900">Sertifikasi &amp; Bahasa:</span> ${escapeHtml(p.certLang.trim())}</div>` : ''}
+                  </div>
+                </section>
+              ` : ''}
+            </div>
+          </article>
+        `;
+      }
+
+      // Template 4: Klasik Harvard (ATS)
+      if (template === 'harvard') {
+        return `
+          <article class="a4-sheet text-slate-900 p-11 font-serif">
+            <header class="pb-4 mb-6 border-b-2 ${showPhoto ? 'flex items-center justify-between gap-5' : 'text-center'}" style="border-color:${palette.primary};">
+              <div class="space-y-1">
+                <h1 class="text-[24px] font-bold tracking-wide text-slate-900">${escapeHtml(fullName.toUpperCase())}</h1>
+                <p class="text-[13px] font-bold font-sans" style="color:${palette.primary};">${escapeHtml(roleTitle)}</p>
+                ${contacts.length ? `<div class="text-[11px] font-sans text-slate-600 pt-0.5">${contacts.map(c => escapeHtml(c)).join(' &nbsp;•&nbsp; ')}</div>` : ''}
+              </div>
+              ${renderPhoto('w-22 h-22')}
+            </header>
+
+            <div class="space-y-5 font-sans">
+              ${p.summary.trim() ? `
+                <section class="space-y-1.5">
+                  <h2 class="text-[12px] font-serif font-bold uppercase tracking-wider pb-1 border-b" style="color:${palette.primary}; border-color:${palette.primary};">Ringkasan Profesional</h2>
+                  <p class="text-[11.5px] leading-[1.6] text-slate-800 text-justify">${escapeHtml(p.summary.trim())}</p>
+                </section>
+              ` : ''}
+
+              ${validExps.length ? `
+                <section class="space-y-3">
+                  <h2 class="text-[12px] font-serif font-bold uppercase tracking-wider pb-1 border-b" style="color:${palette.primary}; border-color:${palette.primary};">Pengalaman Kerja</h2>
+                  <div class="space-y-3.5">
+                    ${validExps.map(exp => renderExpItem(exp, true)).join('')}
+                  </div>
+                </section>
+              ` : ''}
+
+              ${validEdus.length ? `
+                <section class="space-y-2.5">
+                  <h2 class="text-[12px] font-serif font-bold uppercase tracking-wider pb-1 border-b" style="color:${palette.primary}; border-color:${palette.primary};">Pendidikan</h2>
+                  <div class="space-y-2">
+                    ${validEdus.map(edu => renderEduItem(edu)).join('')}
+                  </div>
+                </section>
+              ` : ''}
+
+              ${(skillsList.length || p.certLang.trim()) ? `
+                <section class="space-y-1.5">
+                  <h2 class="text-[12px] font-serif font-bold uppercase tracking-wider pb-1 border-b" style="color:${palette.primary}; border-color:${palette.primary};">Keahlian, Sertifikasi &amp; Bahasa</h2>
+                  <div class="text-[11.5px] leading-[1.6] text-slate-800 space-y-1">
+                    ${skillsList.length ? `<div><span class="font-bold text-slate-900">Keahlian Utama:</span> ${escapeHtml(skillsList.join(', '))}</div>` : ''}
+                    ${p.certLang.trim() ? `<div><span class="font-bold text-slate-900">Sertifikasi &amp; Bahasa:</span> ${escapeHtml(p.certLang.trim())}</div>` : ''}
+                  </div>
+                </section>
+              ` : ''}
+            </div>
+          </article>
+        `;
+      }
+
+      // Template 1: Eksekutif Modern (Default)
+      return `
+        <article class="a4-sheet text-slate-900 overflow-hidden">
+          <div class="h-2.5 w-full" style="background-color:${palette.primary};"></div>
+          <div class="p-10 space-y-6">
+            <header class="pb-5 border-b-2 flex items-center justify-between gap-5" style="border-color:${palette.primary};">
+              <div class="space-y-1.5">
+                <h1 class="text-[26px] font-extrabold tracking-tight text-slate-900 leading-tight">${escapeHtml(fullName)}</h1>
+                <p class="text-[13.5px] font-bold" style="color:${palette.primary};">${escapeHtml(roleTitle)}</p>
+                ${contacts.length ? `
+                  <div class="flex flex-wrap gap-x-3 gap-y-1 text-[11px] text-slate-600 pt-0.5">
+                    ${contacts.map(c => `<span>${escapeHtml(c)}</span>`).join('<span class="text-slate-300">•</span>')}
+                  </div>
+                ` : ''}
+              </div>
+              ${renderPhoto('w-24 h-24')}
+            </header>
+
+            ${p.summary.trim() ? `
+              <section class="space-y-1.5">
+                <h2 class="text-[11.5px] font-extrabold uppercase tracking-wider pb-1 border-b" style="color:${palette.primary}; border-color:${palette.border};">Ringkasan Profesional</h2>
+                <p class="text-[11.5px] leading-[1.65] text-slate-700 text-justify">${escapeHtml(p.summary.trim())}</p>
+              </section>
+            ` : ''}
+
+            <div class="grid grid-cols-12 gap-7 items-start">
+              <div class="col-span-8 space-y-4">
+                ${validExps.length ? `
+                  <section class="space-y-3">
+                    <h2 class="text-[11.5px] font-extrabold uppercase tracking-wider pb-1 border-b" style="color:${palette.primary}; border-color:${palette.border};">Pengalaman Kerja</h2>
+                    <div class="space-y-4">
+                      ${validExps.map(exp => renderExpItem(exp, false)).join('')}
+                    </div>
+                  </section>
+                ` : ''}
+              </div>
+
+              <div class="col-span-4 space-y-5">
+                ${validEdus.length ? `
+                  <section class="space-y-2.5">
+                    <h2 class="text-[11.5px] font-extrabold uppercase tracking-wider pb-1 border-b" style="color:${palette.primary}; border-color:${palette.border};">Pendidikan</h2>
+                    <div class="space-y-3">
+                      ${validEdus.map(edu => renderEduItem(edu)).join('')}
+                    </div>
+                  </section>
+                ` : ''}
 
                 ${skillsList.length ? `
-                  <section class="mb-6">
-                    <h2 class="text-[11px] font-extrabold uppercase tracking-wider pb-1.5 mb-2.5 border-b" style="color:${palette.primary};border-color:${palette.border};">Keahlian Utama</h2>
+                  <section class="space-y-2">
+                    <h2 class="text-[11.5px] font-extrabold uppercase tracking-wider pb-1 border-b" style="color:${palette.primary}; border-color:${palette.border};">Keahlian Utama</h2>
                     <div class="flex flex-wrap gap-1.5">
-                      ${skillsList.map(s => `<span class="px-2 py-0.5 rounded text-[10.5px] font-medium bg-white border" style="border-color:${palette.border};color:#0f2942;">${escapeHtml(s)}</span>`).join('')}
+                      ${skillsList.map(s => `
+                        <span class="px-2.5 py-1 rounded-md text-[10.5px] font-semibold border" style="background-color:${palette.tint}; color:${palette.primary}; border-color:${palette.border};">
+                          ${escapeHtml(s)}
+                        </span>
+                      `).join('')}
                     </div>
                   </section>
                 ` : ''}
 
                 ${p.certLang.trim() ? `
-                  <section>
-                    <h2 class="text-[11px] font-extrabold uppercase tracking-wider pb-1.5 mb-2 border-b" style="color:${palette.primary};border-color:${palette.border};">Sertifikasi &amp; Bahasa</h2>
+                  <section class="space-y-1.5">
+                    <h2 class="text-[11.5px] font-extrabold uppercase tracking-wider pb-1 border-b" style="color:${palette.primary}; border-color:${palette.border};">Sertifikasi &amp; Bahasa</h2>
                     <p class="text-[11px] leading-[1.55] text-slate-700">${escapeHtml(p.certLang.trim())}</p>
                   </section>
                 ` : ''}
-              </aside>
-
-              <div class="w-[67%] p-8">
-                <header class="pb-4 mb-6 border-b-2" style="border-color:${palette.primary};">
-                  <h1 class="text-[25px] font-extrabold tracking-tight text-slate-900 leading-tight">${escapeHtml(fullName)}</h1>
-                  <p class="text-[13.5px] font-semibold mt-1" style="color:${palette.primary};">${escapeHtml(roleTitle)}</p>
-                </header>
-
-                ${p.summary.trim() ? `
-                  <section class="mb-6">
-                    <h2 class="text-[11.5px] font-extrabold uppercase tracking-wider mb-2" style="color:${palette.primary};">Ringkasan Profesional</h2>
-                    <p class="text-[12px] leading-[1.62] text-slate-700 text-justify">${escapeHtml(p.summary.trim())}</p>
-                  </section>
-                ` : ''}
-
-                ${validExps.length ? `
-                  <section class="mb-6">
-                    <h2 class="text-[11.5px] font-extrabold uppercase tracking-wider pb-1 mb-3 border-b" style="color:${palette.primary};border-color:${palette.border};">Pengalaman Kerja</h2>
-                    <div class="space-y-4">
-                      ${validExps.map(exp => {
-                        const bullets = parseBullets(exp.desc);
-                        const sub = [exp.company.trim(), exp.location.trim()].filter(Boolean).join(' • ');
-                        return `
-                          <div>
-                            <div class="flex items-baseline justify-between gap-2">
-                              <h3 class="font-bold text-[13px] text-slate-900">${escapeHtml(exp.role)}</h3>
-                              ${exp.period.trim() ? `<span class="text-[10.5px] font-semibold shrink-0" style="color:${palette.primary};">${escapeHtml(exp.period.trim())}</span>` : ''}
-                            </div>
-                            ${sub ? `<div class="text-[11.5px] font-semibold text-slate-600 mt-0.5">${escapeHtml(sub)}</div>` : ''}
-                            ${bullets.length ? `
-                              <ul class="list-disc pl-4 mt-1.5 space-y-1 text-[11.5px] leading-[1.55] text-slate-700">
-                                ${bullets.map(b => `<li>${escapeHtml(b)}</li>`).join('')}
-                              </ul>
-                            ` : ''}
-                          </div>
-                        `;
-                      }).join('')}
-                    </div>
-                  </section>
-                ` : ''}
-
-                ${validEdus.length ? `
-                  <section>
-                    <h2 class="text-[11.5px] font-extrabold uppercase tracking-wider pb-1 mb-2.5 border-b" style="color:${palette.primary};border-color:${palette.border};">Pendidikan</h2>
-                    <div class="space-y-2.5">
-                      ${validEdus.map(edu => `
-                        <div>
-                          <div class="flex items-baseline justify-between gap-2">
-                            <h3 class="font-bold text-[12.5px] text-slate-900">${escapeHtml(edu.degree)}</h3>
-                            ${edu.year.trim() ? `<span class="text-[10.5px] font-semibold shrink-0" style="color:${palette.primary};">${escapeHtml(edu.year.trim())}</span>` : ''}
-                          </div>
-                          ${edu.institution.trim() ? `<div class="text-[11.5px] text-slate-600">${escapeHtml(edu.institution.trim())}</div>` : ''}
-                        </div>
-                      `).join('')}
-                    </div>
-                  </section>
-                ` : ''}
               </div>
             </div>
-          </article>
-        `;
-      }
-
-      /* ===================================================================
-       * TEMPLATE 4: KLASIK HARVARD (ATS)
-       * Standar klasik formal internasional, garis horizontal penuh & tegas
-       * ================================================================= */
-      return `
-        <article class="a4-sheet text-slate-900 p-10">
-          <header class="pb-4 mb-5 border-b-2" style="border-color:${palette.primary};">
-            <div class="flex items-center justify-between gap-5">
-              <div class="${hasPhoto ? 'text-left' : 'text-center w-full'}">
-                <h1 class="font-serif text-[23px] font-bold tracking-tight text-slate-900 uppercase">${escapeHtml(fullName)}</h1>
-                <p class="text-[13px] font-semibold mt-1" style="color:${palette.primary};">${escapeHtml(roleTitle)}</p>
-                ${contacts.length ? `
-                  <div class="mt-2 text-[11px] text-slate-700 flex flex-wrap ${hasPhoto ? 'justify-start' : 'justify-center'} gap-x-2 gap-y-1">
-                    ${contacts.map((c, i) => `<span>${escapeHtml(c)}</span>${i < contacts.length - 1 ? '<span class="text-slate-400">•</span>' : ''}`).join('')}
-                  </div>
-                ` : ''}
-              </div>
-              ${renderPhoto(84)}
-            </div>
-          </header>
-
-          ${p.summary.trim() ? `
-            <section class="mb-5">
-              <h2 class="font-serif text-[12px] font-bold uppercase tracking-wider pb-1 mb-2 border-b" style="color:${palette.primary};border-color:${palette.primary};">Ringkasan Profesional</h2>
-              <p class="text-[12px] leading-[1.6] text-slate-800 text-justify">${escapeHtml(p.summary.trim())}</p>
-            </section>
-          ` : ''}
-
-          ${validExps.length ? `
-            <section class="mb-5">
-              <h2 class="font-serif text-[12px] font-bold uppercase tracking-wider pb-1 mb-2.5 border-b" style="color:${palette.primary};border-color:${palette.primary};">Pengalaman Kerja</h2>
-              <div class="space-y-3.5">
-                ${validExps.map(exp => {
-                  const bullets = parseBullets(exp.desc);
-                  return `
-                    <div>
-                      <div class="flex items-baseline justify-between gap-2">
-                        <h3 class="font-bold text-[12.5px] text-slate-900">${escapeHtml(exp.company || exp.role)}</h3>
-                        ${exp.location.trim() ? `<span class="text-[11px] font-medium text-slate-600 shrink-0">${escapeHtml(exp.location.trim())}</span>` : ''}
-                      </div>
-                      <div class="flex items-baseline justify-between gap-2">
-                        <div class="text-[12px] italic font-semibold text-slate-800">${escapeHtml(exp.role)}</div>
-                        ${exp.period.trim() ? `<span class="text-[11px] italic text-slate-600 shrink-0">${escapeHtml(exp.period.trim())}</span>` : ''}
-                      </div>
-                      ${bullets.length ? `
-                        <ul class="list-disc pl-5 mt-1 space-y-1 text-[11.5px] leading-[1.55] text-slate-800">
-                          ${bullets.map(b => `<li>${escapeHtml(b)}</li>`).join('')}
-                        </ul>
-                      ` : ''}
-                    </div>
-                  `;
-                }).join('')}
-              </div>
-            </section>
-          ` : ''}
-
-          ${validEdus.length ? `
-            <section class="mb-5">
-              <h2 class="font-serif text-[12px] font-bold uppercase tracking-wider pb-1 mb-2 border-b" style="color:${palette.primary};border-color:${palette.primary};">Pendidikan</h2>
-              <div class="space-y-2">
-                ${validEdus.map(edu => `
-                  <div>
-                    <div class="flex items-baseline justify-between gap-2">
-                      <h3 class="font-bold text-[12.5px] text-slate-900">${escapeHtml(edu.institution || edu.degree)}</h3>
-                      ${edu.year.trim() ? `<span class="text-[11px] text-slate-600 shrink-0">${escapeHtml(edu.year.trim())}</span>` : ''}
-                    </div>
-                    ${edu.institution.trim() ? `<div class="text-[11.5px] italic text-slate-800">${escapeHtml(edu.degree)}</div>` : ''}
-                  </div>
-                `).join('')}
-              </div>
-            </section>
-          ` : ''}
-
-          ${(skillsList.length || p.certLang.trim()) ? `
-            <section>
-              <h2 class="font-serif text-[12px] font-bold uppercase tracking-wider pb-1 mb-2 border-b" style="color:${palette.primary};border-color:${palette.primary};">Keahlian, Sertifikasi &amp; Bahasa</h2>
-              <div class="space-y-1 text-[11.5px] leading-[1.55] text-slate-800">
-                ${skillsList.length ? `<div><span class="font-bold">Keahlian Utama: </span>${escapeHtml(skillsList.join(', '))}</div>` : ''}
-                ${p.certLang.trim() ? `<div><span class="font-bold">Sertifikasi &amp; Bahasa: </span>${escapeHtml(p.certLang.trim())}</div>` : ''}
-              </div>
-            </section>
-          ` : ''}
+          </div>
         </article>
       `;
     }
 
-    /* Bangun HTML Lembaran A4 Cover Letter yang Selaras dengan 4 Template */
+    /* Bangun HTML Lembaran A4 Cover Letter Selaras dengan 4 Template */
     function buildCoverLetterSheetHtml() {
       const { template, accent } = appState.config;
       const palette = ACCENTS[accent] || ACCENTS.ocean;
       const p = appState.profile;
       const cl = appState.coverLetter;
 
-      const fullName = p.fullName.trim() || 'NAMA LENGKAP ANDA';
+      const fullName = p.fullName.trim() || 'Nama Lengkap Anda';
       const roleTitle = p.role.trim() || 'Posisi / Jabatan Target';
       const contacts = getAllContactItems();
       const socialItems = getSocialItems();
-
       const position = cl.position.trim() || roleTitle;
       const paragraphs = [cl.opening, cl.body, cl.value].filter(v => v && v.trim());
 
       const renderLetterBody = () => `
-        <div class="text-[12.5px] leading-[1.7] text-slate-800">
-          ${cl.date.trim() ? `<div class="text-right text-slate-600 font-medium mb-5">${escapeHtml(cl.date.trim())}</div>` : ''}
+        <div class="text-[12px] leading-[1.7] text-slate-800">
+          ${cl.date.trim() ? `<div class="text-right text-[11.5px] text-slate-500 mb-5">${escapeHtml(cl.date.trim())}</div>` : ''}
 
-          <div class="mb-5 space-y-0.5">
+          <div class="mb-5 space-y-0.5 text-[12px]">
             <div class="font-bold text-slate-900">Kepada Yth.</div>
             ${cl.recipientName.trim() ? `<div class="font-bold text-slate-900">${escapeHtml(cl.recipientName.trim())}</div>` : ''}
             ${cl.recipientTitle.trim() ? `<div class="text-slate-700">${escapeHtml(cl.recipientTitle.trim())}</div>` : ''}
@@ -3154,93 +3060,81 @@
           </div>
 
           ${position ? `
-            <div class="font-bold mb-5 py-2 px-3 rounded-lg border-l-4" style="background-color:${palette.tint};border-color:${palette.primary};color:#0f2942;">
+            <div class="mb-5 px-3.5 py-2 rounded-r-lg border-l-4 font-bold text-[12px] text-slate-900" style="background-color:${palette.tint}; border-color:${palette.primary};">
               Perihal: Lamaran Pekerjaan — ${escapeHtml(position)}
             </div>
           ` : ''}
 
-          ${cl.salutation.trim() ? `<p class="font-semibold text-slate-900 mb-3">${escapeHtml(cl.salutation.trim())}</p>` : ''}
+          ${cl.salutation.trim() ? `<p class="font-bold text-slate-900 mb-3.5">${escapeHtml(cl.salutation.trim())}</p>` : ''}
 
           <div class="space-y-3.5 text-justify">
             ${paragraphs.map(para => `<p>${escapeHtml(para.trim())}</p>`).join('')}
           </div>
 
           ${cl.closing.trim() ? `
-            <div class="mt-5 whitespace-pre-line">
+            <div class="mt-4 whitespace-pre-line">
               <p>${escapeHtml(cl.closing.trim())}</p>
             </div>
           ` : ''}
 
-          <div class="mt-11">
-            <div class="font-extrabold text-[13.5px] text-slate-900">${escapeHtml(fullName)}</div>
-            <div class="text-[11.5px] font-medium" style="color:${palette.primary};">${escapeHtml(roleTitle)}</div>
+          <div class="mt-14">
+            <div class="font-extrabold text-[13px] text-slate-900">${escapeHtml(fullName)}</div>
+            <div class="text-[11.5px] font-semibold" style="color:${palette.primary};">${escapeHtml(roleTitle)}</div>
           </div>
         </div>
       `;
 
-      // Template 3: Sidebar Korporat (Cover Letter dengan panel identitas vertikal serasi di kiri)
+      // Template 3: Sidebar Korporat
       if (template === 'sidebar') {
         return `
-          <article class="a4-sheet text-slate-900 overflow-hidden">
-            <div class="flex min-h-[1123px]">
-              <aside class="w-[30%] p-7 border-r shrink-0 flex flex-col justify-between" style="background-color:${palette.tint};border-color:${palette.border};">
-                <div>
-                  <div class="w-10 h-1.5 rounded-full mb-4" style="background-color:${palette.primary};"></div>
-                  <h1 class="text-[20px] font-extrabold text-slate-900 leading-snug">${escapeHtml(fullName)}</h1>
-                  <p class="text-[12px] font-semibold mt-1" style="color:${palette.primary};">${escapeHtml(roleTitle)}</p>
-
-                  <div class="mt-6 pt-5 border-t space-y-2.5 text-[11px] text-slate-700 break-words" style="border-color:${palette.border};">
-                    ${p.email.trim() ? `<div><span class="font-bold text-slate-900 block text-[9.5px] uppercase tracking-wider">Email</span>${escapeHtml(p.email.trim())}</div>` : ''}
-                    ${p.phone.trim() ? `<div><span class="font-bold text-slate-900 block text-[9.5px] uppercase tracking-wider">Telepon / WA</span>${escapeHtml(p.phone.trim())}</div>` : ''}
-                    ${p.address.trim() ? `<div><span class="font-bold text-slate-900 block text-[9.5px] uppercase tracking-wider">Domisili</span>${escapeHtml(p.address.trim())}</div>` : ''}
-                    ${p.linkedin.trim() ? `<div><span class="font-bold text-slate-900 block text-[9.5px] uppercase tracking-wider">LinkedIn / Portofolio</span>${escapeHtml(p.linkedin.trim())}</div>` : ''}
-                    ${socialItems.length ? `<div><span class="font-bold text-slate-900 block text-[9.5px] uppercase tracking-wider">Media Sosial</span>${socialItems.map(s => `<div class="leading-snug mt-0.5">${escapeHtml(s)}</div>`).join('')}</div>` : ''}
-                  </div>
-                </div>
-
-                <div class="text-[10px] font-semibold uppercase tracking-widest text-slate-400">
-                  Surat Lamaran Kerja
-                </div>
-              </aside>
-
-              <div class="w-[70%] p-10">
-                ${renderLetterBody()}
+          <article class="a4-sheet text-slate-900 flex overflow-hidden">
+            <aside class="w-[240px] shrink-0 p-8 border-r flex flex-col gap-5" style="background-color:${palette.tint}; border-color:${palette.border};">
+              <div class="pb-4 border-b" style="border-color:${palette.border};">
+                <h1 class="text-[20px] font-extrabold text-slate-900 leading-snug">${escapeHtml(fullName)}</h1>
+                <p class="text-[12px] font-bold mt-1" style="color:${palette.primary};">${escapeHtml(roleTitle)}</p>
               </div>
+              <div class="space-y-2.5 text-[11px] text-slate-700 break-words">
+                ${p.email.trim() ? `<div><div class="text-[9.5px] font-bold uppercase text-slate-500">Email</div><div>${escapeHtml(p.email.trim())}</div></div>` : ''}
+                ${p.phone.trim() ? `<div><div class="text-[9.5px] font-bold uppercase text-slate-500">Telepon / WA</div><div>${escapeHtml(p.phone.trim())}</div></div>` : ''}
+                ${p.address.trim() ? `<div><div class="text-[9.5px] font-bold uppercase text-slate-500">Domisili</div><div>${escapeHtml(p.address.trim())}</div></div>` : ''}
+                ${p.linkedin.trim() ? `<div><div class="text-[9.5px] font-bold uppercase text-slate-500">LinkedIn</div><div>${escapeHtml(p.linkedin.trim())}</div></div>` : ''}
+                ${socialItems.length ? `
+                  <div>
+                    <div class="text-[9.5px] font-bold uppercase text-slate-500">Media Sosial</div>
+                    <div class="space-y-0.5 mt-0.5">${socialItems.map(s => `<div>${escapeHtml(s)}</div>`).join('')}</div>
+                  </div>
+                ` : ''}
+              </div>
+            </aside>
+            <div class="flex-1 p-10">
+              ${renderLetterBody()}
             </div>
           </article>
         `;
       }
 
-      // Template 2: Minimalis Swiss (Kop surat minimalis tipografi Swiss)
+      // Template 2: Minimalis Swiss
       if (template === 'swiss') {
         return `
           <article class="a4-sheet text-slate-900 p-11">
-            <header class="pb-5 mb-7 border-b border-slate-300 flex items-start justify-between gap-6">
-              <div>
-                <h1 class="text-[24px] font-extrabold tracking-tight text-slate-900">${escapeHtml(fullName)}</h1>
-                <p class="text-[13px] font-medium mt-1" style="color:${palette.primary};">${escapeHtml(roleTitle)}</p>
-              </div>
-              <div class="text-right text-[11px] text-slate-600 space-y-0.5">
-                ${contacts.map(c => `<div>${escapeHtml(c)}</div>`).join('')}
-              </div>
+            <header class="pb-5 mb-7 border-b border-slate-300">
+              <h1 class="text-[25px] font-extrabold tracking-tight text-slate-900">${escapeHtml(fullName)}</h1>
+              <p class="text-[13px] font-bold mt-0.5" style="color:${palette.primary};">${escapeHtml(roleTitle)}</p>
+              ${contacts.length ? `<div class="text-[11px] text-slate-500 mt-1.5">${contacts.map(c => escapeHtml(c)).join(' &nbsp;•&nbsp; ')}</div>` : ''}
             </header>
             ${renderLetterBody()}
           </article>
         `;
       }
 
-      // Template 4: Klasik Harvard (ATS) (Surat bisnis formal klasik)
+      // Template 4: Klasik Harvard (ATS)
       if (template === 'harvard') {
         return `
           <article class="a4-sheet text-slate-900 p-11">
-            <header class="text-center pb-4 mb-7 border-b-2" style="border-color:${palette.primary};">
-              <h1 class="font-serif text-[22px] font-bold uppercase tracking-tight text-slate-900">${escapeHtml(fullName)}</h1>
-              <p class="text-[12.5px] font-semibold mt-1" style="color:${palette.primary};">${escapeHtml(roleTitle)}</p>
-              ${contacts.length ? `
-                <div class="mt-2 text-[11px] text-slate-700 flex flex-wrap justify-center gap-x-2 gap-y-1">
-                  ${contacts.map((c, i) => `<span>${escapeHtml(c)}</span>${i < contacts.length - 1 ? '<span class="text-slate-400">•</span>' : ''}`).join('')}
-                </div>
-              ` : ''}
+            <header class="pb-4 mb-7 border-b-2 text-center" style="border-color:${palette.primary};">
+              <h1 class="text-[23px] font-serif font-bold tracking-wide text-slate-900">${escapeHtml(fullName.toUpperCase())}</h1>
+              <p class="text-[12.5px] font-bold mt-0.5" style="color:${palette.primary};">${escapeHtml(roleTitle)}</p>
+              ${contacts.length ? `<div class="text-[11px] text-slate-600 mt-1">${contacts.map(c => escapeHtml(c)).join(' &nbsp;•&nbsp; ')}</div>` : ''}
             </header>
             ${renderLetterBody()}
           </article>
@@ -3267,139 +3161,60 @@
       `;
     }
 
-    /* Bangun HTML Lembaran A4 Surat Resign (Pengunduran Diri) Selaras dengan 4 Template */
+    /* Bangun HTML Lembaran A4 Surat Resign (Format Surat Resmi Biasa / Standar) */
     function buildResignLetterSheetHtml() {
-      const { template, accent } = appState.config;
-      const palette = ACCENTS[accent] || ACCENTS.ocean;
       const p = appState.profile;
       const rs = appState.resignLetter || {};
 
-      const fullName = p.fullName.trim() || 'NAMA LENGKAP ANDA';
-      const senderRole = (rs.currentRole || '').trim() || p.role.trim() || 'Jabatan Saat Ini';
-      const contacts = getAllContactItems();
-      const socialItems = getSocialItems();
-
+      const fullName = p.fullName.trim() || 'Nama Lengkap Anda';
+      const senderRole = (rs.currentRole || '').trim() || p.role.trim() || '';
       const paragraphs = [rs.opening, rs.body, rs.handover].filter(v => v && v.trim());
 
-      const renderResignBody = () => `
-        <div class="text-[12.5px] leading-[1.7] text-slate-800">
-          ${(rs.date || '').trim() ? `<div class="text-right text-slate-600 font-medium mb-5">${escapeHtml(rs.date.trim())}</div>` : ''}
-
-          <div class="mb-5 space-y-0.5">
-            <div class="font-bold text-slate-900">Kepada Yth.</div>
-            ${(rs.recipientName || '').trim() ? `<div class="font-bold text-slate-900">${escapeHtml(rs.recipientName.trim())}</div>` : ''}
-            ${(rs.recipientTitle || '').trim() ? `<div class="text-slate-700">${escapeHtml(rs.recipientTitle.trim())}</div>` : ''}
-            ${(rs.companyName || '').trim() ? `<div class="font-bold text-slate-900">${escapeHtml(rs.companyName.trim())}</div>` : ''}
-            ${(rs.companyAddress || '').trim() ? `<div class="text-slate-600">${escapeHtml(rs.companyAddress.trim())}</div>` : ''}
-          </div>
-
-          <div class="font-bold mb-5 py-2 px-3 rounded-lg border-l-4" style="background-color:${palette.tint};border-color:${palette.primary};color:#0f2942;">
-            Perihal: Permohonan Pengunduran Diri${senderRole ? ` — ${escapeHtml(senderRole)}` : ''}
-          </div>
-
-          ${(rs.salutation || '').trim() ? `<p class="font-semibold text-slate-900 mb-3">${escapeHtml(rs.salutation.trim())}</p>` : ''}
-
-          <div class="space-y-3.5 text-justify">
-            ${paragraphs.map(para => `<p>${escapeHtml(para.trim())}</p>`).join('')}
-          </div>
-
-          ${(rs.closing || '').trim() ? `
-            <div class="mt-5 whitespace-pre-line">
-              <p>${escapeHtml(rs.closing.trim())}</p>
-            </div>
-          ` : ''}
-
-          <div class="mt-12">
-            <div class="font-extrabold text-[13.5px] text-slate-900">${escapeHtml(fullName)}</div>
-            <div class="text-[11.5px] font-medium" style="color:${palette.primary};">${escapeHtml(senderRole)}</div>
-          </div>
-        </div>
-      `;
-
-      // Template 3: Sidebar Korporat
-      if (template === 'sidebar') {
-        return `
-          <article class="a4-sheet text-slate-900 overflow-hidden">
-            <div class="flex min-h-[1123px]">
-              <aside class="w-[30%] p-7 border-r shrink-0 flex flex-col justify-between" style="background-color:${palette.tint};border-color:${palette.border};">
-                <div>
-                  <div class="w-10 h-1.5 rounded-full mb-4" style="background-color:${palette.primary};"></div>
-                  <h1 class="text-[20px] font-extrabold text-slate-900 leading-snug">${escapeHtml(fullName)}</h1>
-                  <p class="text-[12px] font-semibold mt-1" style="color:${palette.primary};">${escapeHtml(senderRole)}</p>
-
-                  <div class="mt-6 pt-5 border-t space-y-2.5 text-[11px] text-slate-700 break-words" style="border-color:${palette.border};">
-                    ${p.email.trim() ? `<div><span class="font-bold text-slate-900 block text-[9.5px] uppercase tracking-wider">Email</span>${escapeHtml(p.email.trim())}</div>` : ''}
-                    ${p.phone.trim() ? `<div><span class="font-bold text-slate-900 block text-[9.5px] uppercase tracking-wider">Telepon / WA</span>${escapeHtml(p.phone.trim())}</div>` : ''}
-                    ${p.address.trim() ? `<div><span class="font-bold text-slate-900 block text-[9.5px] uppercase tracking-wider">Domisili</span>${escapeHtml(p.address.trim())}</div>` : ''}
-                    ${p.linkedin.trim() ? `<div><span class="font-bold text-slate-900 block text-[9.5px] uppercase tracking-wider">LinkedIn / Portofolio</span>${escapeHtml(p.linkedin.trim())}</div>` : ''}
-                    ${socialItems.length ? `<div><span class="font-bold text-slate-900 block text-[9.5px] uppercase tracking-wider">Media Sosial</span>${socialItems.map(s => `<div class="leading-snug mt-0.5">${escapeHtml(s)}</div>`).join('')}</div>` : ''}
-                  </div>
-                </div>
-
-                <div class="text-[10px] font-semibold uppercase tracking-widest text-slate-400">
-                  Surat Pengunduran Diri
-                </div>
-              </aside>
-
-              <div class="w-[70%] p-10">
-                ${renderResignBody()}
-              </div>
-            </div>
-          </article>
-        `;
-      }
-
-      // Template 2: Minimalis Swiss
-      if (template === 'swiss') {
-        return `
-          <article class="a4-sheet text-slate-900 p-11">
-            <header class="pb-5 mb-7 border-b border-slate-300 flex items-start justify-between gap-6">
-              <div>
-                <h1 class="text-[24px] font-extrabold tracking-tight text-slate-900">${escapeHtml(fullName)}</h1>
-                <p class="text-[13px] font-medium mt-1" style="color:${palette.primary};">${escapeHtml(senderRole)}</p>
-              </div>
-              <div class="text-right text-[11px] text-slate-600 space-y-0.5">
-                ${contacts.map(c => `<div>${escapeHtml(c)}</div>`).join('')}
-              </div>
-            </header>
-            ${renderResignBody()}
-          </article>
-        `;
-      }
-
-      // Template 4: Klasik Harvard (ATS)
-      if (template === 'harvard') {
-        return `
-          <article class="a4-sheet text-slate-900 p-11">
-            <header class="text-center pb-4 mb-7 border-b-2" style="border-color:${palette.primary};">
-              <h1 class="font-serif text-[22px] font-bold uppercase tracking-tight text-slate-900">${escapeHtml(fullName)}</h1>
-              <p class="text-[12.5px] font-semibold mt-1" style="color:${palette.primary};">${escapeHtml(senderRole)}</p>
-              ${contacts.length ? `
-                <div class="mt-2 text-[11px] text-slate-700 flex flex-wrap justify-center gap-x-2 gap-y-1">
-                  ${contacts.map((c, i) => `<span>${escapeHtml(c)}</span>${i < contacts.length - 1 ? '<span class="text-slate-400">•</span>' : ''}`).join('')}
-                </div>
-              ` : ''}
-            </header>
-            ${renderResignBody()}
-          </article>
-        `;
-      }
-
-      // Template 1: Eksekutif Modern
       return `
-        <article class="a4-sheet text-slate-900 overflow-hidden">
-          <div class="h-2.5 w-full" style="background-color:${palette.primary};"></div>
-          <div class="p-11">
-            <header class="pb-4 mb-7 border-b-2 flex items-center justify-between gap-4" style="border-color:${palette.primary};">
-              <div>
-                <h1 class="text-[24px] font-extrabold tracking-tight text-slate-900">${escapeHtml(fullName)}</h1>
-                <p class="text-[13px] font-semibold mt-0.5" style="color:${palette.primary};">${escapeHtml(senderRole)}</p>
+        <article class="a4-sheet text-slate-900 px-16 py-14 font-serif">
+          <div class="text-[13px] leading-[1.8] text-slate-900">
+            <!-- Tanggal Surat di Kanan Atas -->
+            ${(rs.date || '').trim() ? `
+              <div class="text-right mb-6">${escapeHtml(rs.date.trim())}</div>
+            ` : ''}
+
+            <!-- Perihal Surat -->
+            <div class="mb-6">
+              <span class="font-bold">Perihal : Permohonan Pengunduran Diri</span>
+            </div>
+
+            <!-- Alamat Tujuan -->
+            <div class="mb-7 space-y-0.5 leading-[1.65]">
+              <div>Kepada Yth.</div>
+              ${(rs.recipientName || '').trim() ? `<div class="font-bold">${escapeHtml(rs.recipientName.trim())}</div>` : ''}
+              ${(rs.recipientTitle || '').trim() ? `<div>${escapeHtml(rs.recipientTitle.trim())}</div>` : ''}
+              ${(rs.companyName || '').trim() ? `<div class="font-bold">${escapeHtml(rs.companyName.trim())}</div>` : ''}
+              ${(rs.companyAddress || '').trim() ? `<div>${escapeHtml(rs.companyAddress.trim())}</div>` : ''}
+              <div>Di Tempat</div>
+            </div>
+
+            <!-- Salam Pembuka -->
+            ${(rs.salutation || '').trim() ? `
+              <p class="mb-4">${escapeHtml(rs.salutation.trim())}</p>
+            ` : ''}
+
+            <!-- Isi Surat Pengunduran Diri -->
+            <div class="space-y-4 text-justify">
+              ${paragraphs.map(para => `<p>${escapeHtml(para.trim())}</p>`).join('')}
+            </div>
+
+            <!-- Penutup & Salam Hormat -->
+            ${(rs.closing || '').trim() ? `
+              <div class="mt-5 whitespace-pre-line">
+                <p>${escapeHtml(rs.closing.trim())}</p>
               </div>
-              <div class="text-right text-[11px] text-slate-600 space-y-0.5">
-                ${contacts.map(c => `<div>${escapeHtml(c)}</div>`).join('')}
-              </div>
-            </header>
-            ${renderResignBody()}
+            ` : ''}
+
+            <!-- Ruang Tanda Tangan & Nama Terang -->
+            <div class="mt-16">
+              <div class="font-bold underline underline-offset-4">${escapeHtml(fullName)}</div>
+              ${senderRole ? `<div class="text-[12px] text-slate-700 mt-0.5">${escapeHtml(senderRole)}</div>` : ''}
+            </div>
           </div>
         </article>
       `;
@@ -4119,118 +3934,70 @@
       return letterhead + buildLetterBodyXml();
     }
 
-    /* Menyusun XML OOXML untuk Surat Resign sesuai 4 Template Internasional */
+    /* Menyusun XML OOXML untuk Surat Resign (Format Surat Resmi Biasa / Standar) */
     function buildResignDocxXml() {
-      const { template, accent } = appState.config;
-      const palette = ACCENTS[accent] || ACCENTS.ocean;
       const p = appState.profile;
       const rs = appState.resignLetter || {};
 
-      const fullName = p.fullName.trim() || 'NAMA LENGKAP ANDA';
-      const senderRole = (rs.currentRole || '').trim() || p.role.trim() || 'Jabatan Saat Ini';
-      const contacts = getAllContactItems();
-      const socialItems = getSocialItems();
+      const fullName = p.fullName.trim() || 'Nama Lengkap Anda';
+      const senderRole = (rs.currentRole || '').trim() || p.role.trim() || '';
       const paragraphs = [rs.opening, rs.body, rs.handover].filter(v => v && v.trim());
+      const docFont = 'Times New Roman';
 
-      const buildResignBodyXml = () => {
-        let xml = '';
-        if ((rs.date || '').trim()) {
-          xml += xmlPara(xmlRun(rs.date.trim(), { size: 20, color: '475569' }), { align: 'right', after: 150 });
-        }
+      let xml = '';
 
-        xml += xmlPara(xmlRun('Kepada Yth.', { bold: true, size: 20, color: '0F2942' }), { after: 15 });
-        if ((rs.recipientName || '').trim()) xml += xmlPara(xmlRun(rs.recipientName.trim(), { bold: true, size: 20, color: '0F2942' }), { after: 15 });
-        if ((rs.recipientTitle || '').trim()) xml += xmlPara(xmlRun(rs.recipientTitle.trim(), { size: 20, color: '334155' }), { after: 15 });
-        if ((rs.companyName || '').trim()) xml += xmlPara(xmlRun(rs.companyName.trim(), { bold: true, size: 21, color: '0F2942' }), { after: 15 });
-        if ((rs.companyAddress || '').trim()) xml += xmlPara(xmlRun(rs.companyAddress.trim(), { size: 19, color: '475569' }), { after: 140 });
+      // Tanggal Surat di Kanan Atas
+      if ((rs.date || '').trim()) {
+        xml += xmlPara(xmlRun(rs.date.trim(), { size: 24, color: '000000', font: docFont }), { align: 'right', after: 200, line: 300 });
+      }
 
-        xml += xmlPara(xmlRun(`Perihal: Permohonan Pengunduran Diri${senderRole ? ' — ' + senderRole : ''}`, { bold: true, size: 20, color: '0F2942' }), {
-          before: 40,
-          after: 150,
-          shadingFill: palette.hexTint,
-          borderLeftColor: palette.hexPrimary
-        });
+      // Perihal Surat
+      xml += xmlPara(xmlRun('Perihal : Permohonan Pengunduran Diri', { bold: true, size: 24, color: '000000', font: docFont }), { after: 200, line: 300 });
 
-        if ((rs.salutation || '').trim()) {
-          xml += xmlPara(xmlRun(rs.salutation.trim(), { bold: true, size: 20, color: '0F2942' }), { after: 120 });
-        }
+      // Alamat Tujuan
+      xml += xmlPara(xmlRun('Kepada Yth.', { size: 24, color: '000000', font: docFont }), { after: 20, line: 280 });
+      if ((rs.recipientName || '').trim()) {
+        xml += xmlPara(xmlRun(rs.recipientName.trim(), { bold: true, size: 24, color: '000000', font: docFont }), { after: 20, line: 280 });
+      }
+      if ((rs.recipientTitle || '').trim()) {
+        xml += xmlPara(xmlRun(rs.recipientTitle.trim(), { size: 24, color: '000000', font: docFont }), { after: 20, line: 280 });
+      }
+      if ((rs.companyName || '').trim()) {
+        xml += xmlPara(xmlRun(rs.companyName.trim(), { bold: true, size: 24, color: '000000', font: docFont }), { after: 20, line: 280 });
+      }
+      if ((rs.companyAddress || '').trim()) {
+        xml += xmlPara(xmlRun(rs.companyAddress.trim(), { size: 24, color: '000000', font: docFont }), { after: 20, line: 280 });
+      }
+      xml += xmlPara(xmlRun('Di Tempat', { size: 24, color: '000000', font: docFont }), { after: 220, line: 280 });
 
-        paragraphs.forEach(text => {
-          xml += xmlPara(xmlRun(text.trim(), { size: 20, color: '1E293B' }), { align: 'both', after: 125, line: 276 });
-        });
+      // Salam Pembuka
+      if ((rs.salutation || '').trim()) {
+        xml += xmlPara(xmlRun(rs.salutation.trim(), { size: 24, color: '000000', font: docFont }), { after: 140, line: 300 });
+      }
 
-        if ((rs.closing || '').trim()) {
-          rs.closing.trim().split(/\r?\n/).forEach((line, idx, arr) => {
-            xml += xmlPara(xmlRun(line, { size: 20, color: '1E293B' }), {
-              before: idx === 0 ? 60 : 0,
-              after: idx === arr.length - 1 ? 400 : 25,
-              line: 264
-            });
+      // Isi Paragraf Surat
+      paragraphs.forEach(text => {
+        xml += xmlPara(xmlRun(text.trim(), { size: 24, color: '000000', font: docFont }), { align: 'both', after: 150, line: 312 });
+      });
+
+      // Penutup & Salam Hormat
+      if ((rs.closing || '').trim()) {
+        rs.closing.trim().split(/\r?\n/).forEach((line, idx, arr) => {
+          xml += xmlPara(xmlRun(line, { size: 24, color: '000000', font: docFont }), {
+            before: idx === 0 ? 60 : 0,
+            after: idx === arr.length - 1 ? 640 : 25,
+            line: 300
           });
-        }
-
-        xml += xmlPara(xmlRun(fullName, { bold: true, size: 22, color: '0F2942' }), { after: 15 });
-        xml += xmlPara(xmlRun(senderRole, { size: 19, color: palette.hexPrimary }), { after: 30 });
-        return xml;
-      };
-
-      // Template 3: Sidebar Korporat (.DOCX)
-      if (template === 'sidebar') {
-        let sideCol = xmlPara(xmlRun(fullName, { bold: true, size: 30, color: '0F2942' }), { after: 25 });
-        sideCol += xmlPara(xmlRun(senderRole, { bold: true, size: 20, color: palette.hexPrimary }), { after: 140, borderBottomColor: palette.hexBorder, borderBottomSize: 6 });
-        if (p.email.trim()) sideCol += xmlPara(xmlRun('EMAIL\n', { bold: true, size: 15, color: '0F2942' }) + xmlRun(p.email.trim(), { size: 18, color: '334155' }), { after: 55 });
-        if (p.phone.trim()) sideCol += xmlPara(xmlRun('TELEPON / WA\n', { bold: true, size: 15, color: '0F2942' }) + xmlRun(p.phone.trim(), { size: 18, color: '334155' }), { after: 55 });
-        if (p.address.trim()) sideCol += xmlPara(xmlRun('DOMISILI\n', { bold: true, size: 15, color: '0F2942' }) + xmlRun(p.address.trim(), { size: 18, color: '334155' }), { after: 55 });
-        if (p.linkedin.trim()) sideCol += xmlPara(xmlRun('LINKEDIN\n', { bold: true, size: 15, color: '0F2942' }) + xmlRun(p.linkedin.trim(), { size: 18, color: '334155' }), { after: 55 });
-        if (socialItems.length) {
-          sideCol += xmlPara(
-            xmlRun('MEDIA SOSIAL\n', { bold: true, size: 15, color: '0F2942' }) +
-            xmlRun(socialItems.join('\n'), { size: 18, color: '334155' }),
-            { after: 55 }
-          );
-        }
-
-        return `
-          <w:tbl>
-            ${BORDERLESS_TBL_PR}
-            <w:tr>
-              <w:tc>
-                <w:tcPr>
-                  <w:tcW w:w="1550" w:type="pct"/>
-                  <w:shd w:val="clear" w:color="auto" w:fill="${palette.hexTint}"/>
-                  <w:tcBorders><w:right w:val="single" w:sz="6" w:space="0" w:color="${palette.hexBorder}"/></w:tcBorders>
-                  <w:tcMar><w:top w:w="220" w:type="dxa"/><w:bottom w:w="220" w:type="dxa"/><w:left w:w="180" w:type="dxa"/><w:right w:w="180" w:type="dxa"/></w:tcMar>
-                </w:tcPr>
-                ${sideCol}
-              </w:tc>
-              <w:tc>
-                <w:tcPr>
-                  <w:tcW w:w="3450" w:type="pct"/>
-                  <w:tcMar><w:top w:w="220" w:type="dxa"/><w:bottom w:w="220" w:type="dxa"/><w:left w:w="260" w:type="dxa"/><w:right w:w="140" w:type="dxa"/></w:tcMar>
-                </w:tcPr>
-                ${buildResignBodyXml()}
-              </w:tc>
-            </w:tr>
-          </w:tbl>
-        `;
-      }
-
-      const isHarvard = template === 'harvard';
-      const headFont = isHarvard ? 'Georgia' : 'Calibri';
-      const headAlign = isHarvard ? 'center' : 'left';
-
-      let letterhead = xmlPara(xmlRun(isHarvard ? fullName.toUpperCase() : fullName, { bold: true, size: 36, color: '0F2942', font: headFont }), { align: headAlign, after: 20 });
-      letterhead += xmlPara(xmlRun(senderRole, { bold: true, size: 21, color: palette.hexPrimary }), { align: headAlign, after: 35 });
-      if (contacts.length) {
-        letterhead += xmlPara(xmlRun(contacts.join('   •   '), { size: 18, color: '475569' }), {
-          align: headAlign,
-          after: 180,
-          borderBottomColor: template === 'swiss' ? 'CBD5E1' : palette.hexPrimary,
-          borderBottomSize: template === 'swiss' ? 8 : 12
         });
       }
 
-      return letterhead + buildResignBodyXml();
+      // Nama Terang & Jabatan
+      xml += xmlPara(xmlRun(fullName, { bold: true, size: 24, color: '000000', font: docFont }), { after: 20, line: 280 });
+      if (senderRole) {
+        xml += xmlPara(xmlRun(senderRole, { size: 22, color: '1E293B', font: docFont }), { after: 30, line: 280 });
+      }
+
+      return xml;
     }
 
     /**
@@ -4268,7 +4035,9 @@
           bodyXml = buildCoverLetterDocxXml() + xmlPageBreak() + buildCvDocxXml(hasPhoto);
         }
 
-        const marginTwips = appState.config.template === 'sidebar' ? 520 : 860;
+        const marginTwips = mode === 'resign'
+          ? 1440
+          : (appState.config.template === 'sidebar' ? 520 : 860);
 
         const documentXml = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <w:document xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main"
